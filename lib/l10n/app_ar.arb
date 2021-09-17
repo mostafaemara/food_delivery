@@ -1,0 +1,17 @@
+{
+  "appTitle":"Food Delivery App",
+    "choseFromWideRange":"اختر من بين مجموعة واسعة من الوجبات اللذيذة",
+    "enjoyInstantDelivery": "استمتع بالتوصيل والدفع الفوري",
+    "createAccount":"إنشاء حساب",
+    "login":"تسجيل الدخول",
+    "skip":"تخطى",
+     "createAnAccount":"إنشاء حساب",
+    "loginToMyAccount":"تسجيل الدخول الي الحساب الخاص بي",
+    "welcomeEnterYourDetails":"مرحبًا ، أدخل البييانات الخاصة بك حتى نبدأ في طلب الطعام.",
+    "emailAddress":"البريد الإلكتروني",
+    "enterEmail":"ادخل البريد الإلكتروني",
+    "password":"كلمة المرور",
+    "enterPassword":"أدخل كلمة المرور",
+    "confirmPassword":"تأكيد كلمة المرور",
+    "signInWithGoogle":"تسجيل الدخول بواسطة جوجل"
+}

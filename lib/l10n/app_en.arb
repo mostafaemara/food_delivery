@@ -1,0 +1,17 @@
+{
+    "appTitle":"Food Delivery App",
+    "choseFromWideRange":"Choose from a wide range of  delicious meals",
+    "enjoyInstantDelivery": "Enjoy instant delivery and payment",
+    "createAccount":"Create Account",
+    "login":"login",
+    "skip":"Skip",
+    "createAnAccount":"Create an account",
+    "loginToMyAccount":"Login to my account",
+    "welcomeEnterYourDetails":"Welcome, enter your details so lets get started in ordering food.",
+    "emailAddress":"Email Address",
+    "enterEmail":"Enter email",
+    "password":"Password",
+    "enterPassword":"Enter password",
+    "confirmPassword":"Confirm Password",
+    "signInWithGoogle":"Sign-in with Google"
+}
