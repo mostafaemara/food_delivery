@@ -13,5 +13,17 @@
     "password":"Password",
     "enterPassword":"Enter password",
     "confirmPassword":"Confirm Password",
-    "signInWithGoogle":"Sign-in with Google"
+    "signInWithGoogle":"Sign-in with Google",
+    "goodToSeeYouAgain":"Good to see you again, enter your details below to continue ordering.",
+    "forgotPassword":"Forgot password?",
+    "forgotPasswordTitle":"Forgot password",
+    "cancel":"Cancel",
+    "forgotPasswordSubtitle":"Enter your email address to request a password reset.",
+    "restPassword":"Rest password",
+    "myProfile":"My profile",
+    "paymentMethod":"Payment method",
+    "settings":"Settings",
+    "help":"Help",
+    "privacyPolicy":"Privacy policy",
+    "logout":"Log Out"
 }

@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/pages/screens/auth/widgets/sign_in_form.dart';
 import 'package:food_delivery_app/presentation/pages/screens/auth/widgets/signup_form.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  bool isSignUp = true;
+
+  Widget _buildAuthForm() {
+    if (isSignUp) {
+      return const SignUpForm();
+    } else {
+      return const SignInForm();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,33 +38,10 @@ class AuthScreen extends StatelessWidget {
                     onPressed: () {},
                     child: Text(AppLocalizations.of(context)!.skip)),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Text(
-                  AppLocalizations.of(context)!.createAnAccount,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Text(
-                  AppLocalizations.of(context)!.welcomeEnterYourDetails,
-                  style: Theme.of(context).textTheme.bodyText2!,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const SignUpForm(),
-              const SizedBox(
-                height: 20,
-              ),
+              _buildAuthForm(),
               Container(
                 height: 60,
                 padding: const EdgeInsets.symmetric(horizontal: 100),
@@ -74,16 +67,27 @@ class AuthScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: Text(AppLocalizations.of(context)!.signInWithGoogle),
+                  child: Text(isSignUp
+                      ? AppLocalizations.of(context)!.createAnAccount
+                      : AppLocalizations.of(context)!.login),
                   style:
                       Theme.of(context).elevatedButtonTheme.style!.copyWith(),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 height: 60,
                 child: TextButton(
-                  child: Text(AppLocalizations.of(context)!.loginToMyAccount),
-                  onPressed: () {},
+                  child: Text(isSignUp
+                      ? AppLocalizations.of(context)!.loginToMyAccount
+                      : AppLocalizations.of(context)!.createAccount),
+                  onPressed: () {
+                    setState(() {
+                      isSignUp = !isSignUp;
+                    });
+                  },
                 ),
               ),
               const SizedBox(

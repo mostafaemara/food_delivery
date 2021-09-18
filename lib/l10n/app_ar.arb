@@ -13,5 +13,17 @@
     "password":"كلمة المرور",
     "enterPassword":"أدخل كلمة المرور",
     "confirmPassword":"تأكيد كلمة المرور",
-    "signInWithGoogle":"تسجيل الدخول بواسطة جوجل"
+    "signInWithGoogle":"تسجيل الدخول بواسطة جوجل",
+       "goodToSeeYouAgain":"من الجيد رؤيتك مرة أخرى ، أدخل التفاصيل الخاصة بك أدناه لمتابعة الطلب.",
+       "forgetPassword":"هل نسيت كلمة المرور؟",
+       "forgotPasswordTitle":"استعادة كلمة المرور",
+    "cancel":"الغاء",
+    "forgotPasswordSubtitle":"أدخل عنوان بريدك الإلكتروني لطلب إعادة تعيين كلمة المرور.",
+    "restPassword":"استعادة كلمة المرور",
+    "myProfile":"الملف الشخصي",
+    "paymentMethod":"طريقة الدفع",
+    "settings":"الإعدادات",
+    "help":"مساعدة",
+    "privacyPolicy":"سياسة خاصة",
+    "logout":"تسجيل خروج"
 }

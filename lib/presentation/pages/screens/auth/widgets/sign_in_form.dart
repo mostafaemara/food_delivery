@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/routes/routes.dart';
 
-class SignUpForm extends StatelessWidget {
-  const SignUpForm({Key? key}) : super(key: key);
+class SignInForm extends StatelessWidget {
+  const SignInForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class SignUpForm extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 50),
             child: Text(
-              AppLocalizations.of(context)!.createAnAccount,
+              AppLocalizations.of(context)!.loginToMyAccount,
               style: Theme.of(context)
                   .textTheme
                   .headline5!
@@ -28,7 +29,7 @@ class SignUpForm extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 50),
             child: Text(
-              AppLocalizations.of(context)!.welcomeEnterYourDetails,
+              AppLocalizations.of(context)!.goodToSeeYouAgain,
               style: Theme.of(context).textTheme.bodyText2!,
             ),
           ),
@@ -60,19 +61,16 @@ class SignUpForm extends StatelessWidget {
             decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.enterPassword),
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(bottom: 8, start: 20),
-            child: Text(
-              AppLocalizations.of(context)!.confirmPassword,
-              style: Theme.of(context).textTheme.bodyText2,
+          Container(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton(
+              child: Text(
+                AppLocalizations.of(context)!.forgotPassword,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.forgotPasswordScreen);
+              },
             ),
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.confirmPassword),
           ),
           const SizedBox(
             height: 30,
