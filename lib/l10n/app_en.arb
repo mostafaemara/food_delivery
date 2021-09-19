@@ -25,5 +25,8 @@
     "settings":"Settings",
     "help":"Help",
     "privacyPolicy":"Privacy policy",
-    "logout":"Log Out"
+    "logout":"Log Out",
+    "enjoyDeliciousFood":"Enjoy Delicious food",
+    "popular":"Popular",
+    "viewAll":"View all"
 }

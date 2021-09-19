@@ -25,5 +25,8 @@
     "settings":"الإعدادات",
     "help":"مساعدة",
     "privacyPolicy":"سياسة خاصة",
-    "logout":"تسجيل خروج"
+    "logout":"تسجيل خروج",
+     "enjoyDeliciousFood":"استمتع بالطعام اللذيذ",
+    "popular":"الأكثر شعبية",
+    "viewAll":"عرض الكل"
 }

@@ -18,4 +18,6 @@ class AppColors {
 
   static const Color lightGrey = Color(0xffc9cdd1);
   static const Color accentColor = Color(0xff0B735F);
+  static const Color selectedBackground = Color(0x20A9E88B);
+  static const Color selectedBorderColor = Color(0xff3EC032);
 }
