@@ -3,10 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/pages/screens/auth/auth_screen.dart';
 import 'package:food_delivery_app/presentation/pages/screens/forgot_password/forgot_password_screen.dart';
 import 'package:food_delivery_app/presentation/pages/screens/main/main_screen.dart';
-import 'package:food_delivery_app/presentation/pages/screens/onboard/onboard_screen.dart';
-import 'package:food_delivery_app/presentation/pages/screens/rest_password/rest_code_screen.dart';
 
-import 'package:food_delivery_app/presentation/pages/screens/splash/splash_screen.dart';
+import 'package:food_delivery_app/presentation/pages/screens/meal_details/meal_details_screen.dart';
+
 import 'package:food_delivery_app/presentation/routes/routes.dart';
 import 'package:food_delivery_app/presentation/styles/app_themes.dart';
 

@@ -8,57 +8,63 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          AppLocalizations.of(context)!.enjoyDeliciousFood,
-          style: Theme.of(context)
-              .textTheme
-              .headline5!
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(
-          height: 50,
-        ),
-        SizedBox(
-          height: 150,
-          child: CategoryList(),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.popular,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(end: 60),
-              child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    AppLocalizations.of(context)!.viewAll,
-                    style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                    ),
-                  )),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        SizedBox(
-          height: 260,
-          child: PopularList(),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          Text(
+            AppLocalizations.of(context)!.enjoyDeliciousFood,
+            style: Theme.of(context)
+                .textTheme
+                .headline5!
+                .copyWith(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          SizedBox(
+            height: 150,
+            child: CategoryList(),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.popular,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 60),
+                child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      AppLocalizations.of(context)!.viewAll,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    )),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            height: 260,
+            child: PopularList(),
+          )
+        ],
+      ),
     );
   }
 }

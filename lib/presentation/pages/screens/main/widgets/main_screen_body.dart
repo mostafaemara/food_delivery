@@ -27,33 +27,27 @@ class _MainScreenBodyState extends State<MainScreenBody> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-          child: ListView(
-            children: [
-              Padding(
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(
                 padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: IconButton(
-                        onPressed: () {
-                          ZoomDrawer.of(context)!.open();
-                        },
-                        icon: Image.asset(
-                          "assets/icons/drawer_icon.png",
-                          height: 24,
-                        ),
+                sliver: SliverAppBar(
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  leading: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: IconButton(
+                      onPressed: () {
+                        ZoomDrawer.of(context)!.open();
+                      },
+                      icon: Image.asset(
+                        "assets/icons/drawer_icon.png",
+                        height: 24,
                       ),
                     ),
-                    Column(
-                      children: [
-                        //Todo Delivery to
-                      ],
-                    ),
+                  ),
+                  actions: [
                     Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(40),
@@ -72,15 +66,13 @@ class _MainScreenBodyState extends State<MainScreenBody> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: 20),
-                child: IndexedStack(
-                  index: index,
-                  children: const [Home(), Favorite(), Order(), Cart()],
-                ),
+              SliverList(
+                delegate: SliverChildListDelegate.fixed([
+                  IndexedStack(
+                    index: index,
+                    children: const [Home(), Favorite(), Order(), Cart()],
+                  ),
+                ]),
               )
             ],
           ),
