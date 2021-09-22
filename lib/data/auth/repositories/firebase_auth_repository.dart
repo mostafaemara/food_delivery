@@ -1,12 +1,14 @@
-import 'dart:html';
+import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:food_delivery_app/domain/auth/entities/user.dart';
+import 'package:food_delivery_app/domain/auth/repositories/auth.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
 import "../mappers/firebase_user_mapper.dart";
-import 'package:food_delivery_app/features/auth/domain/entities/user.dart';
+
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/features/auth/domain/repositories/auth.dart';
 
 class FirebaseAuthRepository implements AuthRepositoryInterface {
   final _auth = firebase_auth.FirebaseAuth.instance;
@@ -26,12 +28,10 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
         return left(ServerFailure());
       }
     }
-    // TODO: implement loginWithEmailAndPassword
   }
 
   @override
   Future<Either<Failure, User>> loginWithGoogle() async {
-    // TODO: implement loginWithGoogle
     try {
       final googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
@@ -72,5 +72,18 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
         return left(ServerFailure());
       }
     }
+  }
+
+  @override
+  Stream<Option<User>> get onAuthChanged {
+    return _auth.authStateChanges().map((user) {
+      print(
+          "user changed-----------------repo--------------------------------------------------");
+      if (user == null) {
+        return none();
+      } else {
+        return some(user.toDomainUser());
+      }
+    });
   }
 }

@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/presentation/pages/screens/auth/widgets/sign_in_form.dart';
-import 'package:food_delivery_app/presentation/pages/screens/auth/widgets/signup_form.dart';
+import 'package:food_delivery_app/domain/auth/repositories/auth.dart';
+import 'package:food_delivery_app/domain/auth/usecases/login_with_email.dart';
+import 'package:food_delivery_app/domain/auth/usecases/login_with_google.dart';
+import 'package:food_delivery_app/domain/auth/usecases/validate_email.dart';
+import 'package:food_delivery_app/domain/auth/usecases/validate_password.dart';
+import 'package:food_delivery_app/injection.dart';
+import 'package:food_delivery_app/presentation/auth/bloc/login/login_cubit.dart';
+import 'package:food_delivery_app/presentation/auth/widgets/sign_in_form.dart';
+import 'package:food_delivery_app/presentation/auth/widgets/signup_form.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -11,7 +19,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool isSignUp = true;
+  bool isSignUp = false;
 
   Widget _buildAuthForm() {
     if (isSignUp) {
@@ -66,7 +74,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 height: 60,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (isSignUp) {
+                    } else {
+                      BlocProvider.of<LoginCubit>(context).login();
+                    }
+                  },
                   child: Text(isSignUp
                       ? AppLocalizations.of(context)!.createAnAccount
                       : AppLocalizations.of(context)!.login),

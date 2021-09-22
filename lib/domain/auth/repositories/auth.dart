@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/core/failure.dart';
-import 'package:food_delivery_app/features/auth/domain/entities/user.dart';
+import 'package:food_delivery_app/domain/auth/entities/user.dart';
 
 abstract class AuthRepositoryInterface {
+  Stream<Option<User>> get onAuthChanged;
   Future<Either<Failure, User>> loginWithEmailAndPassword(
       String email, String password);
   Future<Either<Failure, User>> loginWithGoogle();

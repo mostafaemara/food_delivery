@@ -39,7 +39,7 @@ dependencies:
   dartz: ^0.10.0
   firebase_core: "^1.6.0"
   firebase_auth: "^3.1.1"
-  google_sign_in: "^4.5.1"
+  google_sign_in: ^5.0.0-nullsafety
   equatable: ^2.0.3
   get_it: ^7.2.0
   validators: ^3.0.0
