@@ -3,12 +3,10 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/core/params/auth_params.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
-import 'package:food_delivery_app/domain/auth/usecases/login_with_email.dart';
-import 'package:food_delivery_app/domain/auth/usecases/login_with_google.dart';
-import 'package:food_delivery_app/domain/auth/usecases/validate_email.dart';
-import 'package:food_delivery_app/domain/auth/usecases/validate_password.dart';
-
-import 'package:meta/meta.dart';
+import 'package:food_delivery_app/domain/usecases/auth/login_with_email.dart';
+import 'package:food_delivery_app/domain/usecases/auth/login_with_google.dart';
+import 'package:food_delivery_app/domain/usecases/auth/validate_email.dart';
+import 'package:food_delivery_app/domain/usecases/auth/validate_password.dart';
 
 part 'login_state.dart';
 

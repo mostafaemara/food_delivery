@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/domain/auth/repositories/auth.dart';
-import 'package:food_delivery_app/domain/auth/usecases/login_with_email.dart';
-import 'package:food_delivery_app/domain/auth/usecases/login_with_google.dart';
-import 'package:food_delivery_app/domain/auth/usecases/validate_email.dart';
-import 'package:food_delivery_app/domain/auth/usecases/validate_password.dart';
+import 'package:food_delivery_app/domain/repositories/auth/auth.dart';
+
 import 'package:food_delivery_app/injection.dart';
 import 'package:food_delivery_app/presentation/auth/bloc/login/login_cubit.dart';
 import 'package:food_delivery_app/presentation/auth/widgets/sign_in_form.dart';

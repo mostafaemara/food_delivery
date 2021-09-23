@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:food_delivery_app/domain/auth/entities/user.dart';
-import 'package:food_delivery_app/domain/auth/repositories/auth.dart';
+import 'package:food_delivery_app/domain/entities/auth/user.dart';
+import 'package:food_delivery_app/domain/repositories/auth/auth.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
-import "../mappers/firebase_user_mapper.dart";
+import '../../mappers/auth/firebase_user_mapper.dart';
 
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:dartz/dartz.dart';

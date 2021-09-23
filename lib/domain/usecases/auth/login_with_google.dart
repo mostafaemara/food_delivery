@@ -1,8 +1,8 @@
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/core/usecase.dart';
-import 'package:food_delivery_app/domain/auth/entities/user.dart';
-import 'package:food_delivery_app/domain/auth/repositories/auth.dart';
+import 'package:food_delivery_app/domain/entities/auth/user.dart';
+import 'package:food_delivery_app/domain/repositories/auth/auth.dart';
 
 class LoginWithGoogle implements UseCase<User, NoParams> {
   final AuthRepositoryInterface _authRepo;

@@ -19,10 +19,10 @@ class SplashScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthInitial) {}
         if (state is Authenticated) {
-          Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
+          //   Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
         }
         if (state is UnAuthenticated) {
-          Navigator.of(context).pushReplacementNamed(Routes.authScreen);
+          //     Navigator.of(context).pushReplacementNamed(Routes.authScreen);
         }
       },
     ));
