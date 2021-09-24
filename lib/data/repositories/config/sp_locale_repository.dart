@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SPLocaleRepository implements LocaleRepositoryInterface {
   final _localeKey = "locale";
-  final _spLocaleMapper = SpLocaleMapper();
+  final _spLocaleMapper = SPLocaleMapper();
   final _prefs = SharedPreferences.getInstance();
   @override
   Future<Option<Locale>> getLocale() async {

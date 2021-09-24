@@ -1,6 +1,6 @@
 import 'package:food_delivery_app/domain/entities/config/locale.dart';
 
-class SpLocaleMapper {
+class SPLocaleMapper {
   Locale mapStringToLocale(String locale) {
     if (locale == "en") {
       return const Locale(Locales.english);

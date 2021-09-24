@@ -28,5 +28,21 @@
     "logout":"Log Out",
     "enjoyDeliciousFood":"Enjoy Delicious food",
     "popular":"Popular",
-    "viewAll":"View all"
+    "viewAll":"View all",
+    "chooseYourLanguage":"Choose your language",
+    "pleaseSelectYourLanguage":"Please select your language",
+    "english":"English",
+    "arabic":"Arabic",
+    "enterPassword":"Enter password",
+    "passwordTooShort":"Password Too Short",
+    "enterValidEmail":"Enter valid email",
+    "enterEmail":"Enter email",
+    "emailOrPasswordIncorrect":"Email or password is incorrect!",
+    "serverError":"Somthing went wrong. server error",
+    "enterConfirmPassword":"Enter confirm password",
+    "ok":"Ok",
+    "error":"Error",
+    "emailAlreadyInUse":"Email already in use",
+    "passwordNotMatch":"Password not match"
+
 }
