@@ -1,5 +1,7 @@
+import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MealDetailsPage extends StatelessWidget {
   const MealDetailsPage({Key? key}) : super(key: key);
@@ -7,6 +9,8 @@ class MealDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final meal = ModalRoute.of(context)!.settings.arguments as Meal;
+    final isArabic = Localizations.localeOf(context).languageCode == "ar";
+    final arabicNumber = ArabicNumbers();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -24,7 +28,11 @@ class MealDetailsPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon: const Icon(Icons.arrow_back_ios_new)),
+                      icon: Transform.rotate(
+                          angle: isArabic ? 380 : 0,
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                          ))),
                 ),
               ),
               const SizedBox(
@@ -94,7 +102,7 @@ class MealDetailsPage extends StatelessWidget {
                         height: 30,
                       ),
                       Text(
-                        meal.title.english,
+                        isArabic ? meal.title.arabic : meal.title.english,
                         style: Theme.of(context)
                             .textTheme
                             .headline5!
@@ -116,7 +124,8 @@ class MealDetailsPage extends StatelessWidget {
                             const SizedBox(
                               width: 3,
                             ),
-                            Text("${meal.calories.toInt()}cal",
+                            Text(
+                                "${isArabic ? arabicNumber.convert(meal.calories.toInt()) : meal.calories.toInt()} ${AppLocalizations.of(context)!.cal}",
                                 style: Theme.of(context).textTheme.caption),
                             const Spacer(),
                             Image.asset(
@@ -128,7 +137,7 @@ class MealDetailsPage extends StatelessWidget {
                               width: 3,
                             ),
                             Text(
-                                "${meal.deliveryTime.min.toInt()}-${meal.deliveryTime.max.toInt()} min",
+                                "${isArabic ? arabicNumber.convert(meal.deliveryTime.min.toInt()) : meal.deliveryTime.min.toInt()}-${isArabic ? arabicNumber.convert(meal.deliveryTime.max.toInt()) : meal.deliveryTime.max.toInt()} ${AppLocalizations.of(context)!.min}",
                                 style: Theme.of(context).textTheme.caption),
                           ],
                         ),
@@ -143,7 +152,9 @@ class MealDetailsPage extends StatelessWidget {
                 child: SizedBox(
                   width: 319,
                   height: 84,
-                  child: Text(meal.description.english),
+                  child: Text(isArabic
+                      ? meal.description.arabic
+                      : meal.description.english),
                 ),
               ),
               const SizedBox(
@@ -157,7 +168,7 @@ class MealDetailsPage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text(
-                    " Add to cart",
+                    AppLocalizations.of(context)!.addToCart,
                   ),
                   style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
                       fixedSize:

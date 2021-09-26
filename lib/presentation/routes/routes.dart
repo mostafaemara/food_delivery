@@ -7,4 +7,5 @@ class Routes {
   static const onboardScreen = "/on-board";
   static const languageSelectionScreen = "/language-selection";
   static const mealDetailsPage = "/meal-details";
+  static const categoryPage = "/category";
 }

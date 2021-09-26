@@ -19,7 +19,10 @@ class CategoryListItem extends StatelessWidget {
     final color =
         _randomColor.randomColor(colorBrightness: ColorBrightness.dark);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(Routes.categoryPage, arguments: category.id);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: AspectRatio(

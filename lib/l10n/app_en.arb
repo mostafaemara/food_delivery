@@ -43,6 +43,9 @@
     "ok":"Ok",
     "error":"Error",
     "emailAlreadyInUse":"Email already in use",
-    "passwordNotMatch":"Password not match"
+    "passwordNotMatch":"Password not match",
+    "min":"minutes",
+    "cal":"calories",
+    "addToCart":"Add to cart"
 
 }
