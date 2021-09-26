@@ -33,9 +33,6 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
 
       return right(snapshot.toMeals());
     } catch (e) {
-      print("------------------Errorrrrrrrrrr-------------- \n" +
-          e.toString() +
-          "---------------------------------------------------\n");
       return left(ServerFailure());
     }
   }
@@ -50,14 +47,12 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
       List<Meal> meals = [];
       for (final doc in snapshot.docs) {
         final data = await firestore.collection("meals").doc(doc.id).get();
-        data.data()!["id"] = data.id;
-        meals.add(MealModel.fromMap(data.data()!));
+        final Map<String, dynamic> map = {"id": data.id}..addAll(data.data()!);
+        meals.add(MealModel.fromMap(map));
       }
       return right(meals);
     } catch (e) {
-      print("------------------Errorrrrrrrrrr-------------- \n" +
-          e.toString() +
-          "---------------------------------------------------\n");
+      print("Errorrrrrrrr" + e.toString());
       return left(ServerFailure());
     }
   }

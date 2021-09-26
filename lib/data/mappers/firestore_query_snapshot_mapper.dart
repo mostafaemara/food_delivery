@@ -8,9 +8,7 @@ extension FSQueryMapper on QuerySnapshot<Map<String, dynamic>> {
   List<Meal> toMeals() {
     final List<Meal> meals = [];
     for (final doc in docs) {
-      final map = doc.data();
-      map["id"] = doc.id;
-
+      final Map<String, dynamic> map = {"id": doc.id}..addAll(doc.data());
       final meal = MealModel.fromMap(map);
       meals.add(meal);
     }
@@ -20,8 +18,9 @@ extension FSQueryMapper on QuerySnapshot<Map<String, dynamic>> {
   List<MealCategory> toMealCategories() {
     final List<MealCategory> categories = [];
     for (final doc in docs) {
-      doc.data()["id"] = doc.id;
-      final category = MealCategoryModel.fromMap(doc.data());
+      final Map<String, dynamic> map = {"id": doc.id}..addAll(doc.data());
+
+      final category = MealCategoryModel.fromMap(map);
       categories.add(category);
     }
     return categories;

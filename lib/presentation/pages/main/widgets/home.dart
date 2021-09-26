@@ -46,8 +46,10 @@ class Home extends StatelessWidget {
                 height: 50,
               ),
               SizedBox(
-                height: 150,
-                child: CategoryList(),
+                height: 180,
+                child: CategoryList(
+                  categories: state.categories,
+                ),
               ),
               const SizedBox(
                 height: 30,
@@ -80,7 +82,9 @@ class Home extends StatelessWidget {
               ),
               SizedBox(
                 height: 260,
-                child: PopularList(),
+                child: PopularList(
+                  meals: state.popularMeals,
+                ),
               )
             ],
           ),

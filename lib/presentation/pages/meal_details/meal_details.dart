@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/domain/entities/meal.dart';
 
 class MealDetailsPage extends StatelessWidget {
   const MealDetailsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final meal = ModalRoute.of(context)!.settings.arguments as Meal;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -19,7 +21,9 @@ class MealDetailsPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                   child: IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                       icon: const Icon(Icons.arrow_back_ios_new)),
                 ),
               ),
@@ -40,8 +44,8 @@ class MealDetailsPage extends StatelessWidget {
                           child: SizedBox(
                             width: 258,
                             height: 224,
-                            child: Image.asset(
-                              "assets/images/burger_sample.png",
+                            child: Image.network(
+                              meal.imageUrl,
                               width: 229,
                               height: 150,
                             ),
@@ -90,7 +94,7 @@ class MealDetailsPage extends StatelessWidget {
                         height: 30,
                       ),
                       Text(
-                        "Big boys Cheese burger",
+                        meal.title.english,
                         style: Theme.of(context)
                             .textTheme
                             .headline5!
@@ -105,17 +109,6 @@ class MealDetailsPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset(
-                              "assets/icons/star.png",
-                              height: 15,
-                              width: 15,
-                            ),
-                            const SizedBox(
-                              width: 3,
-                            ),
-                            Text("4+",
-                                style: Theme.of(context).textTheme.caption),
-                            const Spacer(),
-                            Image.asset(
                               "assets/icons/fire.png",
                               height: 15,
                               width: 15,
@@ -123,7 +116,7 @@ class MealDetailsPage extends StatelessWidget {
                             const SizedBox(
                               width: 3,
                             ),
-                            Text("300cal",
+                            Text("${meal.calories.toInt()}cal",
                                 style: Theme.of(context).textTheme.caption),
                             const Spacer(),
                             Image.asset(
@@ -134,7 +127,8 @@ class MealDetailsPage extends StatelessWidget {
                             const SizedBox(
                               width: 3,
                             ),
-                            Text("5-10min",
+                            Text(
+                                "${meal.deliveryTime.min.toInt()}-${meal.deliveryTime.max.toInt()} min",
                                 style: Theme.of(context).textTheme.caption),
                           ],
                         ),
@@ -146,11 +140,10 @@ class MealDetailsPage extends StatelessWidget {
               ),
               Container(
                 alignment: AlignmentDirectional.centerStart,
-                child: const SizedBox(
+                child: SizedBox(
                   width: 319,
                   height: 84,
-                  child: Text(
-                      "Our simple, classic cheeseburger begins with a 100% pure beef burger seasoned with just a pinch of salt and pepper. The McDonald’s Cheeseburger is topped"),
+                  child: Text(meal.description.english),
                 ),
               ),
               const SizedBox(
@@ -167,7 +160,8 @@ class MealDetailsPage extends StatelessWidget {
                     " Add to cart",
                   ),
                   style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                      fixedSize: MaterialStateProperty.all(Size(335, 51))),
+                      fixedSize:
+                          MaterialStateProperty.all(const Size(335, 51))),
                 ),
               ),
             ],

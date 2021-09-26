@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/pages/meal_details/meal_details.dart';
 
 import '../../domain/entities/theme.dart' as domain;
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
@@ -23,7 +24,7 @@ class FoodDeliveryApp extends StatelessWidget {
     return BlocBuilder<ConfigCubit, ConfigState>(
       builder: (context, state) {
         return MaterialApp(
-          locale: const Locale("ar"),
+          locale: const Locale("en"),
           // state.locale.fold(
           //   () => null,
           //   (l) => l.locale == domain.Locales.english
@@ -46,6 +47,7 @@ class FoodDeliveryApp extends StatelessWidget {
             Routes.onboardScreen: (context) => const OnBoardPage(),
             Routes.languageSelectionScreen: (context) =>
                 const LanguageSelectionPage(),
+            Routes.mealDetailsPage: (context) => const MealDetailsPage(),
           },
         );
       },
