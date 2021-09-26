@@ -2,8 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
-import 'package:food_delivery_app/domain/repositories/auth/auth.dart';
-import 'package:food_delivery_app/domain/usecases/auth/validators.dart';
+import 'package:food_delivery_app/domain/repositories/auth.dart';
+import 'package:food_delivery_app/domain/usecases/validators.dart';
+
 import 'package:meta/meta.dart';
 
 part 'signup_state.dart';

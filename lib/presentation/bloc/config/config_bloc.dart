@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:food_delivery_app/domain/entities/locale.dart';
+import 'package:food_delivery_app/domain/entities/theme.dart';
 
-import 'package:food_delivery_app/domain/entities/config/locale.dart';
-import 'package:food_delivery_app/domain/entities/config/theme.dart';
-import 'package:food_delivery_app/domain/repositories/config/first_time_repository_interface.dart';
-import 'package:food_delivery_app/domain/repositories/config/locale_repository_interface.dart';
-import 'package:food_delivery_app/domain/repositories/config/theme_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/first_time_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/locale_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/theme_repository_interface.dart';
 
 import 'package:meta/meta.dart';
 

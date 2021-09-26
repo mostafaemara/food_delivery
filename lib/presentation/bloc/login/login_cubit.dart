@@ -5,10 +5,10 @@ import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/core/params/auth_params.dart';
 import 'package:food_delivery_app/core/usecase.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
-import 'package:food_delivery_app/domain/usecases/auth/login_with_email.dart';
-import 'package:food_delivery_app/domain/usecases/auth/login_with_google.dart';
-import 'package:food_delivery_app/domain/usecases/auth/validate_email.dart';
-import 'package:food_delivery_app/domain/usecases/auth/validate_password.dart';
+import 'package:food_delivery_app/domain/usecases/login_with_email.dart';
+import 'package:food_delivery_app/domain/usecases/login_with_google.dart';
+import 'package:food_delivery_app/domain/usecases/validate_email.dart';
+import 'package:food_delivery_app/domain/usecases/validate_password.dart';
 
 part 'login_state.dart';
 

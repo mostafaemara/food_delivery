@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:food_delivery_app/domain/entities/auth/user.dart';
+import 'package:food_delivery_app/domain/entities/user.dart';
 
 extension UserCredentialMapper on firebase_auth.UserCredential {
   User toDomainUser() {

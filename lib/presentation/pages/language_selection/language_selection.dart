@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
 
 import 'package:food_delivery_app/presentation/routes/routes.dart';
-import "../../../../domain/entities/config/locale.dart" as domain;
+import "../../../domain/entities/locale.dart" as domain;
 
 class LanguageSelectionPage extends StatelessWidget {
   const LanguageSelectionPage({Key? key}) : super(key: key);

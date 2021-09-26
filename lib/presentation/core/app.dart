@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/domain/entities/config/locale.dart' as domain;
-import 'package:food_delivery_app/domain/entities/config/theme.dart' as domain;
+
+import '../../domain/entities/theme.dart' as domain;
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
 
 import 'package:food_delivery_app/presentation/pages/auth/auth.dart';
@@ -37,7 +37,7 @@ class FoodDeliveryApp extends StatelessWidget {
               (t) => t.themeMode == domain.ThemeMode.light
                   ? AppTheme.lightTheme
                   : AppTheme.darkTheme),
-          home: const AuthPage(),
+          home: const SplashPage(),
           routes: {
             Routes.authScreen: (context) => const AuthPage(),
             Routes.forgotPasswordScreen: (context) =>

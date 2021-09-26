@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/domain/entities/config/locale.dart';
+import 'package:food_delivery_app/domain/entities/locale.dart';
 
 abstract class LocaleRepositoryInterface {
   Future<Option<Locale>> getLocale();

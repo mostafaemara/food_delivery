@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/domain/repositories/config/first_time_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/first_time_repository_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SPFirstTimeRepository implements FirstTimeRepositoryInterface {
