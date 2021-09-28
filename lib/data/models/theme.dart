@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/domain/entities/locale.dart';
+
 import 'package:food_delivery_app/domain/entities/theme.dart';
 
 class ThemeModel extends Theme {

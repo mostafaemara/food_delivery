@@ -23,7 +23,6 @@ class MealModel extends Meal {
             shortDescription: shortDescription);
 
   factory MealModel.fromMap(Map<String, dynamic> map) {
-    print(map["id"]);
     return MealModel(
         calories: map["calories"].toDouble(),
         deliveryTime: DeliveryTimeModel.fromMap(map["deliveryTime"]),

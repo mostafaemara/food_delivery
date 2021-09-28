@@ -1,4 +1,6 @@
+import 'package:food_delivery_app/data/repositories/firestore_favorites_repository.dart';
 import 'package:food_delivery_app/data/repositories/firestore_meals_repository.dart';
+import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
 import 'package:get_it/get_it.dart';
 
 import 'data/repositories/firebase_auth_repository.dart';
@@ -21,4 +23,6 @@ Future<void> initializeDependencies() async {
       .registerSingleton<FirstTimeRepositoryInterface>(SPFirstTimeRepository());
   locator
       .registerSingleton<MealsRepositoryInterface>(FirestoreMealsRepository());
+  locator.registerSingleton<FavoritesRepositoryInterface>(
+      FirestoreFavoritesRepository());
 }

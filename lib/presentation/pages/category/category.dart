@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
 import 'package:food_delivery_app/presentation/bloc/category/category_cubit.dart';
-import 'package:food_delivery_app/presentation/pages/main/widgets/popular_list_item.dart';
+import 'package:food_delivery_app/presentation/pages/main/widgets/meal_list_item.dart';
 
 import '../../../injection.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({Key? key}) : super(key: key);
-
+  @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context)!.settings.arguments as String;
     final isArabic = Localizations.localeOf(context).languageCode == "ar";
@@ -59,7 +59,7 @@ class CategoryPage extends StatelessWidget {
                                   crossAxisCount: 2),
                           itemCount: state.meals.length,
                           itemBuilder: (context, index) =>
-                              PopularListItem(meal: state.meals[index]),
+                              MealListItem(meal: state.meals[index]),
                         ),
                       ),
                     ],

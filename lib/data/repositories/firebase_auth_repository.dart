@@ -77,8 +77,7 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
   @override
   Stream<Option<User>> get onAuthChanged {
     return _auth.authStateChanges().map((user) {
-      print(
-          "user changed-----------------repo--------------------------------------------------");
+
       if (user == null) {
         return none();
       } else {

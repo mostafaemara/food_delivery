@@ -5,7 +5,7 @@ class Favorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Center(
         child: Text("Favorite"),
       ),

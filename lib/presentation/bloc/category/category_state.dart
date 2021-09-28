@@ -25,6 +25,6 @@ class CategoryFailure extends CategoryState {
   final Failure failure;
 
   CategoryFailure(this.failure);
-
+  @override
   List<Object?> get props => [failure];
 }

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/data/models/meal.dart';
@@ -44,15 +43,32 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
       if (snapshot.docs.isEmpty) {
         return right([]);
       }
-      List<Meal> meals = [];
-      for (final doc in snapshot.docs) {
-        final data = await firestore.collection("meals").doc(doc.id).get();
-        final Map<String, dynamic> map = {"id": data.id}..addAll(data.data()!);
-        meals.add(MealModel.fromMap(map));
-      }
+      final meals =
+          await fetchMealsByIds(snapshot.docs.map((e) => e.id).toList());
       return right(meals);
     } catch (e) {
-      print("Errorrrrrrrr" + e.toString());
+      return left(ServerFailure());
+    }
+  }
+
+  Future<List<Meal>> fetchMealsByIds(List<String> ids) async {
+    List<Meal> meals = [];
+    for (final id in ids) {
+      final snapshot = await firestore.collection("meals").doc(id).get();
+      final Map<String, dynamic> map = {"id": snapshot.id}
+        ..addAll(snapshot.data()!);
+      meals.add(MealModel.fromMap(map));
+    }
+    return meals;
+  }
+
+  @override
+  Future<Either<Failure, List<Meal>>> getMealsByIds(
+      List<String> mealsIds) async {
+    try {
+      final meals = await fetchMealsByIds(mealsIds);
+      return right(meals);
+    } catch (e) {
       return left(ServerFailure());
     }
   }

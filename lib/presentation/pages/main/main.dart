@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 
 import 'widgets/main_menu.dart';
 import 'widgets/main_body.dart';
@@ -13,6 +16,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final _drawerController = ZoomDrawerController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
