@@ -12,20 +12,26 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final uid =
-        (BlocProvider.of<AuthBloc>(context).state as Authenticated).user.id;
+    final isAuth = BlocProvider.of<AuthBloc>(context).state is Authenticated;
+
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       builder: (context, state) {
         final isFav = state.favorites.contains(mealId);
-        print(isFav ? "Fav" : "not fav");
+
         return IconButton(
             constraints: const BoxConstraints(maxWidth: 18, maxHeight: 18),
             padding: EdgeInsets.zero,
             alignment: AlignmentDirectional.centerEnd,
-            onPressed: () {
-              BlocProvider.of<FavoritesCubit>(context)
-                  .toggleFavorite(mealId, uid);
-            },
+            onPressed: isAuth
+                ? () {
+                    final uid = (BlocProvider.of<AuthBloc>(context).state
+                            as Authenticated)
+                        .user
+                        .id;
+                    BlocProvider.of<FavoritesCubit>(context)
+                        .toggleFavorite(mealId, uid);
+                  }
+                : null,
             icon: Image.asset(
               isFav
                   ? "assets/icons/heart_active.png"
@@ -34,10 +40,7 @@ class FavoriteButton extends StatelessWidget {
               width: 18,
             ));
       },
-      listener: (context, state) {
-        print(state.failureOrNone.toString());
-        print(state.favorites.toString());
-      },
+      listener: (context, state) {},
     );
   }
 }

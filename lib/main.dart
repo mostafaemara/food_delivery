@@ -40,8 +40,9 @@ void main() async {
       create: (context) => SignupCubit(locator<AuthRepositoryInterface>()),
     ),
     BlocProvider(
-      create: (context) =>
-          FavoritesCubit(locator<FavoritesRepositoryInterface>()),
+      create: (context) => FavoritesCubit(
+        locator<FavoritesRepositoryInterface>(),
+      ),
     ),
     BlocProvider(
       create: (context) => HomeCubit(locator<MealsRepositoryInterface>()),

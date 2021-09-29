@@ -70,7 +70,7 @@ class _MainBodyState extends State<MainBody> {
                 delegate: SliverChildListDelegate.fixed([
                   IndexedStack(
                     index: index,
-                    children: const [Home(), Favorite(), Order(), Cart()],
+                    children: [Home(), Favorite(), Order(), Cart()],
                   ),
                 ]),
               )

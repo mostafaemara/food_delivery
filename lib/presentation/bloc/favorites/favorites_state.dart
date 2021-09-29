@@ -9,7 +9,8 @@ class FavoritesState {
   FavoritesState copyWith(
       {List<String>? favorites, Option<Failure>? failureOrNone}) {
     return FavoritesState(
-        favorites: favorites ?? this.favorites,
-        failureOrNone: failureOrNone ?? this.failureOrNone);
+      favorites: favorites ?? this.favorites,
+      failureOrNone: failureOrNone ?? this.failureOrNone,
+    );
   }
 }

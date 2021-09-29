@@ -28,7 +28,7 @@ class FoodDeliveryApp extends StatelessWidget {
       builder: (context, state) {
         return BlocListener<AuthBloc, AuthState>(
           child: MaterialApp(
-            locale: const Locale("ar"),
+            locale: const Locale("en"),
             // state.locale.fold(
             //   () => null,
             //   (l) => l.locale == domain.Locales.english
