@@ -25,10 +25,16 @@ import 'presentation/bloc/login/login_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
   initializeDependencies();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      lazy: false,
+      create: (context) => AuthBloc(locator<AuthRepositoryInterface>()),
+    ),
     BlocProvider(
       create: (context) => ConfigCubit(
         locator<LocaleRepositoryInterface>(),
@@ -37,21 +43,21 @@ void main() async {
       )..initConfig(),
     ),
     BlocProvider(
-      create: (context) => SignupCubit(locator<AuthRepositoryInterface>()),
+      create: (context) => SignupCubit(locator<AuthRepositoryInterface>(),
+          BlocProvider.of<AuthBloc>(context)),
     ),
     BlocProvider(
+      lazy: false,
       create: (context) => FavoritesCubit(
-        locator<FavoritesRepositoryInterface>(),
-      ),
+          locator<FavoritesRepositoryInterface>(),
+          BlocProvider.of<AuthBloc>(context)),
     ),
     BlocProvider(
       create: (context) => HomeCubit(locator<MealsRepositoryInterface>()),
     ),
     BlocProvider(
-      create: (context) => AuthBloc(locator<AuthRepositoryInterface>()),
-    ),
-    BlocProvider(
       create: (context) => LoginCubit(
+          authBloc: BlocProvider.of<AuthBloc>(context),
           loginWithEmail: LoginWithEmail(locator<AuthRepositoryInterface>()),
           loginWithGoogle: LoginWithGoogle(locator<AuthRepositoryInterface>()),
           validateEmail: ValidateEmail(),

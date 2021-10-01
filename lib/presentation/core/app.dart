@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
+
 import 'package:food_delivery_app/presentation/pages/category/category.dart';
 import 'package:food_delivery_app/presentation/pages/meal_details/meal_details.dart';
 
@@ -25,43 +24,33 @@ class FoodDeliveryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ConfigCubit, ConfigState>(
-      builder: (context, state) {
-        return BlocListener<AuthBloc, AuthState>(
-          child: MaterialApp(
-            locale: const Locale("en"),
-            // state.locale.fold(
-            //   () => null,
-            //   (l) => l.locale == domain.Locales.english
-            //     ? const Locale("en")
-            //     : const Locale("ar")),
-            title: 'Food Delivery App',
-            supportedLocales: AppLocalizations.supportedLocales,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            theme: state.theme.fold(
-                () => AppTheme.lightTheme,
-                (t) => t.themeMode == domain.ThemeMode.light
-                    ? AppTheme.lightTheme
-                    : AppTheme.darkTheme),
-            home: const SplashPage(),
-            routes: {
-              Routes.categoryPage: (context) => const CategoryPage(),
-              Routes.authScreen: (context) => const AuthPage(),
-              Routes.forgotPasswordScreen: (context) =>
-                  const ForgotPasswordPage(),
-              Routes.mainScreen: (context) => const MainPage(),
-              Routes.onboardScreen: (context) => const OnBoardPage(),
-              Routes.languageSelectionScreen: (context) =>
-                  const LanguageSelectionPage(),
-              Routes.mealDetailsPage: (context) => const MealDetailsPage(),
-            },
-          ),
-          listener: (context, state) {
-            if (state is Authenticated) {
-              BlocProvider.of<FavoritesCubit>(context).init(state.user.id);
-            }
-          },
-        );
-      },
+      builder: (context, state) => MaterialApp(
+        locale: const Locale("en"),
+        // state.locale.fold(
+        //   () => null,
+        //   (l) => l.locale == domain.Locales.english
+        //     ? const Locale("en")
+        //     : const Locale("ar")),
+        title: 'Food Delivery App',
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        theme: state.theme.fold(
+            () => AppTheme.lightTheme,
+            (t) => t.themeMode == domain.ThemeMode.light
+                ? AppTheme.lightTheme
+                : AppTheme.darkTheme),
+        home: const SplashPage(),
+        routes: {
+          Routes.categoryPage: (context) => const CategoryPage(),
+          Routes.authScreen: (context) => const AuthPage(),
+          Routes.forgotPasswordScreen: (context) => const ForgotPasswordPage(),
+          Routes.mainScreen: (context) => const MainPage(),
+          Routes.onboardScreen: (context) => const OnBoardPage(),
+          Routes.languageSelectionScreen: (context) =>
+              const LanguageSelectionPage(),
+          Routes.mealDetailsPage: (context) => const MealDetailsPage(),
+        },
+      ),
     );
   }
 }

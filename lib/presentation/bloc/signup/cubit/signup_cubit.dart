@@ -4,14 +4,16 @@ import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
 import 'package:food_delivery_app/domain/repositories/auth.dart';
 import 'package:food_delivery_app/domain/usecases/validators.dart';
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 import 'package:meta/meta.dart';
 
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
+  final AuthBloc authBloc;
   final AuthRepositoryInterface _authRepo;
-  SignupCubit(this._authRepo)
+  SignupCubit(this._authRepo, this.authBloc)
       : super(SignupState(
             status: SignupStatus.idle,
             failureOrNone: none(),
@@ -55,9 +57,11 @@ class SignupCubit extends Cubit<SignupState> {
           await _authRepo.signUpWithEmailAndPassword(email, password);
       succesOrFailure.fold(
           (l) => emit(state.copyWith(
-              status: SignupStatus.error, failureOrNone: some(l))),
-          (r) => emit(state.copyWith(
-              status: SignupStatus.success, failureOrNone: none())));
+              status: SignupStatus.error, failureOrNone: some(l))), (user) {
+        emit(state.copyWith(
+            status: SignupStatus.success, failureOrNone: none()));
+        authBloc.add(AuthChanged(some(user)));
+      });
     }
   }
 }

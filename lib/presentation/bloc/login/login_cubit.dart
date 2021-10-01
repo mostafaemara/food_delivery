@@ -9,17 +9,20 @@ import 'package:food_delivery_app/domain/usecases/login_with_email.dart';
 import 'package:food_delivery_app/domain/usecases/login_with_google.dart';
 import 'package:food_delivery_app/domain/usecases/validate_email.dart';
 import 'package:food_delivery_app/domain/usecases/validate_password.dart';
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
+  final AuthBloc authBloc;
   final LoginWithEmail loginWithEmail;
   final LoginWithGoogle loginWithGoogle;
   final ValidateEmail validateEmail;
   final ValidatePassword validatePassword;
 
   LoginCubit(
-      {required this.loginWithEmail,
+      {required this.authBloc,
+      required this.loginWithEmail,
       required this.loginWithGoogle,
       required this.validateEmail,
       required this.validatePassword})
@@ -55,8 +58,10 @@ class LoginCubit extends Cubit<LoginState> {
       response.fold(
           (f) =>
               emit(state.copyWith(status: LoginStatus.error, failure: some(f))),
-          (r) => emit(
-              state.copyWith(status: LoginStatus.success, failure: none())));
+          (user) {
+        emit(state.copyWith(status: LoginStatus.success, failure: none()));
+        authBloc.add(AuthChanged(some(user)));
+      });
     }
   }
 

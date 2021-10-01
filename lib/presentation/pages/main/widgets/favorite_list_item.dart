@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/domain/entities/meal.dart';
+import 'package:food_delivery_app/domain/entities/favorite.dart';
 
 class FavoriteListItem extends StatelessWidget {
-  final Meal meal;
-  FavoriteListItem({Key? key, required this.meal}) : super(key: Key(meal.id));
+  final Favorite favorite;
+  FavoriteListItem({Key? key, required this.favorite})
+      : super(key: Key(favorite.mealId));
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class FavoriteListItem extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.network(
-                meal.imageUrl,
+                favorite.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -32,15 +33,11 @@ class FavoriteListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                meal.title.english,
+                favorite.title.english,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               Text(
-                meal.shortDescription.english,
-                style: Theme.of(context).textTheme.caption,
-              ),
-              Text(
-                meal.calories.toString(),
+                favorite.title.english,
                 style: Theme.of(context).textTheme.caption,
               ),
             ],

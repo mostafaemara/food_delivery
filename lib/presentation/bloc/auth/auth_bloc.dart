@@ -13,9 +13,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepositoryInterface authRepo;
 
   AuthBloc(this.authRepo) : super(AuthInitial()) {
-    authRepo.onAuthChanged.listen((user) {
-      add(AuthChanged(user));
-    });
+    //authRepo.onAuthChanged.listen((user) {
+    //  print(" Auth bloc Auth changed");
+    //  add(AuthChanged(user));
+    //   });
   }
   @override
   Stream<AuthState> mapEventToState(
@@ -25,8 +26,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       yield event.user
           .fold(() => UnAuthenticated(), (user) => Authenticated(user));
     }
+    if (event is AuthCheck) {
+      final user = await authRepo.getUser();
+
+      yield user.fold(() => UnAuthenticated(), (user) => Authenticated(user));
+    }
     if (event is SignOutRequest) {
       await authRepo.signOut();
+      yield UnAuthenticated();
     }
   }
 }

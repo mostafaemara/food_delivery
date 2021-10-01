@@ -77,12 +77,22 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
   @override
   Stream<Option<User>> get onAuthChanged {
     return _auth.authStateChanges().map((user) {
-
       if (user == null) {
         return none();
       } else {
         return some(user.toDomainUser());
       }
     });
+  }
+
+  @override
+  Future<Option<User>> getUser() async {
+    final user = _auth.currentUser;
+
+    if (user != null) {
+      return some(user.toDomainUser());
+    } else {
+      return none();
+    }
   }
 }

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:food_delivery_app/data/models/favorite.dart';
+import 'package:food_delivery_app/domain/entities/favorite.dart';
 import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
 
 class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
@@ -22,8 +24,19 @@ class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
     }
   }
 
+  Future<List<Favorite>> fetchFavoritesByIds(List<String> ids) async {
+    List<Favorite> favorites = [];
+    for (final id in ids) {
+      final snapshot = await firestore.collection("meals").doc(id).get();
+      final Map<String, dynamic> map = {"id": snapshot.id}
+        ..addAll(snapshot.data()!);
+      favorites.add(FavoriteModel.fromMap(map));
+    }
+    return favorites;
+  }
+
   @override
-  Future<Either<Failure, List<String>>> fetchFavorites(String uid) async {
+  Future<Either<Failure, List<Favorite>>> fetchFavorites(String uid) async {
     try {
       final snapshot = await firestore
           .collection("users")
@@ -33,10 +46,12 @@ class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
       if (snapshot.docs.isEmpty) {
         return right([]);
       }
-      List<String> favorites = [];
+      List<String> favoriteIds = [];
       for (var doc in snapshot.docs) {
-        favorites.add(doc.id);
+        favoriteIds.add(doc.id);
       }
+
+      final favorites = await fetchFavoritesByIds(favoriteIds);
 
       return right(favorites);
     } catch (e) {

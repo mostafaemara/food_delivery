@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/domain/entities/favorite.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 
 class FavoriteButton extends StatelessWidget {
-  final String mealId;
+  final Favorite favorite;
   FavoriteButton({
     Key? key,
-    required this.mealId,
-  }) : super(key: Key(mealId));
+    required this.favorite,
+  }) : super(key: Key(favorite.mealId));
 
   @override
   Widget build(BuildContext context) {
-    final isAuth = BlocProvider.of<AuthBloc>(context).state is Authenticated;
-
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       builder: (context, state) {
-        final isFav = state.favorites.contains(mealId);
+        final isFav = state.favorites.contains(favorite);
+
+        final isAuth = state.user.isSome();
 
         return IconButton(
             constraints: const BoxConstraints(maxWidth: 18, maxHeight: 18),
@@ -24,12 +25,8 @@ class FavoriteButton extends StatelessWidget {
             alignment: AlignmentDirectional.centerEnd,
             onPressed: isAuth
                 ? () {
-                    final uid = (BlocProvider.of<AuthBloc>(context).state
-                            as Authenticated)
-                        .user
-                        .id;
                     BlocProvider.of<FavoritesCubit>(context)
-                        .toggleFavorite(mealId, uid);
+                        .toggleFavorite(favorite);
                   }
                 : null,
             icon: Image.asset(

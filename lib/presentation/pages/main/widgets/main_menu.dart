@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:provider/src/provider.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -115,7 +117,9 @@ class MainMenu extends StatelessWidget {
                 height: 60,
                 width: 120,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(SignOutRequest());
+                    },
                     child: Text(AppLocalizations.of(context)!.logout)))
           ],
         ),

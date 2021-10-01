@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/domain/entities/favorite.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
+
 import 'package:food_delivery_app/presentation/routes/routes.dart';
 
 import 'favorite_button.dart';
@@ -60,7 +62,10 @@ class MealListItem extends StatelessWidget {
                 children: [
                   const Spacer(),
                   FavoriteButton(
-                    mealId: meal.id,
+                    favorite: Favorite(
+                        title: meal.title,
+                        mealId: meal.id,
+                        imageUrl: meal.imageUrl),
                   )
                 ],
               )
