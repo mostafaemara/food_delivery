@@ -7,16 +7,24 @@ import 'package:food_delivery_app/presentation/bloc/home/home_cubit.dart';
 import 'category_list.dart';
 import 'popular_list.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void didChangeDependencies() {
+    BlocProvider.of<HomeCubit>(context).init();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       builder: (context, state) {
-        if (state.status == HomeStatus.idle) {
-          BlocProvider.of<HomeCubit>(context).init();
-        }
         if (state.status == HomeStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),

@@ -8,25 +8,34 @@ import 'package:food_delivery_app/domain/repositories/cart_repository_interface.
 class FirestoreCartRepository implements CartRepositoryInterface {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<Failure, Unit>> addCartItem(String id, String uid) async {
-    return right(unit);
+  Future<Either<Failure, Unit>> addCartItem(
+      String id, int quantity, String uid) async {
+    try {
+      await firestore
+          .collection("users")
+          .doc(uid)
+          .collection("cart")
+          .doc(id)
+          .set({"quantity": quantity});
+      return right(unit);
+    } catch (e) {
+      return left(ServerFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteCartItem(String id, String uid) {
-    // TODO: implement deleteCartItem
-    throw UnimplementedError();
-  }
-
-  Future<List<CartItem>> fetchCartItemsByIds(List<String> ids) async {
-    List<CartItem> items = [];
-    for (final id in ids) {
-      final snapshot = await firestore.collection("meals").doc(id).get();
-      final Map<String, dynamic> map = {"id": snapshot.id}
-        ..addAll(snapshot.data()!);
-      items.add(CartItemModel.fromMap(map));
+  Future<Either<Failure, Unit>> deleteCartItem(String id, String uid) async {
+    try {
+      await firestore
+          .collection("users")
+          .doc(uid)
+          .collection("cart")
+          .doc(id)
+          .delete();
+      return right(unit);
+    } catch (e) {
+      return left(ServerFailure());
     }
-    return items;
   }
 
   @override
@@ -34,18 +43,43 @@ class FirestoreCartRepository implements CartRepositoryInterface {
     try {
       final snapshot =
           await firestore.collection("users").doc(uid).collection("cart").get();
-      if (snapshot.docs.isEmpty) {}
-      List<String> itemsIds = [];
-      for (var doc in snapshot.docs) {
-        itemsIds.add(doc.id);
+      if (snapshot.docs.isEmpty) {
+        return right([]);
       }
-      return right([]);
+      final List<CartItem> items = [];
+      for (var doc in snapshot.docs) {
+        final mealSnapShot =
+            await firestore.collection("meals").doc(doc.id).get();
+        final Map<String, dynamic> map = {
+          "id": doc.id,
+          "quantity": doc.data()["quantity"]
+        }..addAll(mealSnapShot.data()!);
+
+        items.add(CartItemModel.fromMap(map));
+      }
+      return right(items);
       // final favorites = await fetchFavoritesByIds(favoriteIds);
 
       //   return right(favorites);
     } catch (e) {
+      return left(ServerFailure());
       //   return left(ServerFailure());
     }
-    return right([]);
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateCartItem(
+      String id, int quantity, String uid) async {
+    try {
+      await firestore
+          .collection("users")
+          .doc(uid)
+          .collection("cart")
+          .doc(id)
+          .update({"quantity": quantity});
+      return right(unit);
+    } catch (e) {
+      return left(ServerFailure());
+    }
   }
 }

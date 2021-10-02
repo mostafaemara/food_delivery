@@ -3,7 +3,7 @@ part of 'home_cubit.dart';
 enum HomeStatus { idle, loading, loaded, error }
 
 @immutable
-class HomeState extends Equatable {
+class HomeState {
   final Option<Failure> failure;
   final List<Meal> popularMeals;
   final List<MealCategory> categories;
@@ -27,6 +27,6 @@ class HomeState extends Equatable {
         status: status ?? this.status);
   }
 
-  @override
-  List<Object?> get props => [failure, popularMeals, categories, status];
+  //@override
+  // List<Object?> get props => [failure, popularMeals, categories, status];
 }

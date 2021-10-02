@@ -7,5 +7,5 @@ class Multilingual extends Equatable {
   const Multilingual({required this.english, required this.arabic});
 
   @override
-  List<Object?> get props => [english, arabic];
+  List<Object> get props => [english, arabic];
 }

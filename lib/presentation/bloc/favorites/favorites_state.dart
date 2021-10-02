@@ -25,4 +25,7 @@ class FavoritesState {
       user: user ?? this.user,
     );
   }
+
+  // @override
+  //List<Object> get props => [favorites, status, user, failureOrNone];
 }

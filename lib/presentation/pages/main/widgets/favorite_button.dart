@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/domain/entities/favorite.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+
 import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 
 class FavoriteButton extends StatelessWidget {
@@ -10,7 +10,7 @@ class FavoriteButton extends StatelessWidget {
     Key? key,
     required this.favorite,
   }) : super(key: Key(favorite.mealId));
-
+  int i = 1;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FavoritesCubit, FavoritesState>(
@@ -18,7 +18,9 @@ class FavoriteButton extends StatelessWidget {
         final isFav = state.favorites.contains(favorite);
 
         final isAuth = state.user.isSome();
-
+        print(isFav.toString() +
+            "-------------------------FavoButton favs--------------" +
+            state.favorites.toString());
         return IconButton(
             constraints: const BoxConstraints(maxWidth: 18, maxHeight: 18),
             padding: EdgeInsets.zero,
@@ -37,7 +39,9 @@ class FavoriteButton extends StatelessWidget {
               width: 18,
             ));
       },
-      listener: (context, state) {},
+      listener: (context, state) {
+        print("Favorite Button  " + state.toString());
+      },
     );
   }
 }

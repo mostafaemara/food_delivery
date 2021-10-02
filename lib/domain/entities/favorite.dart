@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/core/multilingual.dart';
+import 'package:food_delivery_app/presentation/pages/main/widgets/favorite.dart';
 
-class Favorite extends Equatable {
+class Favorite {
   final String mealId;
   final Multilingual title;
   final String imageUrl;
@@ -11,9 +12,9 @@ class Favorite extends Equatable {
     required this.title,
     required this.imageUrl,
   });
-
   @override
-  List<Object?> get props => [
-        mealId,
-      ];
+  bool operator ==(Object other) =>
+      identical(this, other) || other is Favorite && mealId == other.mealId;
+  @override
+  int get hashCode => mealId.hashCode;
 }

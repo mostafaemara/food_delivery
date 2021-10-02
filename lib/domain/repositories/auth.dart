@@ -6,7 +6,7 @@ import 'package:food_delivery_app/domain/entities/user.dart';
 
 abstract class AuthRepositoryInterface {
   Future<Option<User>> getUser();
-  Stream<Option<User>> get onAuthChanged;
+  // Stream<Option<User>> get onAuthChanged;
   Future<Either<Failure, User>> loginWithEmailAndPassword(
       String email, String password);
   Future<Either<Failure, User>> loginWithGoogle();
