@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:food_delivery_app/domain/entities/cart_item.dart';
+import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
 
 class CartListItem extends StatelessWidget {
-  const CartListItem({Key? key}) : super(key: key);
-
+  CartListItem({Key? key, required this.cartItem})
+      : super(key: Key(cartItem.id));
+  final CartItem cartItem;
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -17,7 +21,9 @@ class CartListItem extends StatelessWidget {
             )),
         IconButton(
             padding: EdgeInsets.zero,
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<CartCubit>(context).deleteCartItem(cartItem.id);
+            },
             icon: Image.asset(
               "assets/icons/delete.png",
               height: 40,
@@ -39,26 +45,43 @@ class CartListItem extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(40),
-                      child: Image.asset(
-                        "assets/images/burger_sample.png",
+                      child: Image.network(
+                        cartItem.imageUrl,
                         height: 68,
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("The Macdonalds"),
-                        const Spacer(),
-                        Text("Classic cheesburger"),
-                        const Spacer(),
-                        Text("23.99"),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            cartItem.title.english,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const Spacer(),
+                          Text(
+                            cartItem.shortDescription.english,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const Spacer(),
+                          Text(
+                            cartItem.price.toString(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
                     Row(
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<CartCubit>(context)
+                                .decreaseCartQty(cartItem.id);
+                          },
                           icon: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
@@ -69,9 +92,12 @@ class CartListItem extends StatelessWidget {
                               )),
                           color: Colors.red,
                         ),
-                        Text("2"),
+                        Text(cartItem.quantity.toString()),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<CartCubit>(context)
+                                .increaseCartQty(cartItem.id);
+                          },
                           icon: Card(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),

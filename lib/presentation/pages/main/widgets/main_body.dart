@@ -24,6 +24,15 @@ class _MainBodyState extends State<MainBody> {
   }
 
   @override
+  void didChangeDependencies() {
+    final arg = ModalRoute.of(context)!.settings.arguments;
+    if (arg != null) {
+      index = arg as int;
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(

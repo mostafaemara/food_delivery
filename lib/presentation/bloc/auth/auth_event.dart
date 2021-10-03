@@ -1,15 +1,9 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthEvent {
-  const AuthEvent();
+@freezed
+abstract class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.authChanged({required Option<User> user}) =
+      AuthChanged;
+  const factory AuthEvent.checkAuth() = CheckAuth;
+  const factory AuthEvent.signOut() = SignOut;
 }
-
-class AuthChanged extends AuthEvent {
-  final Option<User> user;
-
-  const AuthChanged(this.user);
-}
-
-class AuthCheck extends AuthEvent {}
-
-class SignOutRequest extends AuthEvent {}

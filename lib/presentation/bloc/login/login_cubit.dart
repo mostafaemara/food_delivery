@@ -60,7 +60,7 @@ class LoginCubit extends Cubit<LoginState> {
               emit(state.copyWith(status: LoginStatus.error, failure: some(f))),
           (user) {
         emit(state.copyWith(status: LoginStatus.success, failure: none()));
-        authBloc.add(AuthChanged(some(user)));
+        authBloc.add(AuthEvent.authChanged(user: some(user)));
       });
     }
   }
@@ -73,7 +73,7 @@ class LoginCubit extends Cubit<LoginState> {
             emit(state.copyWith(status: LoginStatus.error, failure: some(f))),
         (user) {
       emit(state.copyWith(status: LoginStatus.success, failure: none()));
-      authBloc.add(AuthChanged(some(user)));
+      authBloc.add(AuthEvent.authChanged(user: some(user)));
     });
   }
 }

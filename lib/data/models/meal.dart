@@ -6,7 +6,8 @@ import 'package:food_delivery_app/domain/entities/meal.dart';
 
 class MealModel extends Meal {
   MealModel(
-      {required String id,
+      {required double price,
+      required String id,
       required Multilingual title,
       required String imageUrl,
       required Multilingual shortDescription,
@@ -14,6 +15,7 @@ class MealModel extends Meal {
       required double calories,
       required DeliveryTime deliveryTime})
       : super(
+            price: price,
             calories: calories,
             id: id,
             deliveryTime: deliveryTime,
@@ -24,6 +26,7 @@ class MealModel extends Meal {
 
   factory MealModel.fromMap(Map<String, dynamic> map) {
     return MealModel(
+        price: map["price"].toDouble(),
         calories: map["calories"].toDouble(),
         deliveryTime: DeliveryTimeModel.fromMap(map["deliveryTime"]),
         description: MultilingualModel.fromMap(map["description"]),

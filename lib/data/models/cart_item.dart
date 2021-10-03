@@ -4,13 +4,15 @@ import 'package:food_delivery_app/domain/entities/cart_item.dart';
 import 'multilingual.dart';
 
 class CartItemModel extends CartItem {
-  CartItemModel({
+  const CartItemModel({
+    required String imageUrl,
     required String id,
     required Multilingual title,
     required double price,
     required int quantity,
     required Multilingual shortDescription,
   }) : super(
+            imageUrl: imageUrl,
             id: id,
             price: price,
             quantity: quantity,
@@ -19,6 +21,7 @@ class CartItemModel extends CartItem {
 
   factory CartItemModel.fromMap(Map<String, dynamic> map) {
     return CartItemModel(
+        imageUrl: map["imageUrl"],
         quantity: map["quantity"],
         price: map["price"].toDouble(),
         id: map["id"],

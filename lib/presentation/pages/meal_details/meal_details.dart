@@ -1,10 +1,35 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/domain/entities/cart_item.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
+import 'package:food_delivery_app/presentation/routes/routes.dart';
 
-class MealDetailsPage extends StatelessWidget {
+class MealDetailsPage extends StatefulWidget {
   const MealDetailsPage({Key? key}) : super(key: key);
+
+  @override
+  State<MealDetailsPage> createState() => _MealDetailsPageState();
+}
+
+class _MealDetailsPageState extends State<MealDetailsPage> {
+  int count = 1;
+
+  void increaseCount() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void decreaseCount() {
+    if (count > 1) {
+      setState(() {
+        count--;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +102,9 @@ class MealDetailsPage extends StatelessWidget {
                                   color:
                                       Theme.of(context).colorScheme.onPrimary,
                                   iconSize: 21,
-                                  onPressed: () {},
-                                  icon: Icon(Icons.remove)),
-                              Text("2",
+                                  onPressed: decreaseCount,
+                                  icon: const Icon(Icons.remove)),
+                              Text(count.toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -92,8 +117,8 @@ class MealDetailsPage extends StatelessWidget {
                                   color:
                                       Theme.of(context).colorScheme.onPrimary,
                                   iconSize: 21,
-                                  onPressed: () {},
-                                  icon: Icon(Icons.add)),
+                                  onPressed: increaseCount,
+                                  icon: const Icon(Icons.add)),
                             ],
                           ),
                         ),
@@ -166,7 +191,19 @@ class MealDetailsPage extends StatelessWidget {
                   end: 20,
                 ),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<CartCubit>(context).addCartItem(CartItem(
+                        imageUrl: meal.imageUrl,
+                        id: meal.id,
+                        price: meal.price,
+                        quantity: count,
+                        title: meal.title,
+                        shortDescription: meal.shortDescription));
+
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, Routes.mainScreen, (route) => false,
+                        arguments: 3);
+                  },
                   child: Text(
                     AppLocalizations.of(context)!.addToCart,
                   ),

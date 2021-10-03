@@ -22,31 +22,34 @@ class FavoritesCubit extends Cubit<FavoritesState> {
             failureOrNone: none(),
             status: FavoritesStatus.init,
             user: none())) {
-    authChange = _authBloc.stream.listen((authState) async {
-      print("Favorite Cubit int after auth Changed");
-      if (authState is Authenticated) {
-        emit(state.copyWith(
-          status: FavoritesStatus.loading,
-          user: some(authState.user),
-        ));
-        final result = await _favoritesRepo.fetchFavorites(authState.user.id);
-        result.fold(
-            (failure) => emit(state.copyWith(
-                failureOrNone: some(failure),
-                status: FavoritesStatus.error)), (favorites) {
-          print("isFav" + favorites.toString());
+    authChange = _authBloc.stream.listen((authState) {
+      authState.maybeWhen(
+        authenticated: (user) async {
           emit(state.copyWith(
-              favorites: favorites,
+            status: FavoritesStatus.loading,
+            user: some(user),
+          ));
+          final result = await _favoritesRepo.fetchFavorites(user.id);
+          result.fold(
+              (failure) => emit(state.copyWith(
+                  failureOrNone: some(failure),
+                  status: FavoritesStatus.error)), (favorites) {
+            print("isFav" + favorites.toString());
+            emit(state.copyWith(
+                favorites: favorites,
+                failureOrNone: none(),
+                status: FavoritesStatus.loaded));
+          });
+        },
+        orElse: () {
+          print("heey");
+          emit(state.copyWith(
               failureOrNone: none(),
-              status: FavoritesStatus.loaded));
-        });
-      } else {
-        emit(state.copyWith(
-            failureOrNone: none(),
-            favorites: [],
-            status: FavoritesStatus.notAuth,
-            user: none()));
-      }
+              favorites: [],
+              status: FavoritesStatus.notAuth,
+              user: none()));
+        },
+      );
     });
   }
 

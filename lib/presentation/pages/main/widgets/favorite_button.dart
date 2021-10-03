@@ -18,9 +18,7 @@ class FavoriteButton extends StatelessWidget {
         final isFav = state.favorites.contains(favorite);
 
         final isAuth = state.user.isSome();
-        print(isFav.toString() +
-            "-------------------------FavoButton favs--------------" +
-            state.favorites.toString());
+
         return IconButton(
             constraints: const BoxConstraints(maxWidth: 18, maxHeight: 18),
             padding: EdgeInsets.zero,
@@ -39,9 +37,7 @@ class FavoriteButton extends StatelessWidget {
               width: 18,
             ));
       },
-      listener: (context, state) {
-        print("Favorite Button  " + state.toString());
-      },
+      listener: (context, state) {},
     );
   }
 }

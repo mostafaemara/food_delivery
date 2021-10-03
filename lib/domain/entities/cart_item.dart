@@ -1,30 +1,32 @@
+import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/core/multilingual.dart';
 
-class CartItem {
+class CartItem extends Equatable {
   final String id;
   final double price;
-  int quantity;
+  final int quantity;
   final Multilingual title;
   final Multilingual shortDescription;
+  final String imageUrl;
 
-  CartItem(
-      {required this.id,
+  const CartItem(
+      {required this.imageUrl,
+      required this.id,
       required this.price,
       required this.quantity,
       required this.title,
       required this.shortDescription});
 
-  void increaseQuantity(int qty) {
-    quantity += qty;
-  }
-
-  void decreaseQuantity() {
-    quantity = quantity--;
+  CartItem copyWithQuantity(int qty) {
+    return CartItem(
+        imageUrl: imageUrl,
+        id: id,
+        price: price,
+        quantity: qty,
+        title: title,
+        shortDescription: shortDescription);
   }
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is CartItem && id == other.id;
-  @override
-  int get hashCode => id.hashCode;
+  List<Object?> get props => [id, price, quantity, title, shortDescription];
 }

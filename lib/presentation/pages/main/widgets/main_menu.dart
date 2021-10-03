@@ -118,7 +118,7 @@ class MainMenu extends StatelessWidget {
                 width: 120,
                 child: ElevatedButton(
                     onPressed: () {
-                      context.read<AuthBloc>().add(SignOutRequest());
+                      context.read<AuthBloc>().add(const AuthEvent.signOut());
                     },
                     child: Text(AppLocalizations.of(context)!.logout)))
           ],

@@ -1,3 +1,4 @@
+import 'package:food_delivery_app/data/repositories/firestore_cart_repository.dart';
 import 'package:food_delivery_app/data/repositories/firestore_favorites_repository.dart';
 import 'package:food_delivery_app/data/repositories/firestore_meals_repository.dart';
 import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
@@ -8,6 +9,7 @@ import 'data/repositories/sp_first_time_repository.dart';
 import 'data/repositories/sp_locale_repository.dart';
 import 'data/repositories/sp_theme_repository.dart';
 import 'domain/repositories/auth.dart';
+import 'domain/repositories/cart_repository_interface.dart';
 import 'domain/repositories/first_time_repository_interface.dart';
 import 'domain/repositories/locale_repository_interface.dart';
 import 'domain/repositories/meals_repository.dart';
@@ -25,4 +27,5 @@ Future<void> initializeDependencies() async {
       .registerSingleton<MealsRepositoryInterface>(FirestoreMealsRepository());
   locator.registerSingleton<FavoritesRepositoryInterface>(
       FirestoreFavoritesRepository());
+  locator.registerSingleton<CartRepositoryInterface>(FirestoreCartRepository());
 }

@@ -16,7 +16,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void didChangeDependencies() async {
-    BlocProvider.of<AuthBloc>(context).add(AuthCheck());
+    BlocProvider.of<AuthBloc>(context).add(const AuthEvent.checkAuth());
 
     super.didChangeDependencies();
   }

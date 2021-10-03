@@ -60,7 +60,7 @@ class SignupCubit extends Cubit<SignupState> {
               status: SignupStatus.error, failureOrNone: some(l))), (user) {
         emit(state.copyWith(
             status: SignupStatus.success, failureOrNone: none()));
-        authBloc.add(AuthChanged(some(user)));
+        authBloc.add(AuthEvent.authChanged(user: some(user)));
       });
     }
   }
