@@ -10,25 +10,20 @@ class FavoriteButton extends StatelessWidget {
     Key? key,
     required this.favorite,
   }) : super(key: Key(favorite.mealId));
-  int i = 1;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FavoritesCubit, FavoritesState>(
       builder: (context, state) {
         final isFav = state.favorites.contains(favorite);
 
-        final isAuth = state.user.isSome();
-
         return IconButton(
             constraints: const BoxConstraints(maxWidth: 18, maxHeight: 18),
             padding: EdgeInsets.zero,
             alignment: AlignmentDirectional.centerEnd,
-            onPressed: isAuth
-                ? () {
-                    BlocProvider.of<FavoritesCubit>(context)
-                        .toggleFavorite(favorite);
-                  }
-                : null,
+            onPressed: () {
+              BlocProvider.of<FavoritesCubit>(context).toggleFavorite(favorite);
+            },
             icon: Image.asset(
               isFav
                   ? "assets/icons/heart_active.png"

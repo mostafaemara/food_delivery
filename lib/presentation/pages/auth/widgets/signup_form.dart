@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/core/failure.dart';
-import 'package:food_delivery_app/core/validation_failure.dart';
+
 import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
 import 'package:food_delivery_app/presentation/routes/routes.dart';
 
@@ -58,6 +57,31 @@ class SignUpForm extends StatelessWidget {
             Padding(
               padding: const EdgeInsetsDirectional.only(bottom: 8, start: 20),
               child: Text(
+                AppLocalizations.of(context)!.userName,
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+            ),
+            TextFormField(
+              onChanged: signupCubit.userNameChanged,
+              decoration: InputDecoration(
+                  errorText: state.userNameOrFailure.fold(
+                      (error) => error.when(
+                            tooShort: () => AppLocalizations.of(context)!
+                                .userNameIsTooShort,
+                            invalid: () =>
+                                AppLocalizations.of(context)!.invalidUserName,
+                            empty: () =>
+                                AppLocalizations.of(context)!.enterUserName,
+                          ),
+                      (r) => null),
+                  hintText: AppLocalizations.of(context)!.enterUserName),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(bottom: 8, start: 20),
+              child: Text(
                 AppLocalizations.of(context)!.emailAddress,
                 style: Theme.of(context).textTheme.bodyText2,
               ),
@@ -66,7 +90,7 @@ class SignUpForm extends StatelessWidget {
               onChanged: signupCubit.emailChanged,
               decoration: InputDecoration(
                   errorText: state.emailOrFailure.fold((error) {
-                    error.when(
+                    return error.when(
                       invalid: () =>
                           AppLocalizations.of(context)!.enterValidEmail,
                       empty: () => AppLocalizations.of(context)!.enterEmail,
@@ -88,7 +112,7 @@ class SignUpForm extends StatelessWidget {
               onChanged: signupCubit.passwordChanged,
               decoration: InputDecoration(
                   errorText: state.passwordOrFailure.fold((error) {
-                    error.when(
+                    return error.when(
                       shortPassword: () =>
                           AppLocalizations.of(context)!.passwordTooShort,
                       empty: () => AppLocalizations.of(context)!.enterPassword,
@@ -110,7 +134,7 @@ class SignUpForm extends StatelessWidget {
               onChanged: signupCubit.confirmePasswordChanged,
               decoration: InputDecoration(
                   errorText: state.confirmPasswordOrFailure.fold((error) {
-                    error.when(
+                    return error.when(
                       passwordNotMatch: () =>
                           AppLocalizations.of(context)!.passwordNotMatch,
                       empty: () =>

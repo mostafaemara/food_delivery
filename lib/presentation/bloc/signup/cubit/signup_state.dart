@@ -8,11 +8,13 @@ class SignupState {
   final Option<AuthFailure> failureOrNone;
   final Either<EmailValidationFailure, String> emailOrFailure;
   final Either<PasswordValidationFailure, String> passwordOrFailure;
+  final Either<UserNameValidationFailure, String> userNameOrFailure;
   final Either<ConfirmPasswordValidationFailure, String>
       confirmPasswordOrFailure;
 
   const SignupState(
       {required this.status,
+      required this.userNameOrFailure,
       required this.failureOrNone,
       required this.emailOrFailure,
       required this.passwordOrFailure,
@@ -23,9 +25,11 @@ class SignupState {
       Option<AuthFailure>? failureOrNone,
       Either<EmailValidationFailure, String>? emailOrFailure,
       Either<PasswordValidationFailure, String>? passwordOrFailure,
+      Either<UserNameValidationFailure, String>? userNameOrFailure,
       Either<ConfirmPasswordValidationFailure, String>?
           confirmPasswordOrFailure}) {
     return SignupState(
+        userNameOrFailure: userNameOrFailure ?? this.userNameOrFailure,
         status: status ?? this.status,
         failureOrNone: failureOrNone ?? this.failureOrNone,
         emailOrFailure: emailOrFailure ?? this.emailOrFailure,

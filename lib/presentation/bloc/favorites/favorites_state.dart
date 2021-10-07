@@ -6,10 +6,9 @@ class FavoritesState {
   final List<Favorite> favorites;
   final Option<AuthFailure> failureOrNone;
   final FavoritesStatus status;
-  final Option<User> user;
+
   const FavoritesState(
-      {required this.user,
-      required this.status,
+      {required this.status,
       required this.favorites,
       required this.failureOrNone});
 
@@ -22,7 +21,6 @@ class FavoritesState {
       status: status ?? this.status,
       favorites: favorites ?? this.favorites,
       failureOrNone: failureOrNone ?? this.failureOrNone,
-      user: user ?? this.user,
     );
   }
 

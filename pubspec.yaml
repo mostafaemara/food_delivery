@@ -35,7 +35,7 @@ dependencies:
   flutter_zoom_drawer: ^2.1.1
   random_color: ^1.0.6-nullsafety
   flutter_slidable: ^0.6.0
-  flutter_bloc: ^7.2.0
+  flutter_bloc: ^7.3.0
   dartz: ^0.10.0
   firebase_core: "^1.6.0"
   firebase_auth: "^3.1.1"

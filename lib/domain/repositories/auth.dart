@@ -11,6 +11,6 @@ abstract class AuthRepositoryInterface {
       String email, String password);
   Future<Either<AuthFailure, User>> loginWithGoogle();
   Future<Either<AuthFailure, User>> signUpWithEmailAndPassword(
-      String email, String password);
+      String email, String password, String userName);
   Future<Either<AuthFailure, void>> signOut();
 }

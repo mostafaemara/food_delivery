@@ -13,7 +13,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepositoryInterface authRepo;
 
-  AuthBloc(this.authRepo) : super(const AuthState.initial()) {
+  AuthBloc(this.authRepo) : super(const AuthState.unAuthenticated()) {
     //authRepo.onAuthChanged.listen((user) {
     //  print(" Auth bloc Auth changed");
     //  add(AuthChanged(user));

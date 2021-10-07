@@ -1,83 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
-import "../../../helpers/cart_helper.dart";
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:food_delivery_app/presentation/routes/routes.dart';
+
+import 'cart_icon_with_count.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
     Key? key,
-    required this.index,
+    required this.currentIndex,
     required this.onTap,
   }) : super(key: key);
-  final int index;
+  final int currentIndex;
   final Function(int) onTap;
+
+  final favoriteIndex = 1;
+  final cartIndex = 3;
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, CartState>(
-      builder: (context, state) => BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: index,
-          onTap: onTap,
-          items: [
-            BottomNavigationBarItem(
-              label: "",
+    return BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentIndex,
+        onTap: (selectedIndex) {
+          if (selectedIndex == favoriteIndex || selectedIndex == cartIndex) {
+            BlocProvider.of<AuthBloc>(context).state.when(
+              authenticated: (user) {
+                onTap(selectedIndex);
+              },
+              unAuthenticated: () {
+                Navigator.of(context).pushNamed(Routes.authScreen);
+              },
+            );
+          } else {
+            onTap(selectedIndex);
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: "",
+            activeIcon: Image.asset(
+              "assets/icons/home_active.png",
+              height: 24,
+            ),
+            icon: Image.asset(
+              "assets/icons/home.png",
+              height: 24,
+            ),
+          ),
+          BottomNavigationBarItem(
+              label: "Home",
               activeIcon: Image.asset(
-                "assets/icons/home_active.png",
+                "assets/icons/heart_active.png",
                 height: 24,
               ),
               icon: Image.asset(
-                "assets/icons/home.png",
+                "assets/icons/heart.png",
                 height: 24,
-              ),
-            ),
-            BottomNavigationBarItem(
-                label: "Home",
-                activeIcon: Image.asset(
-                  "assets/icons/heart_active.png",
-                  height: 24,
-                ),
-                icon: Image.asset(
-                  "assets/icons/heart.png",
-                  height: 24,
-                )),
-            BottomNavigationBarItem(
-                label: "Home",
-                activeIcon: Image.asset(
-                  "assets/icons/notification_active.png",
-                  height: 24,
-                ),
-                icon: Image.asset(
-                  "assets/icons/notification.png",
-                  height: 24,
-                )),
-            BottomNavigationBarItem(
+              )),
+          BottomNavigationBarItem(
               label: "Home",
               activeIcon: Image.asset(
-                "assets/icons/cart_active.png",
+                "assets/icons/notification_active.png",
                 height: 24,
               ),
-              icon: Stack(
-                children: [
-                  Image.asset(
-                    "assets/icons/cart.png",
-                    height: 24,
-                  ),
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: state.items.isEmpty
-                          ? const SizedBox()
-                          : Text(
-                              state.items.itemsCount().toString(),
-                              style: const TextStyle(fontSize: 10),
-                            )),
-                ],
-              ),
-            )
-          ]),
-    );
+              icon: Image.asset(
+                "assets/icons/notification.png",
+                height: 24,
+              )),
+          BottomNavigationBarItem(
+            label: "Home",
+            activeIcon: Image.asset(
+              "assets/icons/cart_active.png",
+              height: 24,
+            ),
+            icon: const CartIconWithCount(),
+          )
+        ]);
   }
 }

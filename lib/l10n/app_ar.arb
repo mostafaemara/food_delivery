@@ -46,5 +46,9 @@
     "passwordNotMatch":"كلمة المرور وتأكيد كلمة المرور غير متطابقين",
      "min":"دقائق",
     "cal":"سعرات حرارية",
-    "addToCart":"أضف إلى السلة"
+    "addToCart":"أضف إلى السلة",
+    "userName":"اسم المستخدم",
+    "enterUserName":"ادخل اسم المستخدم",
+    "invalidUserName":"اسم المستخدم غير صالح",
+    "userNameIsTooShort":"اسم المستخدم قصير جدا"
 }

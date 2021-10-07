@@ -46,6 +46,10 @@
     "passwordNotMatch":"Password not match",
     "min":"minutes",
     "cal":"calories",
-    "addToCart":"Add to cart"
+    "addToCart":"Add to cart",
+    "userName":"User name",
+    "enterUserName":"Enter user name",
+    "invalidUserName":"Invalid user name",
+    "userNameIsTooShort":"User name is too short"
 
 }

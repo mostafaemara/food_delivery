@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
 import 'package:food_delivery_app/presentation/routes/routes.dart';
 
@@ -33,6 +34,10 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userNotGuest = BlocProvider.of<AuthBloc>(context).state.map(
+          authenticated: (value) => true,
+          unAuthenticated: (value) => false,
+        );
     final meal = ModalRoute.of(context)!.settings.arguments as Meal;
     final isArabic = Localizations.localeOf(context).languageCode == "ar";
     final arabicNumber = ArabicNumbers();
@@ -192,17 +197,20 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<CartCubit>(context).addCartItem(CartItem(
-                        imageUrl: meal.imageUrl,
-                        id: meal.id,
-                        price: meal.price,
-                        quantity: count,
-                        title: meal.title,
-                        shortDescription: meal.shortDescription));
-
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, Routes.mainScreen, (route) => false,
-                        arguments: 3);
+                    if (userNotGuest) {
+                      BlocProvider.of<CartCubit>(context).addCartItem(CartItem(
+                          imageUrl: meal.imageUrl,
+                          id: meal.id,
+                          price: meal.price,
+                          quantity: count,
+                          title: meal.title,
+                          shortDescription: meal.shortDescription));
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, Routes.mainScreen, (route) => false,
+                          arguments: 3);
+                    } else {
+                      Navigator.of(context).pushNamed(Routes.authScreen);
+                    }
                   },
                   child: Text(
                     AppLocalizations.of(context)!.addToCart,

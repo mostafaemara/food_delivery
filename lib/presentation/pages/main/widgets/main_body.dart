@@ -86,6 +86,7 @@ class _MainBodyState extends State<MainBody> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavBar(index: index, onTap: selectView));
+        bottomNavigationBar:
+            BottomNavBar(currentIndex: index, onTap: selectView));
   }
 }

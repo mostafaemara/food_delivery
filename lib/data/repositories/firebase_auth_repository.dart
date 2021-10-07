@@ -59,12 +59,13 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
 
   @override
   Future<Either<AuthFailure, User>> signUpWithEmailAndPassword(
-      String email, String password) async {
+      String email, String password, String userName) async {
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-
-      return right(credential.toDomainUser());
+      await credential.user!.updateDisplayName(userName);
+      final user = _auth.currentUser;
+      return right(user!.toDomainUser());
     } on firebase_auth.FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         return left(const AuthFailure.emailAlreadyInUse());

@@ -18,23 +18,21 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   late StreamSubscription authChange;
   FavoritesCubit(this._favoritesRepo, this._authBloc)
       : super(FavoritesState(
-            favorites: const [],
-            failureOrNone: none(),
-            status: FavoritesStatus.init,
-            user: none())) {
+          favorites: const [],
+          failureOrNone: none(),
+          status: FavoritesStatus.init,
+        )) {
     authChange = _authBloc.stream.listen((authState) {
       authState.maybeWhen(
         authenticated: (user) async {
           emit(state.copyWith(
             status: FavoritesStatus.loading,
-            user: some(user),
           ));
           final result = await _favoritesRepo.fetchFavorites(user.id);
           result.fold(
               (failure) => emit(state.copyWith(
                   failureOrNone: some(failure),
                   status: FavoritesStatus.error)), (favorites) {
-            print("isFav" + favorites.toString());
             emit(state.copyWith(
                 favorites: favorites,
                 failureOrNone: none(),
@@ -42,7 +40,6 @@ class FavoritesCubit extends Cubit<FavoritesState> {
           });
         },
         orElse: () {
-          print("heey");
           emit(state.copyWith(
               failureOrNone: none(),
               favorites: [],
@@ -54,31 +51,33 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   }
 
   void toggleFavorite(Favorite favorite) async {
-    state.user.fold(() => {}, (user) async {
-      if (state.favorites.contains(favorite)) {
-        final result =
-            await _favoritesRepo.removeFromFavorites(favorite.mealId, user.id);
+    _authBloc.state.whenOrNull(
+      authenticated: (user) async {
+        if (state.favorites.contains(favorite)) {
+          final result = await _favoritesRepo.removeFromFavorites(
+              favorite.mealId, user.id);
 
-        result.fold(
-            (failure) => emit(state.copyWith(failureOrNone: some(failure))),
-            (r) {
-          var favorites = state.favorites;
+          result.fold(
+              (failure) => emit(state.copyWith(failureOrNone: some(failure))),
+              (_) {
+            var favorites = state.favorites;
 
-          favorites.removeWhere((element) => element == favorite);
+            favorites.removeWhere((element) => element == favorite);
 
-          emit(state.copyWith(favorites: favorites, failureOrNone: none()));
-        });
-      } else {
-        final result =
-            await _favoritesRepo.addToFavorites(favorite.mealId, user.id);
-        result.fold(
-            (failure) => emit(state.copyWith(failureOrNone: some(failure))),
-            (r) {
-          final favorites = [...state.favorites, favorite];
-          emit(state.copyWith(favorites: favorites, failureOrNone: none()));
-        });
-      }
-    });
+            emit(state.copyWith(favorites: favorites, failureOrNone: none()));
+          });
+        } else {
+          final result =
+              await _favoritesRepo.addToFavorites(favorite.mealId, user.id);
+          result.fold(
+              (failure) => emit(state.copyWith(failureOrNone: some(failure))),
+              (_) {
+            final favorites = [...state.favorites, favorite];
+            emit(state.copyWith(favorites: favorites, failureOrNone: none()));
+          });
+        }
+      },
+    );
   }
 
   void dispose() {

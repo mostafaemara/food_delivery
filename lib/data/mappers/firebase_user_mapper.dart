@@ -3,12 +3,13 @@ import 'package:food_delivery_app/domain/entities/user.dart';
 
 extension UserCredentialMapper on firebase_auth.UserCredential {
   User toDomainUser() {
-    return User(email: user!.email!, id: user!.uid);
+    return User(
+        userName: user!.displayName!, email: user!.email!, id: user!.uid);
   }
 }
 
 extension FireBaseAuthUserMapper on firebase_auth.User {
   User toDomainUser() {
-    return User(email: email!, id: uid);
+    return User(userName: displayName!, email: email!, id: uid);
   }
 }
