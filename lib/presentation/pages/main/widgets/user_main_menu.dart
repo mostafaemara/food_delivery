@@ -69,6 +69,9 @@ class UserMainMenu extends StatelessWidget {
               title: Text(AppLocalizations.of(context)!.paymentMethod),
             ),
             ListTile(
+              onTap: () {
+                Navigator.of(context).pushNamed(Routes.settingProfile);
+              },
               horizontalTitleGap: 0,
               contentPadding: EdgeInsets.zero,
               leading: Image.asset(

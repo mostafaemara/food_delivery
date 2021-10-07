@@ -50,5 +50,10 @@
     "userName":"اسم المستخدم",
     "enterUserName":"ادخل اسم المستخدم",
     "invalidUserName":"اسم المستخدم غير صالح",
-    "userNameIsTooShort":"اسم المستخدم قصير جدا"
+    "userNameIsTooShort":"اسم المستخدم قصير جدا",
+    
+    "language":"اللغة",
+    "theme":"الوضع",
+    "dark":"الوضع الداكن",
+    "light":"الوضع الساطع"
 }

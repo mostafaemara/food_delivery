@@ -18,9 +18,9 @@ class ConfigCubit extends Cubit<ConfigState> {
   final FirstTimeRepositoryInterface _firstTimeRepo;
 
   ConfigCubit(this._localeRepo, this._themeRepo, this._firstTimeRepo)
-      : super(ConfigState(
-            locale: none(),
-            theme: none(),
+      : super(const ConfigState(
+            locale: Locale(Locales.english),
+            theme: Theme(ThemeMode.light),
             isFirstTime: false,
             status: ConfigStatus.notInit));
   void initConfig() async {
@@ -29,8 +29,8 @@ class ConfigCubit extends Cubit<ConfigState> {
     final themeOrNone = await _themeRepo.getTheme();
     final isFirstTime = await _firstTimeRepo.getFirstTime();
     emit(state.copyWith(
-        locale: localeOrNone,
-        theme: themeOrNone,
+        locale: localeOrNone.getOrElse(() => const Locale(Locales.english)),
+        theme: themeOrNone.getOrElse(() => const Theme(ThemeMode.light)),
         status: ConfigStatus.init,
         isFirstTime: isFirstTime));
   }
@@ -38,7 +38,7 @@ class ConfigCubit extends Cubit<ConfigState> {
   void selectLocale(Locale locale) async {
     await _localeRepo.setLocale(locale);
 
-    emit(state.copyWith(locale: some(locale)));
+    emit(state.copyWith(locale: locale));
   }
 
   void setFirstTime(bool isFirstTime) async {
@@ -48,6 +48,6 @@ class ConfigCubit extends Cubit<ConfigState> {
 
   void selectTheme(Theme theme) async {
     await _themeRepo.setTheme(theme);
-    emit(state.copyWith(theme: some(theme)));
+    emit(state.copyWith(theme: theme));
   }
 }

@@ -1,5 +1,3 @@
-import 'package:food_delivery_app/presentation/pages/meal_details/meal_details.dart';
-
 class Routes {
   static const authScreen = "/auth";
   static const forgotPasswordScreen = "/forgot-password";
@@ -10,4 +8,5 @@ class Routes {
   static const categoryPage = "/category";
   static const profilePage = "/profile";
   static const editeProfilePage = "/edite-profile";
+  static const settingProfile = "/setting";
 }

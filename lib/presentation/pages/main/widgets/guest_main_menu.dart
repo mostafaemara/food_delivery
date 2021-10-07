@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:food_delivery_app/presentation/routes/routes.dart';
-import 'package:provider/src/provider.dart';
-
 import 'user_account_header.dart';
 
 class GuestMainMenu extends StatelessWidget {
@@ -43,6 +40,9 @@ class GuestMainMenu extends StatelessWidget {
               height: 20,
             ),
             ListTile(
+              onTap: () {
+                Navigator.of(context).pushNamed(Routes.settingProfile);
+              },
               horizontalTitleGap: 0,
               contentPadding: EdgeInsets.zero,
               leading: Image.asset(

@@ -6,8 +6,10 @@ import 'package:food_delivery_app/presentation/pages/category/category.dart';
 import 'package:food_delivery_app/presentation/pages/edite_profile/edite_profile.dart';
 import 'package:food_delivery_app/presentation/pages/meal_details/meal_details.dart';
 import 'package:food_delivery_app/presentation/pages/profile/profile.dart';
+import 'package:food_delivery_app/presentation/pages/setting/setting_page.dart';
 
 import '../../domain/entities/theme.dart' as domain;
+import '../../domain/entities/locale.dart' as domain;
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
 
 import 'package:food_delivery_app/presentation/pages/auth/auth.dart';
@@ -27,20 +29,15 @@ class FoodDeliveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ConfigCubit, ConfigState>(
       builder: (context, state) => MaterialApp(
-        locale: const Locale("en"),
-        // state.locale.fold(
-        //   () => null,
-        //   (l) => l.locale == domain.Locales.english
-        //     ? const Locale("en")
-        //     : const Locale("ar")),
+        locale: state.locale.locale == domain.Locales.english
+            ? const Locale("en")
+            : const Locale("ar"),
         title: 'Food Delivery App',
         supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
-        theme: state.theme.fold(
-            () => AppTheme.lightTheme,
-            (t) => t.themeMode == domain.ThemeMode.light
-                ? AppTheme.lightTheme
-                : AppTheme.darkTheme),
+        theme: state.theme.themeMode == domain.ThemeMode.light
+            ? AppTheme.lightTheme
+            : AppTheme.darkTheme,
         home: const SplashPage(),
         routes: {
           Routes.categoryPage: (context) => const CategoryPage(),
@@ -52,7 +49,8 @@ class FoodDeliveryApp extends StatelessWidget {
               const LanguageSelectionPage(),
           Routes.mealDetailsPage: (context) => const MealDetailsPage(),
           Routes.profilePage: (context) => const ProfilePage(),
-          Routes.editeProfilePage: (context) => const EditeProfilePage()
+          Routes.editeProfilePage: (context) => const EditeProfilePage(),
+          Routes.settingProfile: (context) => const SettingPage(),
         },
       ),
     );

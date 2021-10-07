@@ -50,6 +50,11 @@
     "userName":"User name",
     "enterUserName":"Enter user name",
     "invalidUserName":"Invalid user name",
-    "userNameIsTooShort":"User name is too short"
+    "userNameIsTooShort":"User name is too short",
+   
+    "language":"Language",
+    "theme":"Theme",
+    "dark":"Dark",
+    "light":"Light"
 
 }

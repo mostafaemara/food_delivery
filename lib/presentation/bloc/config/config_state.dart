@@ -5,8 +5,8 @@ enum ConfigStatus { init, notInit }
 @immutable
 class ConfigState extends Equatable {
   final ConfigStatus status;
-  final Option<Locale> locale;
-  final Option<Theme> theme;
+  final Locale locale;
+  final Theme theme;
   final bool isFirstTime;
   const ConfigState(
       {required this.status,
@@ -15,10 +15,7 @@ class ConfigState extends Equatable {
       required this.theme});
 
   ConfigState copyWith(
-      {bool? isFirstTime,
-      Option<Locale>? locale,
-      Option<Theme>? theme,
-      ConfigStatus? status}) {
+      {bool? isFirstTime, Locale? locale, Theme? theme, ConfigStatus? status}) {
     return ConfigState(
         locale: locale ?? this.locale,
         theme: theme ?? this.theme,
