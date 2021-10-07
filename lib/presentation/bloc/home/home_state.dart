@@ -4,7 +4,7 @@ enum HomeStatus { idle, loading, loaded, error }
 
 @immutable
 class HomeState {
-  final Option<Failure> failure;
+  final Option<AuthFailure> failure;
   final List<Meal> popularMeals;
   final List<MealCategory> categories;
   final HomeStatus status;
@@ -16,7 +16,7 @@ class HomeState {
       required this.status});
 
   HomeState copyWith(
-      {Option<Failure>? failure,
+      {Option<AuthFailure>? failure,
       List<Meal>? popularMeals,
       List<MealCategory>? categories,
       HomeStatus? status}) {

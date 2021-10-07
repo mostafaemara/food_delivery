@@ -9,7 +9,7 @@ import 'package:food_delivery_app/domain/repositories/favorites_repository.dart'
 class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<Failure, Unit>> addToFavorites(
+  Future<Either<AuthFailure, Unit>> addToFavorites(
       String mealId, String uid) async {
     try {
       await firestore
@@ -20,7 +20,7 @@ class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
           .set({});
       return right(unit);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
@@ -36,7 +36,7 @@ class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Favorite>>> fetchFavorites(String uid) async {
+  Future<Either<AuthFailure, List<Favorite>>> fetchFavorites(String uid) async {
     try {
       final snapshot = await firestore
           .collection("users")
@@ -55,12 +55,12 @@ class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
 
       return right(favorites);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, Unit>> removeFromFavorites(
+  Future<Either<AuthFailure, Unit>> removeFromFavorites(
       String mealId, String uid) async {
     try {
       await firestore
@@ -71,7 +71,7 @@ class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
           .delete();
       return right(unit);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 }

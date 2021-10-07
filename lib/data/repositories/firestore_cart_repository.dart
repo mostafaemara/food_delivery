@@ -8,7 +8,7 @@ import 'package:food_delivery_app/domain/repositories/cart_repository_interface.
 class FirestoreCartRepository implements CartRepositoryInterface {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<Failure, Unit>> addCartItem(
+  Future<Either<AuthFailure, Unit>> addCartItem(
       String id, int quantity, String uid) async {
     try {
       await firestore
@@ -19,12 +19,13 @@ class FirestoreCartRepository implements CartRepositoryInterface {
           .set({"quantity": quantity});
       return right(unit);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteCartItem(String id, String uid) async {
+  Future<Either<AuthFailure, Unit>> deleteCartItem(
+      String id, String uid) async {
     try {
       await firestore
           .collection("users")
@@ -34,12 +35,12 @@ class FirestoreCartRepository implements CartRepositoryInterface {
           .delete();
       return right(unit);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<CartItem>>> getCartitems(String uid) async {
+  Future<Either<AuthFailure, List<CartItem>>> getCartitems(String uid) async {
     try {
       final snapshot =
           await firestore.collection("users").doc(uid).collection("cart").get();
@@ -62,13 +63,13 @@ class FirestoreCartRepository implements CartRepositoryInterface {
 
       //   return right(favorites);
     } catch (e) {
-      return left(ServerFailure());
-      //   return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
+      //   return left(const Failure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, Unit>> updateCartItem(
+  Future<Either<AuthFailure, Unit>> updateCartItem(
       String id, int quantity, String uid) async {
     try {
       await firestore
@@ -79,7 +80,7 @@ class FirestoreCartRepository implements CartRepositoryInterface {
           .update({"quantity": quantity});
       return right(unit);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 }

@@ -14,7 +14,7 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
   final _auth = firebase_auth.FirebaseAuth.instance;
 
   @override
-  Future<Either<Failure, User>> loginWithEmailAndPassword(
+  Future<Either<AuthFailure, User>> loginWithEmailAndPassword(
       String email, String password) async {
     try {
       final credential = await _auth.signInWithEmailAndPassword(
@@ -23,19 +23,19 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
       return right(credential.toDomainUser());
     } on firebase_auth.FirebaseAuthException catch (e) {
       if (e.code == "user-not-found" || e.code == "wrong-password") {
-        return left(WorngEmailOrPasswordFailure());
+        return left(const AuthFailure.worngEmailOrPassword());
       } else {
-        return left(ServerFailure());
+        return left(const AuthFailure.serverFailure());
       }
     }
   }
 
   @override
-  Future<Either<Failure, User>> loginWithGoogle() async {
+  Future<Either<AuthFailure, User>> loginWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
-        return left(ProcessAbortedFailure());
+        return left(const AuthFailure.processAborted());
       }
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
@@ -46,19 +46,19 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
 
       return right(userCredential.toDomainUser());
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, Unit>> signOut() async {
+  Future<Either<AuthFailure, Unit>> signOut() async {
     await _auth.signOut();
     await GoogleSignIn().signOut();
     return right(unit);
   }
 
   @override
-  Future<Either<Failure, User>> signUpWithEmailAndPassword(
+  Future<Either<AuthFailure, User>> signUpWithEmailAndPassword(
       String email, String password) async {
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
@@ -67,9 +67,9 @@ class FirebaseAuthRepository implements AuthRepositoryInterface {
       return right(credential.toDomainUser());
     } on firebase_auth.FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
-        return left(EmailAlreadyInUserFailure());
+        return left(const AuthFailure.emailAlreadyInUse());
       } else {
-        return left(ServerFailure());
+        return left(const AuthFailure.serverFailure());
       }
     }
   }

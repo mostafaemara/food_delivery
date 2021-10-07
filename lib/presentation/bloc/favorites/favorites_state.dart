@@ -4,7 +4,7 @@ enum FavoritesStatus { init, loading, loaded, notAuth, error }
 
 class FavoritesState {
   final List<Favorite> favorites;
-  final Option<Failure> failureOrNone;
+  final Option<AuthFailure> failureOrNone;
   final FavoritesStatus status;
   final Option<User> user;
   const FavoritesState(
@@ -17,7 +17,7 @@ class FavoritesState {
       {Option<User>? user,
       FavoritesStatus? status,
       List<Favorite>? favorites,
-      Option<Failure>? failureOrNone}) {
+      Option<AuthFailure>? failureOrNone}) {
     return FavoritesState(
       status: status ?? this.status,
       favorites: favorites ?? this.favorites,

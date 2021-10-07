@@ -8,4 +8,6 @@ class Routes {
   static const languageSelectionScreen = "/language-selection";
   static const mealDetailsPage = "/meal-details";
   static const categoryPage = "/category";
+  static const profilePage = "/profile";
+  static const editeProfilePage = "/edite-profile";
 }

@@ -11,7 +11,7 @@ class LoginWithEmail implements UseCase<User, AuthParams> {
 
   LoginWithEmail(this.authRepo);
   @override
-  Future<Either<Failure, User>> call(AuthParams p) async {
+  Future<Either<AuthFailure, User>> call(AuthParams p) async {
     return await authRepo.loginWithEmailAndPassword(p.email, p.password);
   }
 }

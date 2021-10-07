@@ -11,6 +11,16 @@ import 'loading_dialog.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
+  void showErrorDialog(BuildContext context, String failure) {
+    Navigator.of(context).pop();
+    showDialog(
+      context: context,
+      builder: (context) => ErrorDialog(
+        title: AppLocalizations.of(context)!.error,
+        body: failure,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +65,12 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.emailChanged,
               decoration: InputDecoration(
-                  errorText: state.emailOrFailure.fold((l) {
-                    if (l is InvalidEmail) {
-                      return AppLocalizations.of(context)!.enterValidEmail;
-                    }
-                    if (l is Empty) {
-                      return AppLocalizations.of(context)!.enterEmail;
-                    }
+                  errorText: state.emailOrFailure.fold((error) {
+                    error.when(
+                      invalid: () =>
+                          AppLocalizations.of(context)!.enterValidEmail,
+                      empty: () => AppLocalizations.of(context)!.enterEmail,
+                    );
                   }, (r) => null),
                   hintText: AppLocalizations.of(context)!.enterEmail),
             ),
@@ -78,13 +87,12 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.passwordChanged,
               decoration: InputDecoration(
-                  errorText: state.passwordOrFailure.fold((l) {
-                    if (l is ShortPassword) {
-                      return AppLocalizations.of(context)!.passwordTooShort;
-                    }
-                    if (l is Empty) {
-                      return AppLocalizations.of(context)!.enterPassword;
-                    }
+                  errorText: state.passwordOrFailure.fold((error) {
+                    error.when(
+                      shortPassword: () =>
+                          AppLocalizations.of(context)!.passwordTooShort,
+                      empty: () => AppLocalizations.of(context)!.enterPassword,
+                    );
                   }, (r) => null),
                   hintText: AppLocalizations.of(context)!.enterPassword),
             ),
@@ -101,13 +109,13 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.confirmePasswordChanged,
               decoration: InputDecoration(
-                  errorText: state.confirmPasswordOrFailure.fold((l) {
-                    if (l is Empty) {
-                      return AppLocalizations.of(context)!.enterConfirmPassword;
-                    }
-                    if (l is PasswordNotMatch) {
-                      return AppLocalizations.of(context)!.passwordNotMatch;
-                    }
+                  errorText: state.confirmPasswordOrFailure.fold((error) {
+                    error.when(
+                      passwordNotMatch: () =>
+                          AppLocalizations.of(context)!.passwordNotMatch,
+                      empty: () =>
+                          AppLocalizations.of(context)!.enterConfirmPassword,
+                    );
                   }, (r) => null),
                   hintText: AppLocalizations.of(context)!.confirmPassword),
             ),
@@ -128,23 +136,16 @@ class SignUpForm extends StatelessWidget {
         if (state.status == SignupStatus.success) {
           Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
         }
-        state.failureOrNone.fold(() => null, (f) {
-          String failure = "";
-          if (f is ServerFailure) {
-            failure = AppLocalizations.of(context)!.serverError;
-          }
-
-          if (f is EmailAlreadyInUserFailure) {
-            failure = AppLocalizations.of(context)!.emailAlreadyInUse;
-          }
-
-          Navigator.of(context).pop();
-          showDialog(
-            context: context,
-            builder: (context) => ErrorDialog(
-              title: AppLocalizations.of(context)!.error,
-              body: failure,
-            ),
+        state.failureOrNone.fold(() => null, (failure) {
+          failure.maybeMap(
+            emailAlreadyInUse: (_) {
+              showErrorDialog(
+                  context, AppLocalizations.of(context)!.emailAlreadyInUse);
+            },
+            orElse: () {
+              showErrorDialog(
+                  context, AppLocalizations.of(context)!.serverError);
+            },
           );
         });
       },

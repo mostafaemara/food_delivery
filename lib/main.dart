@@ -7,6 +7,7 @@ import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 import 'package:food_delivery_app/presentation/bloc/home/home_cubit.dart';
+import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
 
 import 'package:food_delivery_app/presentation/core/app.dart';
@@ -20,8 +21,7 @@ import 'domain/repositories/meals_repository.dart';
 import 'domain/repositories/theme_repository_interface.dart';
 import 'domain/usecases/login_with_email.dart';
 import 'domain/usecases/login_with_google.dart';
-import 'domain/usecases/validate_email.dart';
-import 'domain/usecases/validate_password.dart';
+
 import 'presentation/bloc/auth/auth_bloc.dart';
 import 'presentation/bloc/bloc_observer.dart';
 import 'presentation/bloc/login/login_cubit.dart';
@@ -65,12 +65,15 @@ void main() async {
           BlocProvider.of<AuthBloc>(context)),
     ),
     BlocProvider(
+      lazy: false,
+      create: (context) => ProfileCubit(BlocProvider.of<AuthBloc>(context)),
+    ),
+    BlocProvider(
       create: (context) => LoginCubit(
-          authBloc: BlocProvider.of<AuthBloc>(context),
-          loginWithEmail: LoginWithEmail(locator<AuthRepositoryInterface>()),
-          loginWithGoogle: LoginWithGoogle(locator<AuthRepositoryInterface>()),
-          validateEmail: ValidateEmail(),
-          validatePassword: ValidatePassword()),
+        authBloc: BlocProvider.of<AuthBloc>(context),
+        loginWithEmail: LoginWithEmail(locator<AuthRepositoryInterface>()),
+        loginWithGoogle: LoginWithGoogle(locator<AuthRepositoryInterface>()),
+      ),
     )
   ], child: const FoodDeliveryApp()));
 }

@@ -10,7 +10,7 @@ class SignUpWithEmail implements UseCase<User, AuthParams> {
 
   SignUpWithEmail(this._authRepo);
   @override
-  Future<Either<Failure, User>> call(AuthParams p) {
+  Future<Either<AuthFailure, User>> call(AuthParams p) {
     return _authRepo.signUpWithEmailAndPassword(p.email, p.password);
   }
 }

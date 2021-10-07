@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:food_delivery_app/presentation/pages/category/category.dart';
+import 'package:food_delivery_app/presentation/pages/edite_profile/edite_profile.dart';
 import 'package:food_delivery_app/presentation/pages/meal_details/meal_details.dart';
+import 'package:food_delivery_app/presentation/pages/profile/profile.dart';
 
 import '../../domain/entities/theme.dart' as domain;
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
@@ -49,6 +51,8 @@ class FoodDeliveryApp extends StatelessWidget {
           Routes.languageSelectionScreen: (context) =>
               const LanguageSelectionPage(),
           Routes.mealDetailsPage: (context) => const MealDetailsPage(),
+          Routes.profilePage: (context) => const ProfilePage(),
+          Routes.editeProfilePage: (context) => const EditeProfilePage()
         },
       ),
     );

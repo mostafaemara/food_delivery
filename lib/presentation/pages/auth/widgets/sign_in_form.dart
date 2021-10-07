@@ -12,6 +12,16 @@ import 'error_dialog.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
+  void showErrorDialog(BuildContext context, String failure) {
+    Navigator.of(context).pop();
+    showDialog(
+      context: context,
+      builder: (context) => ErrorDialog(
+        title: AppLocalizations.of(context)!.error,
+        body: failure,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +66,12 @@ class SignInForm extends StatelessWidget {
               TextFormField(
                 onChanged: BlocProvider.of<LoginCubit>(context).emailChanged,
                 decoration: InputDecoration(
-                    errorText: state.email.fold((l) {
-                      if (l is InvalidEmail) {
-                        return AppLocalizations.of(context)!.enterValidEmail;
-                      }
-                      if (l is Empty) {
-                        return AppLocalizations.of(context)!.enterEmail;
-                      }
+                    errorText: state.email.fold((error) {
+                      error.when(
+                        invalid: () =>
+                            AppLocalizations.of(context)!.enterValidEmail,
+                        empty: () => AppLocalizations.of(context)!.enterEmail,
+                      );
                     }, (r) => null),
                     hintText: AppLocalizations.of(context)!.enterEmail),
               ),
@@ -80,13 +89,13 @@ class SignInForm extends StatelessWidget {
                 obscureText: true,
                 onChanged: BlocProvider.of<LoginCubit>(context).passwordChanged,
                 decoration: InputDecoration(
-                    errorText: state.password.fold((l) {
-                      if (l is ShortPassword) {
-                        return AppLocalizations.of(context)!.passwordTooShort;
-                      }
-                      if (l is Empty) {
-                        return AppLocalizations.of(context)!.enterPassword;
-                      }
+                    errorText: state.password.fold((error) {
+                      error.when(
+                        shortPassword: () =>
+                            AppLocalizations.of(context)!.passwordTooShort,
+                        empty: () =>
+                            AppLocalizations.of(context)!.enterPassword,
+                      );
                     }, (r) => null),
                     hintText: AppLocalizations.of(context)!.enterPassword),
               ),
@@ -117,23 +126,16 @@ class SignInForm extends StatelessWidget {
             builder: (context) => const LoadingDialog(),
           );
         }
-        state.failure.fold(() => null, (f) {
-          String failure = "";
-          if (f is ServerFailure) {
-            failure = AppLocalizations.of(context)!.serverError;
-          }
-
-          if (f is WorngEmailOrPasswordFailure) {
-            failure = AppLocalizations.of(context)!.emailOrPasswordIncorrect;
-          }
-
-          Navigator.of(context).pop();
-          showDialog(
-            context: context,
-            builder: (context) => ErrorDialog(
-              title: AppLocalizations.of(context)!.error,
-              body: failure,
-            ),
+        state.failure.fold(() => null, (failure) {
+          failure.maybeWhen(
+            worngEmailOrPassword: () {
+              showErrorDialog(context,
+                  AppLocalizations.of(context)!.emailOrPasswordIncorrect);
+            },
+            orElse: () {
+              showErrorDialog(
+                  context, AppLocalizations.of(context)!.serverError);
+            },
           );
         });
       },

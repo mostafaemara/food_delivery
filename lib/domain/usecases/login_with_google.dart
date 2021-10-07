@@ -9,7 +9,7 @@ class LoginWithGoogle implements UseCase<User, NoParams> {
 
   LoginWithGoogle(this._authRepo);
   @override
-  Future<Either<Failure, User>> call(NoParams p) {
+  Future<Either<AuthFailure, User>> call(NoParams p) {
     return _authRepo.loginWithGoogle();
   }
 }

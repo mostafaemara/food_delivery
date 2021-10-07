@@ -20,7 +20,7 @@ class _$CartStateTearOff {
   _CartState call(
       {required Option<User> user,
       required List<CartItem> items,
-      required Option<Failure> failure,
+      required Option<AuthFailure> failure,
       required double totalPrice}) {
     return _CartState(
       user: user,
@@ -38,7 +38,7 @@ const $CartState = _$CartStateTearOff();
 mixin _$CartState {
   Option<User> get user => throw _privateConstructorUsedError;
   List<CartItem> get items => throw _privateConstructorUsedError;
-  Option<Failure> get failure => throw _privateConstructorUsedError;
+  Option<AuthFailure> get failure => throw _privateConstructorUsedError;
   double get totalPrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $CartStateCopyWith<$Res> {
   $Res call(
       {Option<User> user,
       List<CartItem> items,
-      Option<Failure> failure,
+      Option<AuthFailure> failure,
       double totalPrice});
 }
 
@@ -84,7 +84,7 @@ class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as Option<Failure>,
+              as Option<AuthFailure>,
       totalPrice: totalPrice == freezed
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
@@ -102,7 +102,7 @@ abstract class _$CartStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
   $Res call(
       {Option<User> user,
       List<CartItem> items,
-      Option<Failure> failure,
+      Option<AuthFailure> failure,
       double totalPrice});
 }
 
@@ -134,7 +134,7 @@ class __$CartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as Option<Failure>,
+              as Option<AuthFailure>,
       totalPrice: totalPrice == freezed
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
@@ -157,7 +157,7 @@ class _$_CartState with DiagnosticableTreeMixin implements _CartState {
   @override
   final List<CartItem> items;
   @override
-  final Option<Failure> failure;
+  final Option<AuthFailure> failure;
   @override
   final double totalPrice;
 
@@ -211,7 +211,7 @@ abstract class _CartState implements CartState {
   const factory _CartState(
       {required Option<User> user,
       required List<CartItem> items,
-      required Option<Failure> failure,
+      required Option<AuthFailure> failure,
       required double totalPrice}) = _$_CartState;
 
   @override
@@ -219,7 +219,7 @@ abstract class _CartState implements CartState {
   @override
   List<CartItem> get items => throw _privateConstructorUsedError;
   @override
-  Option<Failure> get failure => throw _privateConstructorUsedError;
+  Option<AuthFailure> get failure => throw _privateConstructorUsedError;
   @override
   double get totalPrice => throw _privateConstructorUsedError;
   @override

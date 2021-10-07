@@ -40,13 +40,13 @@ class CartCubit extends Cubit<CartState> {
     });
   }
 
-  int get cartCount {
-    int count = 0;
-    for (final item in state.items) {
-      count += item.quantity;
-    }
-    return count;
-  }
+  //int get cartCount {
+  // int count = 0;
+  // for (final item in state.items) {
+  //  count += item.quantity;
+  //}
+  //  return count;
+  // }
 
   void addCartItem(CartItem item) {
     state.user.fold(() => null, (user) async {

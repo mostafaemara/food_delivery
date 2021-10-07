@@ -5,10 +5,11 @@ enum SignupStatus { submitting, error, success, idle }
 @immutable
 class SignupState {
   final SignupStatus status;
-  final Option<Failure> failureOrNone;
-  final Either<ValidationFailure, String> emailOrFailure;
-  final Either<ValidationFailure, String> passwordOrFailure;
-  final Either<ValidationFailure, String> confirmPasswordOrFailure;
+  final Option<AuthFailure> failureOrNone;
+  final Either<EmailValidationFailure, String> emailOrFailure;
+  final Either<PasswordValidationFailure, String> passwordOrFailure;
+  final Either<ConfirmPasswordValidationFailure, String>
+      confirmPasswordOrFailure;
 
   const SignupState(
       {required this.status,
@@ -19,10 +20,11 @@ class SignupState {
 
   SignupState copyWith(
       {SignupStatus? status,
-      Option<Failure>? failureOrNone,
-      Either<ValidationFailure, String>? emailOrFailure,
-      Either<ValidationFailure, String>? passwordOrFailure,
-      Either<ValidationFailure, String>? confirmPasswordOrFailure}) {
+      Option<AuthFailure>? failureOrNone,
+      Either<EmailValidationFailure, String>? emailOrFailure,
+      Either<PasswordValidationFailure, String>? passwordOrFailure,
+      Either<ConfirmPasswordValidationFailure, String>?
+          confirmPasswordOrFailure}) {
     return SignupState(
         status: status ?? this.status,
         failureOrNone: failureOrNone ?? this.failureOrNone,

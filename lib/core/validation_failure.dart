@@ -1,9 +1,40 @@
-abstract class ValidationFailure {}
+import 'package:freezed_annotation/freezed_annotation.dart';
+part "validation_failure.freezed.dart";
 
-class InvalidEmail implements ValidationFailure {}
+@freezed
+abstract class EmailValidationFailure with _$EmailValidationFailure {
+  const factory EmailValidationFailure.invalid() = InvalidEmail;
 
-class ShortPassword implements ValidationFailure {}
+  const factory EmailValidationFailure.empty() = Empty;
+}
 
-class PasswordNotMatch implements ValidationFailure {}
+@freezed
+abstract class PasswordValidationFailure with _$PasswordValidationFailure {
+  const factory PasswordValidationFailure.shortPassword() = ShortPassword;
 
-class Empty implements ValidationFailure {}
+  const factory PasswordValidationFailure.empty() = EmptyPassword;
+}
+
+@freezed
+abstract class ConfirmPasswordValidationFailure
+    with _$ConfirmPasswordValidationFailure {
+  const factory ConfirmPasswordValidationFailure.passwordNotMatch() =
+      PasswordNotMatch;
+  const factory ConfirmPasswordValidationFailure.empty() = EmptyConfirmPassword;
+}
+
+@freezed
+abstract class UserNameValidationFailure with _$UserNameValidationFailure {
+  const factory UserNameValidationFailure.invalid() = InvalidUserName;
+
+  const factory UserNameValidationFailure.empty() = EmptyUserName;
+  const factory UserNameValidationFailure.tooShort() = TooShortUserName;
+}
+
+@freezed
+abstract class PhoneNumberValidationFailure
+    with _$PhoneNumberValidationFailure {
+  const factory PhoneNumberValidationFailure.invalid() = InvalidPhoneNumber;
+
+  const factory PhoneNumberValidationFailure.empty() = EmptyPhoneNumber;
+}

@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
 import 'package:food_delivery_app/domain/repositories/auth.dart';
-import 'package:food_delivery_app/domain/usecases/validators.dart';
+import 'package:food_delivery_app/domain/validators.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 import 'package:meta/meta.dart';

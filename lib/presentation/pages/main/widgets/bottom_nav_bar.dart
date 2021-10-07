@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
+import "../../../helpers/cart_helper.dart";
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -67,11 +68,11 @@ class BottomNavBar extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.primary,
                           borderRadius: BorderRadius.circular(10)),
-                      child: context.read<CartCubit>().cartCount == 0
+                      child: state.items.isEmpty
                           ? const SizedBox()
                           : Text(
-                              context.read<CartCubit>().cartCount.toString(),
-                              style: TextStyle(fontSize: 10),
+                              state.items.itemsCount().toString(),
+                              style: const TextStyle(fontSize: 10),
                             )),
                 ],
               ),

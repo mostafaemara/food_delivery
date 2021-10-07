@@ -4,9 +4,9 @@ enum LoginStatus { submitting, error, success, idle }
 
 class LoginState extends Equatable {
   final LoginStatus status;
-  final Option<Failure> failure;
-  final Either<ValidationFailure, String> email;
-  final Either<ValidationFailure, String> password;
+  final Option<AuthFailure> failure;
+  final Either<EmailValidationFailure, String> email;
+  final Either<PasswordValidationFailure, String> password;
   const LoginState(
       {required this.failure,
       required this.status,
@@ -14,9 +14,9 @@ class LoginState extends Equatable {
       required this.password});
 
   LoginState copyWith(
-      {Option<Failure>? failure,
-      Either<ValidationFailure, String>? email,
-      Either<ValidationFailure, String>? password,
+      {Option<AuthFailure>? failure,
+      Either<EmailValidationFailure, String>? email,
+      Either<PasswordValidationFailure, String>? password,
       LoginStatus? status}) {
     return LoginState(
         status: status ?? this.status,

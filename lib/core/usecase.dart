@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/core/failure.dart';
 
 abstract class UseCase<T, P> {
-  Future<Either<Failure, T>> call(P p);
+  Future<Either<AuthFailure, T>> call(P p);
 }
 
 class NoParams extends Equatable {

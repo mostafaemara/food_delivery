@@ -5,8 +5,8 @@ import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/domain/entities/meal_category.dart';
 
 abstract class MealsRepositoryInterface {
-  Future<Either<Failure, List<Meal>>> getPopularMeals();
-  Future<Either<Failure, List<Meal>>> getMealsByCategory(String categoryId);
+  Future<Either<AuthFailure, List<Meal>>> getPopularMeals();
+  Future<Either<AuthFailure, List<Meal>>> getMealsByCategory(String categoryId);
 
-  Future<Either<Failure, List<MealCategory>>> getCategories();
+  Future<Either<AuthFailure, List<MealCategory>>> getCategories();
 }

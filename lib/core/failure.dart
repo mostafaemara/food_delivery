@@ -1,14 +1,16 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'failure.freezed.dart';
 
-abstract class Failure extends Equatable {
-  @override
-  List<Object?> get props => [];
+@freezed
+abstract class AuthFailure with _$AuthFailure {
+  const factory AuthFailure.serverFailure() = AuthServerFailure;
+  const factory AuthFailure.worngEmailOrPassword() = WorngEmailOrPassword;
+  const factory AuthFailure.processAborted() = ProcessAborted;
+  const factory AuthFailure.emailAlreadyInUse() = EmailAlreadyInUse;
 }
 
-class ServerFailure extends Failure {}
-
-class WorngEmailOrPasswordFailure extends Failure {}
-
-class ProcessAbortedFailure extends Failure {}
-
-class EmailAlreadyInUserFailure extends Failure {}
+@freezed
+abstract class ProfileFailure with _$ProfileFailure {
+  const factory ProfileFailure.serverFailure() = ProfileServerFailure;
+  const factory ProfileFailure.profileHasNoDataFailure() = ProfileHasNoData;
+}

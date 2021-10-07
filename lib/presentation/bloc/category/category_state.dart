@@ -22,7 +22,7 @@ class CategoryLoaded extends CategoryState {
 }
 
 class CategoryFailure extends CategoryState {
-  final Failure failure;
+  final AuthFailure failure;
 
   CategoryFailure(this.failure);
   @override

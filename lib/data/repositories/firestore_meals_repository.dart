@@ -11,18 +11,18 @@ import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
 class FirestoreMealsRepository implements MealsRepositoryInterface {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<Failure, List<MealCategory>>> getCategories() async {
+  Future<Either<AuthFailure, List<MealCategory>>> getCategories() async {
     try {
       final snapshot = await firestore.collection("categories").get();
 
       return right(snapshot.toMealCategories());
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<Meal>>> getMealsByCategory(
+  Future<Either<AuthFailure, List<Meal>>> getMealsByCategory(
       String categoryId) async {
     try {
       final snapshot = await firestore
@@ -32,12 +32,12 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
 
       return right(snapshot.toMeals());
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<Meal>>> getPopularMeals() async {
+  Future<Either<AuthFailure, List<Meal>>> getPopularMeals() async {
     try {
       final snapshot = await firestore.collection("popularItems").get();
       if (snapshot.docs.isEmpty) {
@@ -47,7 +47,7 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
           await fetchMealsByIds(snapshot.docs.map((e) => e.id).toList());
       return right(meals);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 
@@ -63,13 +63,13 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Meal>>> getMealsByIds(
+  Future<Either<AuthFailure, List<Meal>>> getMealsByIds(
       List<String> mealsIds) async {
     try {
       final meals = await fetchMealsByIds(mealsIds);
       return right(meals);
     } catch (e) {
-      return left(ServerFailure());
+      return left(const AuthFailure.serverFailure());
     }
   }
 }

@@ -5,6 +5,6 @@ class CartState with _$CartState {
   const factory CartState(
       {required Option<User> user,
       required List<CartItem> items,
-      required Option<Failure> failure,
+      required Option<AuthFailure> failure,
       required double totalPrice}) = _CartState;
 }
