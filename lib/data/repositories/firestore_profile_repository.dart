@@ -16,7 +16,7 @@ class FirestoreProfileRepository implements ProfileRepositoryInterface {
       {required String uid}) async {
     try {
       final snapshot = await firestore.collection("users").doc(uid).get();
-      if (snapshot.data()!.isEmpty) {
+      if (snapshot.data() == null || snapshot.data()!.isEmpty) {
         return left(const ProfileFailure.profileHasNoDataFailure());
       }
 
@@ -31,7 +31,7 @@ class FirestoreProfileRepository implements ProfileRepositoryInterface {
   Future<Either<ProfileFailure, Unit>> updateProfile(
       {required Profile profile, required String uid}) async {
     try {
-      await firestore.collection("users").doc(uid).update(profile.toMap());
+      await firestore.collection("users").doc(uid).set(profile.toMap());
 
       return right(unit);
     } catch (e) {

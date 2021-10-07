@@ -7,6 +7,8 @@ import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
 import 'package:food_delivery_app/presentation/routes/routes.dart';
 import 'package:provider/src/provider.dart';
 
+import 'user_account_header.dart';
+
 class MainMenu extends StatelessWidget {
   const MainMenu({Key? key}) : super(key: key);
 
@@ -35,37 +37,23 @@ class MainMenu extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(80),
-                      color: Theme.of(context).colorScheme.primary),
-                  width: 80,
-                  height: 80,
-                  child: FittedBox(
-                    child: Text(
-                      "guest",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "User Name",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  "email@example.com",
-                  style: Theme.of(context).textTheme.caption,
+                BlocBuilder<ProfileCubit, ProfileState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      profileHasData: (user, profile) => UserAccountHeader(
+                        email: user.email,
+                        userName: profile.userName,
+                      ),
+                      profileHasNoData: (user) => UserAccountHeader(
+                        email: user.email,
+                        userName: user.email.split("@")[0],
+                      ),
+                      orElse: () => const UserAccountHeader(
+                        email: "guest@guest.com",
+                        userName: "guest",
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 20,

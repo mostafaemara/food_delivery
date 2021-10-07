@@ -18,32 +18,35 @@ class ProfileCubit extends Cubit<ProfileState> {
   final _profileRepo = locator<ProfileRepositoryInterface>();
   late StreamSubscription _auth;
   ProfileCubit(this._authBloc)
-      : super(ProfileState(user: none(), profile: none(), failure: none())) {
+      : super(const ProfileState.noProfileUserIsGuest()) {
     _auth = _authBloc.stream.listen((authState) {
       authState.maybeWhen(
         authenticated: (user) async {
-          emit(state.copyWith(user: some(user)));
           final result = await _profileRepo.getProfile(uid: user.id);
           result.fold((failure) {
             failure.when(
-              serverFailure: () =>
-                  emit(state.copyWith(profile: none(), failure: some(failure))),
+              serverFailure: () => emit(const ProfileState.profileError()),
               profileHasNoDataFailure: () =>
-                  emit(state.copyWith(profile: none(), failure: none())),
+                  emit(ProfileState.profileHasNoData(user: user)),
             );
           }, (profile) {
-            emit(state.copyWith(profile: some(profile), failure: none()));
+            emit(ProfileState.profileHasData(user: user, profile: profile));
           });
         },
         orElse: () {
-          emit(state.copyWith(user: none(), profile: none(), failure: none()));
+          emit(const ProfileState.noProfileUserIsGuest());
         },
       );
     });
   }
 
   void profileChanged(Profile profile) {
-    emit(state.copyWith(profile: some(profile)));
+    _authBloc.state.maybeWhen(
+      authenticated: (user) {
+        emit(ProfileState.profileHasData(user: user, profile: profile));
+      },
+      orElse: () => null,
+    );
   }
 
   void dispose() {

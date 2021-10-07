@@ -55,19 +55,21 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             BlocConsumer<ProfileCubit, ProfileState>(
               builder: (context, state) {
-                return state.user.fold(() => const SizedBox(), (user) {
-                  return state.profile.fold(
-                      () => PersonalDetails(
-                            email: user.email,
-                            phoneNumber: "",
-                            userName: "",
-                          ),
-                      (profile) => PersonalDetails(
-                            email: user.email,
-                            phoneNumber: profile.phoneNumber,
-                            userName: profile.userName,
-                          ));
-                });
+                return state.maybeWhen(
+                  orElse: () {
+                    throw Exception("app should crash");
+                  },
+                  profileHasNoData: (user) => PersonalDetails(
+                    email: user.email,
+                    phoneNumber: "",
+                    userName: "user",
+                  ),
+                  profileHasData: (user, profile) => PersonalDetails(
+                    email: user.email,
+                    phoneNumber: profile.phoneNumber,
+                    userName: profile.userName,
+                  ),
+                );
               },
               listener: (context, state) {},
             ),

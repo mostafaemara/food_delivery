@@ -17,15 +17,26 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileStateTearOff {
   const _$ProfileStateTearOff();
 
-  _ProfileState call(
-      {required Option<User> user,
-      required Option<Profile> profile,
-      required Option<ProfileFailure> failure}) {
-    return _ProfileState(
+  NoProfileUserIsGuest noProfileUserIsGuest() {
+    return const NoProfileUserIsGuest();
+  }
+
+  ProfileHasNoData profileHasNoData({required User user}) {
+    return ProfileHasNoData(
+      user: user,
+    );
+  }
+
+  ProfileHasData profileHasData(
+      {required User user, required Profile profile}) {
+    return ProfileHasData(
       user: user,
       profile: profile,
-      failure: failure,
     );
+  }
+
+  ProfileError profileError() {
+    return const ProfileError();
   }
 }
 
@@ -34,12 +45,55 @@ const $ProfileState = _$ProfileStateTearOff();
 
 /// @nodoc
 mixin _$ProfileState {
-  Option<User> get user => throw _privateConstructorUsedError;
-  Option<Profile> get profile => throw _privateConstructorUsedError;
-  Option<ProfileFailure> get failure => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ProfileStateCopyWith<ProfileState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noProfileUserIsGuest,
+    required TResult Function(User user) profileHasNoData,
+    required TResult Function(User user, Profile profile) profileHasData,
+    required TResult Function() profileError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NoProfileUserIsGuest value) noProfileUserIsGuest,
+    required TResult Function(ProfileHasNoData value) profileHasNoData,
+    required TResult Function(ProfileHasData value) profileHasData,
+    required TResult Function(ProfileError value) profileError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -48,10 +102,6 @@ abstract class $ProfileStateCopyWith<$Res> {
   factory $ProfileStateCopyWith(
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res>;
-  $Res call(
-      {Option<User> user,
-      Option<Profile> profile,
-      Option<ProfileFailure> failure});
 }
 
 /// @nodoc
@@ -61,134 +111,540 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
   final ProfileState _value;
   // ignore: unused_field
   final $Res Function(ProfileState) _then;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-    Object? profile = freezed,
-    Object? failure = freezed,
-  }) {
-    return _then(_value.copyWith(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as Option<User>,
-      profile: profile == freezed
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Option<Profile>,
-      failure: failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as Option<ProfileFailure>,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$ProfileStateCopyWith<$Res>
-    implements $ProfileStateCopyWith<$Res> {
-  factory _$ProfileStateCopyWith(
-          _ProfileState value, $Res Function(_ProfileState) then) =
-      __$ProfileStateCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {Option<User> user,
-      Option<Profile> profile,
-      Option<ProfileFailure> failure});
+abstract class $NoProfileUserIsGuestCopyWith<$Res> {
+  factory $NoProfileUserIsGuestCopyWith(NoProfileUserIsGuest value,
+          $Res Function(NoProfileUserIsGuest) then) =
+      _$NoProfileUserIsGuestCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
-    implements _$ProfileStateCopyWith<$Res> {
-  __$ProfileStateCopyWithImpl(
-      _ProfileState _value, $Res Function(_ProfileState) _then)
-      : super(_value, (v) => _then(v as _ProfileState));
+class _$NoProfileUserIsGuestCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
+    implements $NoProfileUserIsGuestCopyWith<$Res> {
+  _$NoProfileUserIsGuestCopyWithImpl(
+      NoProfileUserIsGuest _value, $Res Function(NoProfileUserIsGuest) _then)
+      : super(_value, (v) => _then(v as NoProfileUserIsGuest));
 
   @override
-  _ProfileState get _value => super._value as _ProfileState;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-    Object? profile = freezed,
-    Object? failure = freezed,
-  }) {
-    return _then(_ProfileState(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as Option<User>,
-      profile: profile == freezed
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Option<Profile>,
-      failure: failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as Option<ProfileFailure>,
-    ));
-  }
+  NoProfileUserIsGuest get _value => super._value as NoProfileUserIsGuest;
 }
 
 /// @nodoc
 
-class _$_ProfileState implements _ProfileState {
-  const _$_ProfileState(
-      {required this.user, required this.profile, required this.failure});
-
-  @override
-  final Option<User> user;
-  @override
-  final Option<Profile> profile;
-  @override
-  final Option<ProfileFailure> failure;
+class _$NoProfileUserIsGuest implements NoProfileUserIsGuest {
+  const _$NoProfileUserIsGuest();
 
   @override
   String toString() {
-    return 'ProfileState(user: $user, profile: $profile, failure: $failure)';
+    return 'ProfileState.noProfileUserIsGuest()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is NoProfileUserIsGuest);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noProfileUserIsGuest,
+    required TResult Function(User user) profileHasNoData,
+    required TResult Function(User user, Profile profile) profileHasData,
+    required TResult Function() profileError,
+  }) {
+    return noProfileUserIsGuest();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+  }) {
+    return noProfileUserIsGuest?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+    required TResult orElse(),
+  }) {
+    if (noProfileUserIsGuest != null) {
+      return noProfileUserIsGuest();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NoProfileUserIsGuest value) noProfileUserIsGuest,
+    required TResult Function(ProfileHasNoData value) profileHasNoData,
+    required TResult Function(ProfileHasData value) profileHasData,
+    required TResult Function(ProfileError value) profileError,
+  }) {
+    return noProfileUserIsGuest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+  }) {
+    return noProfileUserIsGuest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+    required TResult orElse(),
+  }) {
+    if (noProfileUserIsGuest != null) {
+      return noProfileUserIsGuest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoProfileUserIsGuest implements ProfileState {
+  const factory NoProfileUserIsGuest() = _$NoProfileUserIsGuest;
+}
+
+/// @nodoc
+abstract class $ProfileHasNoDataCopyWith<$Res> {
+  factory $ProfileHasNoDataCopyWith(
+          ProfileHasNoData value, $Res Function(ProfileHasNoData) then) =
+      _$ProfileHasNoDataCopyWithImpl<$Res>;
+  $Res call({User user});
+}
+
+/// @nodoc
+class _$ProfileHasNoDataCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
+    implements $ProfileHasNoDataCopyWith<$Res> {
+  _$ProfileHasNoDataCopyWithImpl(
+      ProfileHasNoData _value, $Res Function(ProfileHasNoData) _then)
+      : super(_value, (v) => _then(v as ProfileHasNoData));
+
+  @override
+  ProfileHasNoData get _value => super._value as ProfileHasNoData;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(ProfileHasNoData(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProfileHasNoData implements ProfileHasNoData {
+  const _$ProfileHasNoData({required this.user});
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'ProfileState.profileHasNoData(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ProfileState &&
+        (other is ProfileHasNoData &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+
+  @JsonKey(ignore: true)
+  @override
+  $ProfileHasNoDataCopyWith<ProfileHasNoData> get copyWith =>
+      _$ProfileHasNoDataCopyWithImpl<ProfileHasNoData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noProfileUserIsGuest,
+    required TResult Function(User user) profileHasNoData,
+    required TResult Function(User user, Profile profile) profileHasData,
+    required TResult Function() profileError,
+  }) {
+    return profileHasNoData(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+  }) {
+    return profileHasNoData?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+    required TResult orElse(),
+  }) {
+    if (profileHasNoData != null) {
+      return profileHasNoData(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NoProfileUserIsGuest value) noProfileUserIsGuest,
+    required TResult Function(ProfileHasNoData value) profileHasNoData,
+    required TResult Function(ProfileHasData value) profileHasData,
+    required TResult Function(ProfileError value) profileError,
+  }) {
+    return profileHasNoData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+  }) {
+    return profileHasNoData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+    required TResult orElse(),
+  }) {
+    if (profileHasNoData != null) {
+      return profileHasNoData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProfileHasNoData implements ProfileState {
+  const factory ProfileHasNoData({required User user}) = _$ProfileHasNoData;
+
+  User get user => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProfileHasNoDataCopyWith<ProfileHasNoData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProfileHasDataCopyWith<$Res> {
+  factory $ProfileHasDataCopyWith(
+          ProfileHasData value, $Res Function(ProfileHasData) then) =
+      _$ProfileHasDataCopyWithImpl<$Res>;
+  $Res call({User user, Profile profile});
+}
+
+/// @nodoc
+class _$ProfileHasDataCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
+    implements $ProfileHasDataCopyWith<$Res> {
+  _$ProfileHasDataCopyWithImpl(
+      ProfileHasData _value, $Res Function(ProfileHasData) _then)
+      : super(_value, (v) => _then(v as ProfileHasData));
+
+  @override
+  ProfileHasData get _value => super._value as ProfileHasData;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+    Object? profile = freezed,
+  }) {
+    return _then(ProfileHasData(
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Profile,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProfileHasData implements ProfileHasData {
+  const _$ProfileHasData({required this.user, required this.profile});
+
+  @override
+  final User user;
+  @override
+  final Profile profile;
+
+  @override
+  String toString() {
+    return 'ProfileState.profileHasData(user: $user, profile: $profile)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ProfileHasData &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.profile, profile) ||
-                const DeepCollectionEquality()
-                    .equals(other.profile, profile)) &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+                const DeepCollectionEquality().equals(other.profile, profile)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(failure);
+      const DeepCollectionEquality().hash(profile);
 
   @JsonKey(ignore: true)
   @override
-  _$ProfileStateCopyWith<_ProfileState> get copyWith =>
-      __$ProfileStateCopyWithImpl<_ProfileState>(this, _$identity);
+  $ProfileHasDataCopyWith<ProfileHasData> get copyWith =>
+      _$ProfileHasDataCopyWithImpl<ProfileHasData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noProfileUserIsGuest,
+    required TResult Function(User user) profileHasNoData,
+    required TResult Function(User user, Profile profile) profileHasData,
+    required TResult Function() profileError,
+  }) {
+    return profileHasData(user, profile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+  }) {
+    return profileHasData?.call(user, profile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+    required TResult orElse(),
+  }) {
+    if (profileHasData != null) {
+      return profileHasData(user, profile);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NoProfileUserIsGuest value) noProfileUserIsGuest,
+    required TResult Function(ProfileHasNoData value) profileHasNoData,
+    required TResult Function(ProfileHasData value) profileHasData,
+    required TResult Function(ProfileError value) profileError,
+  }) {
+    return profileHasData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+  }) {
+    return profileHasData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+    required TResult orElse(),
+  }) {
+    if (profileHasData != null) {
+      return profileHasData(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState(
-      {required Option<User> user,
-      required Option<Profile> profile,
-      required Option<ProfileFailure> failure}) = _$_ProfileState;
+abstract class ProfileHasData implements ProfileState {
+  const factory ProfileHasData({required User user, required Profile profile}) =
+      _$ProfileHasData;
+
+  User get user => throw _privateConstructorUsedError;
+  Profile get profile => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProfileHasDataCopyWith<ProfileHasData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProfileErrorCopyWith<$Res> {
+  factory $ProfileErrorCopyWith(
+          ProfileError value, $Res Function(ProfileError) then) =
+      _$ProfileErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ProfileErrorCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+    implements $ProfileErrorCopyWith<$Res> {
+  _$ProfileErrorCopyWithImpl(
+      ProfileError _value, $Res Function(ProfileError) _then)
+      : super(_value, (v) => _then(v as ProfileError));
 
   @override
-  Option<User> get user => throw _privateConstructorUsedError;
+  ProfileError get _value => super._value as ProfileError;
+}
+
+/// @nodoc
+
+class _$ProfileError implements ProfileError {
+  const _$ProfileError();
+
   @override
-  Option<Profile> get profile => throw _privateConstructorUsedError;
+  String toString() {
+    return 'ProfileState.profileError()';
+  }
+
   @override
-  Option<ProfileFailure> get failure => throw _privateConstructorUsedError;
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is ProfileError);
+  }
+
   @override
-  @JsonKey(ignore: true)
-  _$ProfileStateCopyWith<_ProfileState> get copyWith =>
-      throw _privateConstructorUsedError;
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noProfileUserIsGuest,
+    required TResult Function(User user) profileHasNoData,
+    required TResult Function(User user, Profile profile) profileHasData,
+    required TResult Function() profileError,
+  }) {
+    return profileError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+  }) {
+    return profileError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noProfileUserIsGuest,
+    TResult Function(User user)? profileHasNoData,
+    TResult Function(User user, Profile profile)? profileHasData,
+    TResult Function()? profileError,
+    required TResult orElse(),
+  }) {
+    if (profileError != null) {
+      return profileError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NoProfileUserIsGuest value) noProfileUserIsGuest,
+    required TResult Function(ProfileHasNoData value) profileHasNoData,
+    required TResult Function(ProfileHasData value) profileHasData,
+    required TResult Function(ProfileError value) profileError,
+  }) {
+    return profileError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+  }) {
+    return profileError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NoProfileUserIsGuest value)? noProfileUserIsGuest,
+    TResult Function(ProfileHasNoData value)? profileHasNoData,
+    TResult Function(ProfileHasData value)? profileHasData,
+    TResult Function(ProfileError value)? profileError,
+    required TResult orElse(),
+  }) {
+    if (profileError != null) {
+      return profileError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ProfileError implements ProfileState {
+  const factory ProfileError() = _$ProfileError;
 }
