@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
 import 'package:food_delivery_app/presentation/bloc/category/category_cubit.dart';
-import 'package:food_delivery_app/presentation/pages/main/widgets/meal_list_item.dart';
+import 'package:food_delivery_app/presentation/widgets/meal_list_item.dart';
 
 import '../../../injection.dart';
 
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({Key? key}) : super(key: key);
+  const CategoryPage({Key? key, required this.categoryId}) : super(key: key);
+  final String categoryId;
   @override
   Widget build(BuildContext context) {
-    final id = ModalRoute.of(context)!.settings.arguments as String;
     final isArabic = Localizations.localeOf(context).languageCode == "ar";
     return Scaffold(
         body: SafeArea(
@@ -21,7 +21,7 @@ class CategoryPage extends StatelessWidget {
             builder: (context, state) {
               if (state is CategoryInitial) {
                 BlocProvider.of<CategoryCubit>(context)
-                    .getMealsByCategoryId(id);
+                    .getMealsByCategoryId(categoryId);
               }
               if (state is CategoryLoaded) {
                 return Padding(

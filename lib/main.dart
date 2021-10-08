@@ -44,7 +44,7 @@ void main() async {
         locator<LocaleRepositoryInterface>(),
         locator<ThemeRepositoryInterface>(),
         locator<FirstTimeRepositoryInterface>(),
-      )..initConfig(),
+      ),
     ),
     BlocProvider(
       create: (context) => SignupCubit(locator<AuthRepositoryInterface>(),
@@ -75,5 +75,5 @@ void main() async {
         loginWithGoogle: LoginWithGoogle(locator<AuthRepositoryInterface>()),
       ),
     )
-  ], child: const FoodDeliveryApp()));
+  ], child: FoodDeliveryApp()));
 }

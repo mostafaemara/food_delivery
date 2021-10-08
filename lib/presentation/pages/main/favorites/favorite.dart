@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 
-import 'package:food_delivery_app/presentation/pages/main/widgets/favorite_list.dart';
+import 'widgets/favorite_list.dart';
 
 class Favorite extends StatefulWidget {
   const Favorite({Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class _FavoriteState extends State<Favorite> {
                   );
                 }
                 if (state.status == FavoritesStatus.notAuth) {
-                  return Center(
+                  return const Center(
                     child: Text("Login to Show Favorites!"),
                   );
                 }

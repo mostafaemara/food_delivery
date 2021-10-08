@@ -1,12 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
-import 'package:food_delivery_app/presentation/routes/routes.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
-import 'error_dialog.dart';
-import 'loading_dialog.dart';
+import 'package:food_delivery_app/presentation/widgets/error_dialog.dart';
+import 'package:food_delivery_app/presentation/widgets/loading_dialog.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -109,6 +110,7 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             TextFormField(
+              obscureText: true,
               onChanged: signupCubit.passwordChanged,
               decoration: InputDecoration(
                   errorText: state.passwordOrFailure.fold((error) {
@@ -131,6 +133,7 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             TextFormField(
+              obscureText: true,
               onChanged: signupCubit.confirmePasswordChanged,
               decoration: InputDecoration(
                   errorText: state.confirmPasswordOrFailure.fold((error) {
@@ -158,7 +161,7 @@ class SignUpForm extends StatelessWidget {
           );
         }
         if (state.status == SignupStatus.success) {
-          Navigator.of(context).pushReplacementNamed(Routes.mainScreen);
+          context.replaceRoute(const MainRoute());
         }
         state.failureOrNone.fold(() => null, (failure) {
           failure.maybeMap(

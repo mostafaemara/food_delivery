@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/core/failure.dart';
+
 import 'package:food_delivery_app/domain/entities/profile.dart';
 import 'package:food_delivery_app/domain/entities/user.dart';
 import 'package:food_delivery_app/domain/repositories/profile_repository_interface.dart';

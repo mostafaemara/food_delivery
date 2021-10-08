@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
-import 'package:food_delivery_app/domain/entities/user.dart';
+
 import 'package:food_delivery_app/domain/repositories/cart_repository_interface.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

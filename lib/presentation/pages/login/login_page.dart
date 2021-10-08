@@ -1,39 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:food_delivery_app/presentation/bloc/login/login_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
-
-import 'package:food_delivery_app/presentation/routes/routes.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 import 'widgets/sign_in_form.dart';
-import 'widgets/signup_form.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
-
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
-  bool isSignUp = false;
-
-  Widget _buildAuthForm() {
-    if (isSignUp) {
-      return const SignUpForm();
-    } else {
-      return const SignInForm();
-    }
-  }
-
-  @override
-  void didChangeDependencies() {
-    // isSignUp = ModalRoute.of(context)!.settings.arguments as bool;
-    isSignUp = true;
-    super.didChangeDependencies();
-  }
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +25,16 @@ class _AuthPageState extends State<AuthPage> {
                 width: double.infinity,
                 child: TextButton(
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routes.mainScreen);
+                      context.navigateTo(
+                          const MainRoute()); //  Navigator.of(context)
+                      //     .pushReplacementNamed(Routes.mainScreen);
                     },
                     child: Text(AppLocalizations.of(context)!.skip)),
               ),
               const SizedBox(
                 height: 20,
               ),
-              _buildAuthForm(),
+              const SignInForm(),
               Container(
                 height: 60,
                 padding: const EdgeInsets.symmetric(horizontal: 100),
@@ -68,7 +44,7 @@ class _AuthPageState extends State<AuthPage> {
                         onPrimary: Theme.of(context).colorScheme.onSurface,
                         primary: Theme.of(context).colorScheme.surface),
                     onPressed: () {
-                      BlocProvider.of<LoginCubit>(context).signinWithGoogle();
+                      //    BlocProvider.of<LoginCubit>(context).signinWithGoogle();
                     },
                     icon: Image.asset(
                       "assets/images/google_logo.png",
@@ -86,15 +62,9 @@ class _AuthPageState extends State<AuthPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (isSignUp) {
-                      BlocProvider.of<SignupCubit>(context).signUp();
-                    } else {
-                      BlocProvider.of<LoginCubit>(context).login();
-                    }
+                    BlocProvider.of<LoginCubit>(context).login();
                   },
-                  child: Text(isSignUp
-                      ? AppLocalizations.of(context)!.createAnAccount
-                      : AppLocalizations.of(context)!.login),
+                  child: Text(AppLocalizations.of(context)!.login),
                   style:
                       Theme.of(context).elevatedButtonTheme.style!.copyWith(),
                 ),
@@ -105,13 +75,9 @@ class _AuthPageState extends State<AuthPage> {
               SizedBox(
                 height: 60,
                 child: TextButton(
-                  child: Text(isSignUp
-                      ? AppLocalizations.of(context)!.loginToMyAccount
-                      : AppLocalizations.of(context)!.createAccount),
+                  child: Text(AppLocalizations.of(context)!.createAccount),
                   onPressed: () {
-                    setState(() {
-                      isSignUp = !isSignUp;
-                    });
+                    context.navigateTo(const SignupRoute());
                   },
                 ),
               ),

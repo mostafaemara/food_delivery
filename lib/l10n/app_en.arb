@@ -55,6 +55,10 @@
     "language":"Language",
     "theme":"Theme",
     "dark":"Dark",
-    "light":"Light"
+    "light":"Light",
+    "egp":"EGP",
+    "yourCart":"Your cart",
+    "processToPayment":"Process to payment",
+    "total":"Total"
 
 }

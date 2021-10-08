@@ -79,7 +79,7 @@ class EditeProfileForm extends StatelessWidget {
               onPressed: () {
                 editeProfileCubit.submitEdite();
               },
-              child: Text("Save"),
+              child: const Text("Save"),
               style: Theme.of(context).elevatedButtonTheme.style!.copyWith(),
             ),
           ),

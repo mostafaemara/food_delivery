@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
-import 'package:food_delivery_app/presentation/routes/routes.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -24,8 +25,7 @@ class OnBoardPage extends StatelessWidget {
                 child: TextButton(
                     onPressed: () {
                       BlocProvider.of<ConfigCubit>(context).setFirstTime(false);
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routes.mainScreen);
+                      context.navigateTo(const MainRoute());
                     },
                     child: Text(AppLocalizations.of(context)!.skip))),
             Expanded(
@@ -82,8 +82,7 @@ class OnBoardPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<ConfigCubit>(context).setFirstTime(false);
-                  Navigator.of(context)
-                      .pushReplacementNamed(Routes.authScreen, arguments: true);
+                  context.navigateTo(const SignupRoute());
                 },
                 child: Text(AppLocalizations.of(context)!.createAccount),
                 style: Theme.of(context).elevatedButtonTheme.style!.copyWith(),
@@ -98,8 +97,7 @@ class OnBoardPage extends StatelessWidget {
                 child: Text(AppLocalizations.of(context)!.login),
                 onPressed: () {
                   BlocProvider.of<ConfigCubit>(context).setFirstTime(false);
-                  Navigator.of(context).pushReplacementNamed(Routes.authScreen,
-                      arguments: false);
+                  context.navigateTo(const LoginRoute());
                 },
               ),
             ),

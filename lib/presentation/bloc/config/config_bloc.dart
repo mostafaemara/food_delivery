@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
+
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/domain/entities/locale.dart';
 import 'package:food_delivery_app/domain/entities/theme.dart';

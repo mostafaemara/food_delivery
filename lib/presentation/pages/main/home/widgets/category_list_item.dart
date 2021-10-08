@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/domain/entities/meal_category.dart';
-import 'package:food_delivery_app/presentation/routes/routes.dart';
-import 'package:food_delivery_app/presentation/styles/app_colors.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 import 'package:random_color/random_color.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import "package:auto_route/auto_route.dart";
+import '../../../../helpers/translators.dart';
 
 class CategoryListItem extends StatelessWidget {
   final MealCategory category;
@@ -14,14 +14,13 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isArabic = Localizations.localeOf(context).languageCode == "ar";
+    final locale = Localizations.localeOf(context);
 
     final color =
         _randomColor.randomColor(colorBrightness: ColorBrightness.dark);
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(Routes.categoryPage, arguments: category.id);
+        context.router.push(CategoryRoute(categoryId: category.id));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -36,9 +35,8 @@ class CategoryListItem extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(81))),
                 child: Container(
                   padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(81))),
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(81))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,9 +49,7 @@ class CategoryListItem extends StatelessWidget {
                         alignment: Alignment.center,
                         width: double.infinity,
                         child: Text(
-                          isArabic
-                              ? category.title.arabic
-                              : category.title.english,
+                          category.title.translate(locale),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

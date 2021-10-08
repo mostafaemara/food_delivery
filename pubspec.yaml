@@ -27,41 +27,37 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  arabic_numbers: ^1.0.0
+  auto_route: ^2.4.2
+  cloud_firestore: "^2.5.3"
+
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.0
+  equatable: ^2.0.3
+  firebase_auth: "^3.1.1"
+  firebase_core: "^1.6.0"
   flutter:
     sdk: flutter
+  flutter_bloc: ^7.3.0
   flutter_localizations: # Add this line
     sdk: flutter # Add this line
-  introduction_screen: ^2.1.0
-  flutter_zoom_drawer: ^2.1.1
-  random_color: ^1.0.6-nullsafety
   flutter_slidable: ^0.6.0
-  flutter_bloc: ^7.3.0
-  dartz: ^0.10.0
-  firebase_core: "^1.6.0"
-  firebase_auth: "^3.1.1"
-  cloud_firestore: "^2.5.3"
-  google_sign_in: ^5.0.0-nullsafety
-  equatable: ^2.0.3
-  get_it: ^7.2.0
-  validators: ^3.0.0
-  shared_preferences: ^2.0.8
   flutter_svg: ^0.22.0
-  arabic_numbers: ^1.0.0
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-
+  flutter_zoom_drawer: ^2.1.1
+  freezed: ^0.14.3
   freezed_annotation: ^0.14.3
+  get_it: ^7.2.0
+  google_sign_in: ^5.0.0-nullsafety
+  introduction_screen: ^2.1.0
+  random_color: ^1.0.6-nullsafety
+  shared_preferences: ^2.0.8
+  validators: ^3.0.0
 
 dev_dependencies:
+  auto_route_generator: ^2.4.1
+  build_runner: ^2.0.5
   flutter_driver:
     sdk: flutter
-  flutter_test:
-    sdk: flutter
-  test: any
-  build_runner: ^2.0.5
-  freezed: ^0.14.3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -69,10 +65,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  flutter_test:
+    sdk: flutter
+  test: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -84,13 +82,10 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

@@ -1,4 +1,3 @@
-import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
@@ -6,11 +5,15 @@ import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
-import 'package:food_delivery_app/presentation/routes/routes.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
+import 'package:food_delivery_app/presentation/widgets/app_back_button.dart';
+import '../../helpers/translators.dart';
+import '../../helpers/delivery_time_converter.dart';
+import 'package:auto_route/auto_route.dart';
 
 class MealDetailsPage extends StatefulWidget {
-  const MealDetailsPage({Key? key}) : super(key: key);
-
+  const MealDetailsPage({Key? key, required this.meal}) : super(key: key);
+  final Meal meal;
   @override
   State<MealDetailsPage> createState() => _MealDetailsPageState();
 }
@@ -38,9 +41,9 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
           authenticated: (value) => true,
           unAuthenticated: (value) => false,
         );
-    final meal = ModalRoute.of(context)!.settings.arguments as Meal;
-    final isArabic = Localizations.localeOf(context).languageCode == "ar";
-    final arabicNumber = ArabicNumbers();
+
+    final locale = Localizations.localeOf(context);
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -49,21 +52,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
             children: [
               Container(
                 alignment: AlignmentDirectional.centerStart,
-                child: Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: Transform.rotate(
-                          angle: isArabic ? 380 : 0,
-                          child: const Icon(
-                            Icons.arrow_back_ios_new,
-                          ))),
-                ),
+                child: const AppBackButton(),
               ),
               const SizedBox(
                 height: 30,
@@ -83,7 +72,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                             width: 258,
                             height: 224,
                             child: Image.network(
-                              meal.imageUrl,
+                              widget.meal.imageUrl,
                               width: 229,
                               height: 150,
                             ),
@@ -109,7 +98,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                   iconSize: 21,
                                   onPressed: decreaseCount,
                                   icon: const Icon(Icons.remove)),
-                              Text(count.toString(),
+                              Text(count.translate(locale),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -132,7 +121,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                         height: 30,
                       ),
                       Text(
-                        isArabic ? meal.title.arabic : meal.title.english,
+                        widget.meal.title.translate(locale),
                         style: Theme.of(context)
                             .textTheme
                             .headline5!
@@ -154,8 +143,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                             const SizedBox(
                               width: 3,
                             ),
-                            Text(
-                                "${isArabic ? arabicNumber.convert(meal.calories.toInt()) : meal.calories.toInt()} ${AppLocalizations.of(context)!.cal}",
+                            Text(widget.meal.calories.translate(locale),
                                 style: Theme.of(context).textTheme.caption),
                             const Spacer(),
                             Image.asset(
@@ -167,7 +155,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                               width: 3,
                             ),
                             Text(
-                                "${isArabic ? arabicNumber.convert(meal.deliveryTime.min.toInt()) : meal.deliveryTime.min.toInt()}-${isArabic ? arabicNumber.convert(meal.deliveryTime.max.toInt()) : meal.deliveryTime.max.toInt()} ${AppLocalizations.of(context)!.min}",
+                                "${widget.meal.deliveryTime.combineAndTranslate(locale)} ${AppLocalizations.of(context)!.min}",
                                 style: Theme.of(context).textTheme.caption),
                           ],
                         ),
@@ -182,9 +170,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                 child: SizedBox(
                   width: 319,
                   height: 84,
-                  child: Text(isArabic
-                      ? meal.description.arabic
-                      : meal.description.english),
+                  child: Text(widget.meal.description.translate(locale)),
                 ),
               ),
               const SizedBox(
@@ -199,17 +185,16 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                   onPressed: () {
                     if (userNotGuest) {
                       BlocProvider.of<CartCubit>(context).addCartItem(CartItem(
-                          imageUrl: meal.imageUrl,
-                          id: meal.id,
-                          price: meal.price,
+                          imageUrl: widget.meal.imageUrl,
+                          id: widget.meal.id,
+                          price: widget.meal.price,
                           quantity: count,
-                          title: meal.title,
-                          shortDescription: meal.shortDescription));
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, Routes.mainScreen, (route) => false,
-                          arguments: 3);
+                          title: widget.meal.title,
+                          shortDescription: widget.meal.shortDescription));
+
+                      context.navigateNamedTo("/cart");
                     } else {
-                      Navigator.of(context).pushNamed(Routes.authScreen);
+                      context.router.push(const LoginRoute());
                     }
                   },
                   child: Text(

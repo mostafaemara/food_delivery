@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
 import "../../../helpers/cart_helper.dart";
+import "../../../helpers/translators.dart";
 
 class CartIconWithCount extends StatelessWidget {
   const CartIconWithCount({
@@ -10,6 +11,7 @@ class CartIconWithCount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     return BlocBuilder<CartCubit, CartState>(
         builder: (context, state) => Stack(
               children: [
@@ -24,7 +26,7 @@ class CartIconWithCount extends StatelessWidget {
                     child: state.items.isEmpty
                         ? const SizedBox()
                         : Text(
-                            state.items.itemsCount().toString(),
+                            state.items.itemsCount().translate(locale),
                             style: const TextStyle(fontSize: 10),
                           )),
               ],

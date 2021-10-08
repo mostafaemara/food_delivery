@@ -1,10 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
-import 'package:food_delivery_app/presentation/routes/routes.dart';
 import "../../../domain/entities/locale.dart" as domain;
 
 class LanguageSelectionPage extends StatelessWidget {
@@ -46,8 +47,7 @@ class LanguageSelectionPage extends StatelessWidget {
                     onPressed: () {
                       BlocProvider.of<ConfigCubit>(context).selectLocale(
                           const domain.Locale(domain.Locales.english));
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routes.onboardScreen);
+                      context.navigateTo(const OnBoardRoute());
                     },
                     icon: const Icon(Icons.language),
                     label: Text(AppLocalizations.of(context)!.english)),
@@ -61,8 +61,7 @@ class LanguageSelectionPage extends StatelessWidget {
                     onPressed: () {
                       BlocProvider.of<ConfigCubit>(context).selectLocale(
                           const domain.Locale(domain.Locales.arabic));
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routes.onboardScreen);
+                      context.navigateTo(const OnBoardRoute());
                     },
                     icon: Image.asset(
                       "assets/icons/egypt.png",

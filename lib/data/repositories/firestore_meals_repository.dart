@@ -61,15 +61,4 @@ class FirestoreMealsRepository implements MealsRepositoryInterface {
     }
     return meals;
   }
-
-  @override
-  Future<Either<AuthFailure, List<Meal>>> getMealsByIds(
-      List<String> mealsIds) async {
-    try {
-      final meals = await fetchMealsByIds(mealsIds);
-      return right(meals);
-    } catch (e) {
-      return left(const AuthFailure.serverFailure());
-    }
-  }
 }

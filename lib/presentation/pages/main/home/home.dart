@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:food_delivery_app/presentation/bloc/home/home_cubit.dart';
 
-import 'category_list.dart';
-import 'popular_list.dart';
+import 'package:food_delivery_app/presentation/pages/main/home/widgets/popular_list.dart';
+
+import 'widgets/category_list.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

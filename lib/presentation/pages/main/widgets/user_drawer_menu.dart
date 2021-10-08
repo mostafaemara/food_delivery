@@ -3,14 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 import 'package:food_delivery_app/presentation/routes/routes.dart';
+
 import 'user_account_header.dart';
 
-class GuestMainMenu extends StatelessWidget {
-  const GuestMainMenu({Key? key}) : super(key: key);
+class UserDrawerMenu extends StatelessWidget {
+  const UserDrawerMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final user =
+        (BlocProvider.of<AuthBloc>(context).state as Authenticated).user;
+
     return Container(
       padding: const EdgeInsetsDirectional.only(top: 20, start: 20),
       child: SingleChildScrollView(
@@ -32,16 +38,41 @@ class GuestMainMenu extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const UserAccountHeader(
-              email: "guest@guest.com",
-              userName: "guest",
+            UserAccountHeader(
+              email: user.email,
+              userName: user.userName,
             ),
             const SizedBox(
               height: 20,
             ),
             ListTile(
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.settingProfile);
+                Navigator.of(context).pushNamed(Routes.profilePage);
+              },
+              horizontalTitleGap: 0,
+              contentPadding: EdgeInsets.zero,
+              leading: Image.asset(
+                "assets/icons/profile.png",
+                width: 24,
+                height: 24,
+              ),
+              title: Text(AppLocalizations.of(context)!.myProfile),
+            ),
+            ListTile(
+              horizontalTitleGap: 0,
+              contentPadding: EdgeInsets.zero,
+              leading: Image.asset(
+                "assets/icons/work.png",
+                width: 24,
+                height: 24,
+              ),
+              title: Text(AppLocalizations.of(context)!.paymentMethod),
+            ),
+            ListTile(
+              onTap: () {
+                ZoomDrawer.of(context)!.close();
+
+                context.navigateTo(const SettingRoute());
               },
               horizontalTitleGap: 0,
               contentPadding: EdgeInsets.zero,

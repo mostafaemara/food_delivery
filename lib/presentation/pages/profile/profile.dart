@@ -50,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     onPressed: () {
                       Navigator.of(context).pushNamed(Routes.editeProfilePage);
                     },
-                    child: Text("change")),
+                    child: const Text("change")),
               ],
             ),
             BlocConsumer<ProfileCubit, ProfileState>(

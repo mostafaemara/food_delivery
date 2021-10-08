@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
+
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/domain/entities/meal_category.dart';
@@ -10,12 +10,12 @@ import 'package:meta/meta.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  MealsRepositoryInterface _mealsRepo;
+  final MealsRepositoryInterface _mealsRepo;
   HomeCubit(this._mealsRepo)
       : super(HomeState(
             failure: none(),
-            popularMeals: [],
-            categories: [],
+            popularMeals: const [],
+            categories: const [],
             status: HomeStatus.idle));
 
   void init() async {

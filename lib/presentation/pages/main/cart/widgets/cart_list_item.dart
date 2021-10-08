@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
+import "../../../../helpers/translators.dart";
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartListItem extends StatelessWidget {
   CartListItem({Key? key, required this.cartItem})
@@ -10,6 +12,7 @@ class CartListItem extends StatelessWidget {
   final CartItem cartItem;
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     return Slidable(
       secondaryActions: [
         IconButton(
@@ -29,7 +32,7 @@ class CartListItem extends StatelessWidget {
               height: 40,
             )),
       ],
-      actionPane: SlidableScrollActionPane(),
+      actionPane: const SlidableScrollActionPane(),
       actionExtentRatio: 0.18,
       child: SizedBox(
           height: 112,
@@ -56,21 +59,13 @@ class CartListItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            cartItem.title.english,
+                            cartItem.title.translate(locale),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const Spacer(),
                           Text(
-                            cartItem.shortDescription.english,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const Spacer(),
-                          Text(
-                            cartItem.price.toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                            "${cartItem.price.translate(locale)}${AppLocalizations.of(context)!.egp}",
                           ),
                         ],
                       ),
@@ -92,7 +87,7 @@ class CartListItem extends StatelessWidget {
                               )),
                           color: Colors.red,
                         ),
-                        Text(cartItem.quantity.toString()),
+                        Text(cartItem.quantity.translate(locale)),
                         IconButton(
                           onPressed: () {
                             BlocProvider.of<CartCubit>(context)

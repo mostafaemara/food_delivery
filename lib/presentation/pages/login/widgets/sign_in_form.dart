@@ -1,14 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/core/failure.dart';
-import 'package:food_delivery_app/core/validation_failure.dart';
+
 import 'package:food_delivery_app/presentation/bloc/login/login_cubit.dart';
-import 'package:food_delivery_app/presentation/pages/auth/widgets/loading_dialog.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 import 'package:food_delivery_app/presentation/routes/routes.dart';
-
-import 'error_dialog.dart';
+import 'package:food_delivery_app/presentation/widgets/error_dialog.dart';
+import 'package:food_delivery_app/presentation/widgets/loading_dialog.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -66,13 +66,14 @@ class SignInForm extends StatelessWidget {
               TextFormField(
                 onChanged: BlocProvider.of<LoginCubit>(context).emailChanged,
                 decoration: InputDecoration(
-                    errorText: state.email.fold((error) {
-                      error.when(
-                        invalid: () =>
-                            AppLocalizations.of(context)!.enterValidEmail,
-                        empty: () => AppLocalizations.of(context)!.enterEmail,
-                      );
-                    }, (r) => null),
+                    errorText: state.email.fold(
+                        (error) => error.when(
+                              invalid: () =>
+                                  AppLocalizations.of(context)!.enterValidEmail,
+                              empty: () =>
+                                  AppLocalizations.of(context)!.enterEmail,
+                            ),
+                        (r) => null),
                     hintText: AppLocalizations.of(context)!.enterEmail),
               ),
               const SizedBox(
@@ -89,14 +90,14 @@ class SignInForm extends StatelessWidget {
                 obscureText: true,
                 onChanged: BlocProvider.of<LoginCubit>(context).passwordChanged,
                 decoration: InputDecoration(
-                    errorText: state.password.fold((error) {
-                      error.when(
-                        shortPassword: () =>
-                            AppLocalizations.of(context)!.passwordTooShort,
-                        empty: () =>
-                            AppLocalizations.of(context)!.enterPassword,
-                      );
-                    }, (r) => null),
+                    errorText: state.password.fold(
+                        (error) => error.when(
+                              shortPassword: () => AppLocalizations.of(context)!
+                                  .passwordTooShort,
+                              empty: () =>
+                                  AppLocalizations.of(context)!.enterPassword,
+                            ),
+                        (r) => null),
                     hintText: AppLocalizations.of(context)!.enterPassword),
               ),
               Container(
@@ -125,6 +126,9 @@ class SignInForm extends StatelessWidget {
             context: context,
             builder: (context) => const LoadingDialog(),
           );
+        }
+        if (state.status == LoginStatus.success) {
+          context.replaceRoute(const MainRoute());
         }
         state.failure.fold(() => null, (failure) {
           failure.maybeWhen(

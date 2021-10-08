@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/core/multilingual.dart';
-import 'package:food_delivery_app/presentation/pages/main/widgets/favorite.dart';
 
 class Favorite {
   final String mealId;
