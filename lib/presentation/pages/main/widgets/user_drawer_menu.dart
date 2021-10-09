@@ -4,8 +4,8 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
-import 'package:food_delivery_app/presentation/routes/routes.dart';
 
 import 'user_account_header.dart';
 
@@ -47,7 +47,7 @@ class UserDrawerMenu extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                Navigator.of(context).pushNamed(Routes.profilePage);
+                context.router.push(const AddressesRoute());
               },
               horizontalTitleGap: 0,
               contentPadding: EdgeInsets.zero,
@@ -56,7 +56,7 @@ class UserDrawerMenu extends StatelessWidget {
                 width: 24,
                 height: 24,
               ),
-              title: Text(AppLocalizations.of(context)!.myProfile),
+              title: Text(AppLocalizations.of(context)!.addresses),
             ),
             ListTile(
               horizontalTitleGap: 0,

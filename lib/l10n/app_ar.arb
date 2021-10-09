@@ -59,5 +59,8 @@
     "egp":"ج.م",
     "yourCart":"سلة التسوق الخاصة بك",
     "processToPayment":"المتابعة الي عملية الدفع",
-    "total":"المجموع"
+    "total":"المجموع",
+     "addresses":"العناوين",
+      "add":"أضف",
+      "mobilePhoneNumber":"رقم الهاتف الجوال"
 }

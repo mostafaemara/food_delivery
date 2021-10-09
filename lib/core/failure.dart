@@ -14,3 +14,9 @@ abstract class ProfileFailure with _$ProfileFailure {
   const factory ProfileFailure.serverFailure() = ProfileServerFailure;
   const factory ProfileFailure.profileHasNoDataFailure() = ProfileHasNoData;
 }
+
+@freezed
+abstract class AddressFailure with _$AddressFailure {
+  const factory AddressFailure.serverFailiure() = AddressServerFailure;
+  const factory AddressFailure.addressesIsEmpty() = AddressesIsEmpty;
+}

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:food_delivery_app/presentation/pages/addresses/addresses_page.dart';
 import 'package:food_delivery_app/presentation/pages/category/category.dart';
 
 import 'package:food_delivery_app/presentation/pages/language_selection/language_selection.dart';
@@ -46,5 +47,8 @@ import 'package:food_delivery_app/presentation/pages/splash/splash.dart';
   ),
   AutoRoute(page: LanguageSelectionPage),
   AutoRoute(page: CategoryPage),
+  AutoRoute(
+    page: AddressesPage,
+  ),
 ])
 class $AppRouter {}

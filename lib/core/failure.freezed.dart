@@ -852,3 +852,286 @@ class _$ProfileHasNoData implements ProfileHasNoData {
 abstract class ProfileHasNoData implements ProfileFailure {
   const factory ProfileHasNoData() = _$ProfileHasNoData;
 }
+
+/// @nodoc
+class _$AddressFailureTearOff {
+  const _$AddressFailureTearOff();
+
+  AddressServerFailure serverFailiure() {
+    return const AddressServerFailure();
+  }
+
+  AddressesIsEmpty addressesIsEmpty() {
+    return const AddressesIsEmpty();
+  }
+}
+
+/// @nodoc
+const $AddressFailure = _$AddressFailureTearOff();
+
+/// @nodoc
+mixin _$AddressFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailiure,
+    required TResult Function() addressesIsEmpty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailiure,
+    TResult Function()? addressesIsEmpty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailiure,
+    TResult Function()? addressesIsEmpty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddressServerFailure value) serverFailiure,
+    required TResult Function(AddressesIsEmpty value) addressesIsEmpty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AddressServerFailure value)? serverFailiure,
+    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddressServerFailure value)? serverFailiure,
+    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddressFailureCopyWith<$Res> {
+  factory $AddressFailureCopyWith(
+          AddressFailure value, $Res Function(AddressFailure) then) =
+      _$AddressFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AddressFailureCopyWithImpl<$Res>
+    implements $AddressFailureCopyWith<$Res> {
+  _$AddressFailureCopyWithImpl(this._value, this._then);
+
+  final AddressFailure _value;
+  // ignore: unused_field
+  final $Res Function(AddressFailure) _then;
+}
+
+/// @nodoc
+abstract class $AddressServerFailureCopyWith<$Res> {
+  factory $AddressServerFailureCopyWith(AddressServerFailure value,
+          $Res Function(AddressServerFailure) then) =
+      _$AddressServerFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AddressServerFailureCopyWithImpl<$Res>
+    extends _$AddressFailureCopyWithImpl<$Res>
+    implements $AddressServerFailureCopyWith<$Res> {
+  _$AddressServerFailureCopyWithImpl(
+      AddressServerFailure _value, $Res Function(AddressServerFailure) _then)
+      : super(_value, (v) => _then(v as AddressServerFailure));
+
+  @override
+  AddressServerFailure get _value => super._value as AddressServerFailure;
+}
+
+/// @nodoc
+
+class _$AddressServerFailure implements AddressServerFailure {
+  const _$AddressServerFailure();
+
+  @override
+  String toString() {
+    return 'AddressFailure.serverFailiure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AddressServerFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailiure,
+    required TResult Function() addressesIsEmpty,
+  }) {
+    return serverFailiure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailiure,
+    TResult Function()? addressesIsEmpty,
+  }) {
+    return serverFailiure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailiure,
+    TResult Function()? addressesIsEmpty,
+    required TResult orElse(),
+  }) {
+    if (serverFailiure != null) {
+      return serverFailiure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddressServerFailure value) serverFailiure,
+    required TResult Function(AddressesIsEmpty value) addressesIsEmpty,
+  }) {
+    return serverFailiure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AddressServerFailure value)? serverFailiure,
+    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+  }) {
+    return serverFailiure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddressServerFailure value)? serverFailiure,
+    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    required TResult orElse(),
+  }) {
+    if (serverFailiure != null) {
+      return serverFailiure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddressServerFailure implements AddressFailure {
+  const factory AddressServerFailure() = _$AddressServerFailure;
+}
+
+/// @nodoc
+abstract class $AddressesIsEmptyCopyWith<$Res> {
+  factory $AddressesIsEmptyCopyWith(
+          AddressesIsEmpty value, $Res Function(AddressesIsEmpty) then) =
+      _$AddressesIsEmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AddressesIsEmptyCopyWithImpl<$Res>
+    extends _$AddressFailureCopyWithImpl<$Res>
+    implements $AddressesIsEmptyCopyWith<$Res> {
+  _$AddressesIsEmptyCopyWithImpl(
+      AddressesIsEmpty _value, $Res Function(AddressesIsEmpty) _then)
+      : super(_value, (v) => _then(v as AddressesIsEmpty));
+
+  @override
+  AddressesIsEmpty get _value => super._value as AddressesIsEmpty;
+}
+
+/// @nodoc
+
+class _$AddressesIsEmpty implements AddressesIsEmpty {
+  const _$AddressesIsEmpty();
+
+  @override
+  String toString() {
+    return 'AddressFailure.addressesIsEmpty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is AddressesIsEmpty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverFailiure,
+    required TResult Function() addressesIsEmpty,
+  }) {
+    return addressesIsEmpty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverFailiure,
+    TResult Function()? addressesIsEmpty,
+  }) {
+    return addressesIsEmpty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverFailiure,
+    TResult Function()? addressesIsEmpty,
+    required TResult orElse(),
+  }) {
+    if (addressesIsEmpty != null) {
+      return addressesIsEmpty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddressServerFailure value) serverFailiure,
+    required TResult Function(AddressesIsEmpty value) addressesIsEmpty,
+  }) {
+    return addressesIsEmpty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AddressServerFailure value)? serverFailiure,
+    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+  }) {
+    return addressesIsEmpty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddressServerFailure value)? serverFailiure,
+    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    required TResult orElse(),
+  }) {
+    if (addressesIsEmpty != null) {
+      return addressesIsEmpty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddressesIsEmpty implements AddressFailure {
+  const factory AddressesIsEmpty() = _$AddressesIsEmpty;
+}

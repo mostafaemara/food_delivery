@@ -59,6 +59,9 @@
     "egp":"EGP",
     "yourCart":"Your cart",
     "processToPayment":"Process to payment",
-    "total":"Total"
+    "total":"Total",
+    "addresses":"Addresses",
+    "add":"Add",
+    "mobilePhoneNumber":"Mobile phone number"
 
 }
