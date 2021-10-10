@@ -14,7 +14,7 @@ class AddressesPage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: ListView(children: const [
           AddressesAppBar(),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           AddressesListItem()

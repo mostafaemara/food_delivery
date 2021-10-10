@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:food_delivery_app/presentation/pages/add_new_address/new_address_page.dart';
 import 'package:food_delivery_app/presentation/pages/addresses/addresses_page.dart';
 import 'package:food_delivery_app/presentation/pages/category/category.dart';
 
@@ -47,6 +48,7 @@ import 'package:food_delivery_app/presentation/pages/splash/splash.dart';
   ),
   AutoRoute(page: LanguageSelectionPage),
   AutoRoute(page: CategoryPage),
+  AutoRoute(page: NewAddressPage),
   AutoRoute(
     page: AddressesPage,
   ),

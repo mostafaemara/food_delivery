@@ -4,7 +4,7 @@ import 'package:food_delivery_app/data/models/meal.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/domain/entities/meal_category.dart';
 
-extension FSQueryMapper on QuerySnapshot<Map<String, dynamic>> {
+extension FirestoreQueryMapper on QuerySnapshot<Map<String, dynamic>> {
   List<Meal> toMeals() {
     final List<Meal> meals = [];
     for (final doc in docs) {
