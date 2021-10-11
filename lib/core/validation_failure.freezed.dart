@@ -1561,3 +1561,167 @@ class _$EmptyPhoneNumber implements EmptyPhoneNumber {
 abstract class EmptyPhoneNumber implements PhoneNumberValidationFailure {
   const factory EmptyPhoneNumber() = _$EmptyPhoneNumber;
 }
+
+/// @nodoc
+class _$AddressFieldValidationFailureTearOff {
+  const _$AddressFieldValidationFailureTearOff();
+
+  EmptyAddressField empty() {
+    return const EmptyAddressField();
+  }
+}
+
+/// @nodoc
+const $AddressFieldValidationFailure = _$AddressFieldValidationFailureTearOff();
+
+/// @nodoc
+mixin _$AddressFieldValidationFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyAddressField value) empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyAddressField value)? empty,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyAddressField value)? empty,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddressFieldValidationFailureCopyWith<$Res> {
+  factory $AddressFieldValidationFailureCopyWith(
+          AddressFieldValidationFailure value,
+          $Res Function(AddressFieldValidationFailure) then) =
+      _$AddressFieldValidationFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AddressFieldValidationFailureCopyWithImpl<$Res>
+    implements $AddressFieldValidationFailureCopyWith<$Res> {
+  _$AddressFieldValidationFailureCopyWithImpl(this._value, this._then);
+
+  final AddressFieldValidationFailure _value;
+  // ignore: unused_field
+  final $Res Function(AddressFieldValidationFailure) _then;
+}
+
+/// @nodoc
+abstract class $EmptyAddressFieldCopyWith<$Res> {
+  factory $EmptyAddressFieldCopyWith(
+          EmptyAddressField value, $Res Function(EmptyAddressField) then) =
+      _$EmptyAddressFieldCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyAddressFieldCopyWithImpl<$Res>
+    extends _$AddressFieldValidationFailureCopyWithImpl<$Res>
+    implements $EmptyAddressFieldCopyWith<$Res> {
+  _$EmptyAddressFieldCopyWithImpl(
+      EmptyAddressField _value, $Res Function(EmptyAddressField) _then)
+      : super(_value, (v) => _then(v as EmptyAddressField));
+
+  @override
+  EmptyAddressField get _value => super._value as EmptyAddressField;
+}
+
+/// @nodoc
+
+class _$EmptyAddressField implements EmptyAddressField {
+  const _$EmptyAddressField();
+
+  @override
+  String toString() {
+    return 'AddressFieldValidationFailure.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is EmptyAddressField);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? empty,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyAddressField value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EmptyAddressField value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyAddressField value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyAddressField implements AddressFieldValidationFailure {
+  const factory EmptyAddressField() = _$EmptyAddressField;
+}

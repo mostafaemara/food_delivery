@@ -1,30 +1,43 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_app/domain/entities/address.dart';
 
 enum AddressType { villa, building }
 
-extension AddressToDomain on Map<String, dynamic> {
-  BuildingAddress toBuildingAddress() {
+extension DocmentToDomainMapper on QueryDocumentSnapshot<Map<String, dynamic>> {
+  BuildingAddress docToBuildingAddress() {
     return BuildingAddress(
-        city: this["city"],
-        zone: this["zone"],
-        street: this["street"],
-        mobilePhoneNumber: this["mobilePhoneNumber"],
-        apartment: this["apartment"],
-        building: this["building"],
-        floor: this["floor"]);
+        city: data()["city"],
+        zone: data()["zone"],
+        street: data()["street"],
+        mobilePhoneNumber: data()["mobilePhoneNumber"],
+        apartment: data()["apartment"],
+        building: data()["building"],
+        floor: data()["floor"],
+        id: id);
   }
 
-  VillaAddress toVillaAddress() {
-    return VillaAddress(
+  Address docToVillaAddress() {
+    return Address.villaAddress(
         city: this["city"],
         zone: this["zone"],
         street: this["street"],
         mobilePhoneNumber: this["mobilePhoneNumber"],
-        villa: this["villa"]);
+        villa: this["villa"],
+        id: id);
+  }
+
+  Address docToAddressByType() {
+    switch (addressType()) {
+      case AddressType.villa:
+        return docToVillaAddress();
+
+      case AddressType.building:
+        return docToBuildingAddress();
+    }
   }
 
   AddressType addressType() {
-    if (this["addressType"] == "building") {
+    if (data()["addressType"] == "building") {
       return AddressType.building;
     } else {
       return AddressType.villa;
@@ -32,58 +45,30 @@ extension AddressToDomain on Map<String, dynamic> {
   }
 }
 
-extension BuildingAddressToMap on BuildingAddress {
-  Map<String, dynamic> buildingAddressToMap() {
-    return {
-      "city": city,
-      "zone": zone,
-      "street": street,
-      "mobilePhoneNumber": mobilePhoneNumber,
-      "apartment": apartment,
-      "building": building,
-      "floor": floor,
-    };
-  }
-}
-
-extension VillaAddressToMap on VillaAddress {
-  Map<String, dynamic> villaAddressTomap() {
-    return {
-      "city": city,
-      "zone": zone,
-      "street": street,
-      "mobilePhoneNumber": mobilePhoneNumber,
-      "villa": villa,
-    };
-  }
-
-  AddressType addressType() {
-    if (this is BuildingAddress) {
-      return AddressType.building;
-    } else {
-      return AddressType.villa;
-    }
-  }
-}
-
-Map<String, dynamic> addressToMap(Address address) {
-  if (address is BuildingAddress) {
-    return address.buildingAddressToMap();
-  }
-  if (address is VillaAddress) {
-    return address.villaAddressTomap();
-  } else {
-    throw Exception("Invalid Address Type Crash App");
-  }
-}
-
-Address mapToAddress(Map<String, dynamic> map) {
-  if (map.addressType() == AddressType.building) {
-    return map.toBuildingAddress();
-  }
-  if (map.addressType() == AddressType.villa) {
-    return map.toVillaAddress();
-  } else {
-    throw Exception("Invalid Address Type Crash App");
-  }
+extension AddressToMap on Address {
+  Map<String, dynamic> toMap() => when(
+        buildingAddress: (apartment, building, floor, city, zone, street, _,
+            mobilePhoneNumber) {
+          return {
+            "city": city,
+            "zone": zone,
+            "street": street,
+            "mobilePhoneNumber": mobilePhoneNumber,
+            "apartment": apartment,
+            "building": building,
+            "floor": floor,
+            "addressType": "building"
+          };
+        },
+        villaAddress: (villa, city, zone, street, mobilePhoneNumber, _) {
+          return {
+            "city": city,
+            "zone": zone,
+            "street": street,
+            "mobilePhoneNumber": mobilePhoneNumber,
+            "villa": villa,
+            "addressType": "villa"
+          };
+        },
+      );
 }

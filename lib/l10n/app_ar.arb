@@ -62,5 +62,14 @@
     "total":"المجموع",
      "addresses":"العناوين",
       "add":"أضف",
-      "mobilePhoneNumber":"رقم الهاتف الجوال"
+      "mobilePhoneNumber":"رقم الهاتف الجوال",
+      "city":"المدينة",
+    "street":"الشارع",
+    "zone":"المنطقة",
+    "building":"عمارة",
+    "villa":"فيلا",
+    "mobileNumber":"رقم الهاتف المحمول",
+    "floor":"طابق",
+    "apartment":"شقة",
+    "addNewAddress":"أضف عنوان جديد"
 }

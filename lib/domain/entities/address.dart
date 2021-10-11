@@ -1,47 +1,79 @@
-class Address {
-  final String city;
-  final String zone;
-  final String street;
-  final String mobilePhoneNumber;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Address(
-      {required this.city,
-      required this.zone,
-      required this.street,
-      required this.mobilePhoneNumber});
-}
+part "address.freezed.dart";
 
-class BuildingAddress extends Address {
-  final String apartment;
-  final String building;
-  final String floor;
-  BuildingAddress(
-      {required String city,
+@freezed
+class Address with _$Address {
+  factory Address.buildingAddress(
+      {required String apartment,
+      required String id,
+      required String building,
+      required String floor,
+      required String city,
       required String zone,
       required String street,
-      required String mobilePhoneNumber,
-      required this.apartment,
-      required this.building,
-      required this.floor})
-      : super(
-            city: city,
-            mobilePhoneNumber: mobilePhoneNumber,
-            street: street,
-            zone: zone);
+      required String mobilePhoneNumber}) = BuildingAddress;
+  factory Address.villaAddress(
+      {required String villa,
+      required String city,
+      required String id,
+      required String zone,
+      required String street,
+      required String mobilePhoneNumber}) = VillaAddress;
 }
 
-class VillaAddress extends Address {
-  final String villa;
+// class Building {
+//   final String apartment;
+//   final String building;
+//   final String floor;
+//   Building(
+//       {required this.apartment, required this.building, required this.floor});
+// }
 
-  VillaAddress({
-    required String city,
-    required String zone,
-    required String street,
-    required String mobilePhoneNumber,
-    required this.villa,
-  }) : super(
-            city: city,
-            mobilePhoneNumber: mobilePhoneNumber,
-            street: street,
-            zone: zone);
-}
+// class Villa {
+//   final String villa;
+
+//   Villa({
+//     required this.villa,
+//   });
+// }
+
+// class VillaAddress extends Address implements Villa {
+//   @override
+//   final String villa;
+
+//   VillaAddress(
+//       {required this.villa,
+//       required String city,
+//       required String zone,
+//       required String street,
+//       required String mobilePhoneNumber})
+//       : super(
+//             city: city,
+//             street: street,
+//             zone: zone,
+//             mobilePhoneNumber: mobilePhoneNumber);
+// }
+
+// class BuildingAddress extends Address implements Building {
+//   @override
+//   final String apartment;
+//   @override
+//   final String building;
+//   @override
+//   final String floor;
+
+//   BuildingAddress(
+//       {required this.apartment,
+//       required this.building,
+//       required this.floor,
+//       required String city,
+//       required String zone,
+//       required String street,
+//       required String mobilePhoneNumber})
+//       : super(
+//             city: city,
+//             street: street,
+//             zone: zone,
+//             mobilePhoneNumber: mobilePhoneNumber);
+// }

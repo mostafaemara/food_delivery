@@ -9,16 +9,16 @@ import "../mappers/address_mapper.dart";
 class FirestoreAdressRepository implements AddressRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<AddressFailure, Unit>> addAddress(
+  Future<Either<AddressFailure, String>> addAddress(
       {required String uid, required Address address}) async {
     try {
-      await firestore
+      final documentReference = await firestore
           .collection(FirestoreCollections.users)
           .doc(uid)
           .collection(FirestoreCollections.addresses)
-          .add(addressToMap(address));
+          .add(address.toMap());
 
-      return right(unit);
+      return right(documentReference.id);
     } catch (e) {
       return left(const AddressFailure.serverFailiure());
     }
@@ -64,7 +64,7 @@ class FirestoreAdressRepository implements AddressRepository {
       List<QueryDocumentSnapshot<Map<String, dynamic>>> documents) {
     List<Address> addresses = [];
     for (final document in documents) {
-      addresses.add(mapToAddress(document.data()));
+      addresses.add(document.docToAddressByType());
     }
 
     return addresses;

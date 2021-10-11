@@ -38,3 +38,9 @@ abstract class PhoneNumberValidationFailure
 
   const factory PhoneNumberValidationFailure.empty() = EmptyPhoneNumber;
 }
+
+@freezed
+abstract class AddressFieldValidationFailure
+    with _$AddressFieldValidationFailure {
+  const factory AddressFieldValidationFailure.empty() = EmptyAddressField;
+}

@@ -61,3 +61,12 @@ Either<PhoneNumberValidationFailure, String> validatephoneNumber(
   }
   return right(phoneNumber);
 }
+
+Either<AddressFieldValidationFailure, String> validateAddressField(
+    String addressField) {
+  if (addressField.isEmpty) {
+    return left(const AddressFieldValidationFailure.empty());
+  }
+
+  return right(addressField);
+}

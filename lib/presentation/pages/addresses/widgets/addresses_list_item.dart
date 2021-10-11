@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/domain/entities/address.dart';
 
 class AddressesListItem extends StatelessWidget {
-  const AddressesListItem({Key? key}) : super(key: key);
-
+  const AddressesListItem({Key? key, required this.address}) : super(key: key);
+  final Address address;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -11,7 +12,7 @@ class AddressesListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Calista Wise 7292 Dictum AvSan Antonio MI 47096",
+            "${address.city}-${address.zone}-${address.street}  ",
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: Theme.of(context).textTheme.subtitle2,
@@ -20,7 +21,7 @@ class AddressesListItem extends StatelessWidget {
             height: 10,
           ),
           Text(
-              "${AppLocalizations.of(context)!.mobilePhoneNumber}: 01113466225",
+              "${AppLocalizations.of(context)!.mobilePhoneNumber}: ${address.mobilePhoneNumber}",
               style: Theme.of(context).textTheme.caption),
           const Divider()
         ],

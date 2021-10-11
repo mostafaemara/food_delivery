@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/injection.dart';
+import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.da
 
 import 'package:food_delivery_app/presentation/core/app.dart';
 
+import 'domain/repositories/address_repository.dart';
 import 'domain/repositories/auth.dart';
 import 'domain/repositories/cart_repository_interface.dart';
 import 'domain/repositories/favorites_repository.dart';
@@ -74,6 +76,12 @@ void main() async {
         loginWithEmail: LoginWithEmail(locator<AuthRepositoryInterface>()),
         loginWithGoogle: LoginWithGoogle(locator<AuthRepositoryInterface>()),
       ),
+    ),
+    BlocProvider(
+      lazy: false,
+      create: (context) => AddressesCubit(
+          authBloc: BlocProvider.of<AuthBloc>(context),
+          addressRepo: locator<AddressRepository>()),
     )
   ], child: FoodDeliveryApp()));
 }

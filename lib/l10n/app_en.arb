@@ -62,6 +62,15 @@
     "total":"Total",
     "addresses":"Addresses",
     "add":"Add",
-    "mobilePhoneNumber":"Mobile phone number"
+    "mobilePhoneNumber":"Mobile phone number",
+    "city":"City",
+    "street":"Street",
+    "zone":"Zone",
+    "building":"Bulding",
+    "villa":"Villa",
+    "mobileNumber":"Mobile Numer",
+    "floor":"Floor",
+    "apartment":"Apartment",
+     "addNewAddress":"Add new address"
 
 }
