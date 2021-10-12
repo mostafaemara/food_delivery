@@ -153,14 +153,14 @@ class SignUpForm extends StatelessWidget {
         ),
       ),
       listener: (context, state) {
-        if (state.status == SignupStatus.submitting) {
+        if (state.isSubmitting) {
           showDialog(
             barrierDismissible: false,
             context: context,
             builder: (context) => const LoadingDialog(),
           );
         }
-        if (state.status == SignupStatus.success) {
+        if (state.isSuccess) {
           context.replaceRoute(const MainRoute());
         }
         state.failureOrNone.fold(() => null, (failure) {

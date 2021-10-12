@@ -115,19 +115,69 @@ class SignInForm extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
+              Container(
+                height: 60,
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        onPrimary: Theme.of(context).colorScheme.onSurface,
+                        primary: Theme.of(context).colorScheme.surface),
+                    onPressed: () {
+                      //    BlocProvider.of<LoginCubit>(context).signinWithGoogle();
+                    },
+                    icon: Image.asset(
+                      "assets/images/google_logo.png",
+                      height: 30,
+                      width: 30,
+                    ),
+                    label:
+                        Text(AppLocalizations.of(context)!.signInWithGoogle)),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 60,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    BlocProvider.of<LoginCubit>(context)
+                        .loginWithEmailAndPassword();
+                  },
+                  child: Text(AppLocalizations.of(context)!.login),
+                  style:
+                      Theme.of(context).elevatedButtonTheme.style!.copyWith(),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 60,
+                child: TextButton(
+                  child: Text(AppLocalizations.of(context)!.createAccount),
+                  onPressed: () {
+                    context.navigateTo(const SignupRoute());
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         );
       },
       listener: (context, state) {
-        if (state.status == LoginStatus.submitting) {
+        if (state.isSubmitting) {
           showDialog(
             barrierDismissible: false,
             context: context,
             builder: (context) => const LoadingDialog(),
           );
         }
-        if (state.status == LoginStatus.success) {
+        if (state.isSuccess) {
           context.replaceRoute(const MainRoute());
         }
         state.failure.fold(() => null, (failure) {

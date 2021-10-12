@@ -10,14 +10,19 @@ import 'package:food_delivery_app/domain/repositories/theme_repository_interface
 
 import 'package:meta/meta.dart';
 
+import '../../../injection.dart';
+
 part 'config_state.dart';
 
 class ConfigCubit extends Cubit<ConfigState> {
-  final LocaleRepositoryInterface _localeRepo;
-  final ThemeRepositoryInterface _themeRepo;
-  final FirstTimeRepositoryInterface _firstTimeRepo;
+  final LocaleRepositoryInterface _localeRepo =
+      locator<LocaleRepositoryInterface>();
+  final ThemeRepositoryInterface _themeRepo =
+      locator<ThemeRepositoryInterface>();
+  final FirstTimeRepositoryInterface _firstTimeRepo =
+      locator<FirstTimeRepositoryInterface>();
 
-  ConfigCubit(this._localeRepo, this._themeRepo, this._firstTimeRepo)
+  ConfigCubit()
       : super(const ConfigState(
             locale: Locale(Locales.english),
             theme: Theme(ThemeMode.light),

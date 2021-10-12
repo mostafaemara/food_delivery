@@ -1,10 +1,9 @@
 part of 'signup_cubit.dart';
 
-enum SignupStatus { submitting, error, success, idle }
-
 @immutable
 class SignupState {
-  final SignupStatus status;
+  final bool isSubmitting;
+  final bool isSuccess;
   final Option<AuthFailure> failureOrNone;
   final Either<EmailValidationFailure, String> emailOrFailure;
   final Either<PasswordValidationFailure, String> passwordOrFailure;
@@ -12,25 +11,37 @@ class SignupState {
   final Either<ConfirmPasswordValidationFailure, String>
       confirmPasswordOrFailure;
 
-  const SignupState(
-      {required this.status,
+  const SignupState._(
+      {required this.isSubmitting,
+      required this.isSuccess,
       required this.userNameOrFailure,
       required this.failureOrNone,
       required this.emailOrFailure,
       required this.passwordOrFailure,
       required this.confirmPasswordOrFailure});
 
+  factory SignupState.initial() => SignupState._(
+      userNameOrFailure: right(""),
+      isSuccess: false,
+      isSubmitting: false,
+      failureOrNone: none(),
+      emailOrFailure: right(""),
+      passwordOrFailure: right(""),
+      confirmPasswordOrFailure: right(""));
+
   SignupState copyWith(
-      {SignupStatus? status,
-      Option<AuthFailure>? failureOrNone,
+      {Option<AuthFailure>? failureOrNone,
+      bool? isSubmitting,
+      bool? isSuccess,
       Either<EmailValidationFailure, String>? emailOrFailure,
       Either<PasswordValidationFailure, String>? passwordOrFailure,
       Either<UserNameValidationFailure, String>? userNameOrFailure,
       Either<ConfirmPasswordValidationFailure, String>?
           confirmPasswordOrFailure}) {
-    return SignupState(
+    return SignupState._(
+        isSubmitting: isSubmitting ?? this.isSubmitting,
+        isSuccess: isSuccess ?? this.isSuccess,
         userNameOrFailure: userNameOrFailure ?? this.userNameOrFailure,
-        status: status ?? this.status,
         failureOrNone: failureOrNone ?? this.failureOrNone,
         emailOrFailure: emailOrFailure ?? this.emailOrFailure,
         passwordOrFailure: passwordOrFailure ?? this.passwordOrFailure,

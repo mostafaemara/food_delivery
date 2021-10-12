@@ -21,8 +21,6 @@ import 'domain/repositories/first_time_repository_interface.dart';
 import 'domain/repositories/locale_repository_interface.dart';
 import 'domain/repositories/meals_repository.dart';
 import 'domain/repositories/theme_repository_interface.dart';
-import 'domain/usecases/login_with_email.dart';
-import 'domain/usecases/login_with_google.dart';
 
 import 'presentation/bloc/auth/auth_bloc.dart';
 import 'presentation/bloc/bloc_observer.dart';
@@ -41,16 +39,9 @@ void main() async {
       lazy: false,
       create: (context) => AuthBloc(locator<AuthRepositoryInterface>()),
     ),
+    BlocProvider(create: (context) => ConfigCubit()),
     BlocProvider(
-      create: (context) => ConfigCubit(
-        locator<LocaleRepositoryInterface>(),
-        locator<ThemeRepositoryInterface>(),
-        locator<FirstTimeRepositoryInterface>(),
-      ),
-    ),
-    BlocProvider(
-      create: (context) => SignupCubit(locator<AuthRepositoryInterface>(),
-          BlocProvider.of<AuthBloc>(context)),
+      create: (context) => SignupCubit(BlocProvider.of<AuthBloc>(context)),
     ),
     BlocProvider(
       lazy: false,
@@ -69,13 +60,6 @@ void main() async {
     BlocProvider(
       lazy: false,
       create: (context) => ProfileCubit(BlocProvider.of<AuthBloc>(context)),
-    ),
-    BlocProvider(
-      create: (context) => LoginCubit(
-        authBloc: BlocProvider.of<AuthBloc>(context),
-        loginWithEmail: LoginWithEmail(locator<AuthRepositoryInterface>()),
-        loginWithGoogle: LoginWithGoogle(locator<AuthRepositoryInterface>()),
-      ),
     ),
     BlocProvider(
       lazy: false,
