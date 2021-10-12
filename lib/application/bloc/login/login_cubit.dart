@@ -1,16 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
+
+import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
+import 'package:food_delivery_app/application/form_inputs.dart';
 import 'package:food_delivery_app/core/failure.dart';
 
-import 'package:food_delivery_app/core/validation_failure.dart';
 import 'package:food_delivery_app/domain/entities/user.dart';
 import 'package:food_delivery_app/domain/repositories/auth.dart';
 
 import 'package:food_delivery_app/injection.dart';
-
-import "../../../domain/validators.dart";
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:formz/formz.dart';
 
 part 'login_state.dart';
 
@@ -20,57 +19,50 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit({
     required this.authBloc,
   }) : super(LoginState.intial());
+
   void emailChanged(String email) {
     emit(state.copyWith(
-        failure: none(),
-        email: validateEmail(email).fold((l) => left(l), (r) => right(email))));
+      email: EmailInput.dirty(email),
+      failure: none(),
+    ));
   }
 
   void passwordChanged(String password) {
     emit(state.copyWith(
-        failure: none(),
-        password: validatePassword(password)
-            .fold((l) => left(l), (r) => right(password))));
-  }
-
-  String _getEmailOrCrash() {
-    return state.email.getOrElse(
-        () => throw Exception("unexpected email behavior! App Crash"));
-  }
-
-  String _getPasswordOrCrash() {
-    return state.password.getOrElse(
-        () => throw Exception("unexpected password behavior! App Crash"));
+        failure: none(), password: PasswordInput.dirty(password)));
   }
 
   void _handleFailureOrUser(Either<AuthFailure, User> failureOrUser) {
     failureOrUser.fold(
         (failure) => emit(
-              state.copyWith(isSubmitting: false, failure: some(failure)),
+              state.copyWith(
+                  status: FormzStatus.submissionFailure,
+                  failure: some(failure)),
             ), (user) {
       emit(state.copyWith(
-          isSuccess: true, isSubmitting: false, failure: none()));
+          status: FormzStatus.submissionSuccess, failure: none()));
       authBloc.add(AuthEvent.authChanged(user: some(user)));
     });
   }
 
-  bool _isEmailAndPasswordValid() {
-    return state.email.isRight() && state.password.isRight();
+  void _validateFields() {
+    state.copyWith(status: Formz.validate([state.email, state.password]));
   }
 
   void loginWithEmailAndPassword() async {
-    if (_isEmailAndPasswordValid()) {
-      emit(state.copyWith(isSubmitting: true));
+    _validateFields();
+    if (state.status.isValid) {
+      emit(state.copyWith(status: FormzStatus.submissionInProgress));
 
       final failureOrUser = await _authRepo.loginWithEmailAndPassword(
-          _getEmailOrCrash(), _getPasswordOrCrash());
+          state.email.value, state.password.value);
 
       _handleFailureOrUser(failureOrUser);
     }
   }
 
   void signinWithGoogle() async {
-    emit(state.copyWith(isSubmitting: true));
+    emit(state.copyWith(status: FormzStatus.submissionInProgress));
     final failureOrUser = await _authRepo.loginWithGoogle();
     _handleFailureOrUser(failureOrUser);
   }

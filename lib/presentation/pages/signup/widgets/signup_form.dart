@@ -149,6 +149,53 @@ class SignUpForm extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+            Container(
+              height: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      onPrimary: Theme.of(context).colorScheme.onSurface,
+                      primary: Theme.of(context).colorScheme.surface),
+                  onPressed: () {
+                    // BlocProvider.of<SignupCubit>(context).s;
+                  },
+                  icon: Image.asset(
+                    "assets/images/google_logo.png",
+                    height: 30,
+                    width: 30,
+                  ),
+                  label: Text(AppLocalizations.of(context)!.signInWithGoogle)),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: ElevatedButton(
+                onPressed: () {
+                  BlocProvider.of<SignupCubit>(context).signUp();
+                },
+                child: Text(AppLocalizations.of(context)!.createAnAccount),
+                style: Theme.of(context).elevatedButtonTheme.style!.copyWith(),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 60,
+              child: TextButton(
+                child: Text(AppLocalizations.of(context)!.loginToMyAccount),
+                onPressed: () {
+                  context.navigateTo(const LoginRoute());
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

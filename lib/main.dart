@@ -41,9 +41,6 @@ void main() async {
     ),
     BlocProvider(create: (context) => ConfigCubit()),
     BlocProvider(
-      create: (context) => SignupCubit(BlocProvider.of<AuthBloc>(context)),
-    ),
-    BlocProvider(
       lazy: false,
       create: (context) => FavoritesCubit(
           locator<FavoritesRepositoryInterface>(),

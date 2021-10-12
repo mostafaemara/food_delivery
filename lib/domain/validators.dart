@@ -13,24 +13,22 @@ Either<ConfirmPasswordValidationFailure, String> validateConfirmPassword(
   return right(confirmPassword);
 }
 
-Either<PasswordValidationFailure, String> validatePassword(String password) {
+PasswordValidationFailure? validatePassword(String password) {
   if (password.isEmpty) {
-    return left(const PasswordValidationFailure.empty());
+    return const PasswordValidationFailure.empty();
   }
   if (password.length <= 6) {
-    return left(const PasswordValidationFailure.shortPassword());
+    return const PasswordValidationFailure.shortPassword();
   }
-  return right(password);
 }
 
-Either<EmailValidationFailure, String> validateEmail(String email) {
+EmailValidationFailure? validateEmail(String email) {
   if (email.isEmpty) {
-    return left(const EmailValidationFailure.empty());
+    return const EmailValidationFailure.empty();
   }
   if (!isEmail(email)) {
-    return left(const EmailValidationFailure.invalid());
+    return const EmailValidationFailure.invalid();
   }
-  return right(email);
 }
 
 Either<UserNameValidationFailure, String> validateUserName(String userName) {
