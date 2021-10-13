@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/edite_profile/edite_profile_cubit.dart';
+import 'package:food_delivery_app/application/bloc/edite_profile/edite_profile_cubit.dart';
 
 class EditeProfileForm extends StatelessWidget {
   const EditeProfileForm({Key? key}) : super(key: key);

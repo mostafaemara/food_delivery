@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
+import 'package:food_delivery_app/application/bloc/cart/cart_cubit.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
+
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 import 'package:food_delivery_app/presentation/widgets/app_back_button.dart';
 import '../../helpers/translators.dart';

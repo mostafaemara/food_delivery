@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
+import 'package:food_delivery_app/application/bloc/config/config_bloc.dart';
+
 import "../../../../domain/entities/theme.dart" as domain;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

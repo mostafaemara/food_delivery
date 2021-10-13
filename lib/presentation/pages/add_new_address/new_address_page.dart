@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/application/bloc/address_form/newaddressform_cubit.dart';
+import 'package:food_delivery_app/application/bloc/addresses/addresses_cubit.dart';
+import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
-import 'package:food_delivery_app/presentation/bloc/address_form/newaddressform_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/new_address_app_bar.dart';
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/new_address_form.dart';
 

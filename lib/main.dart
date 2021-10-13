@@ -3,28 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/injection.dart';
-import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/home/home_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
 
 import 'package:food_delivery_app/presentation/core/app.dart';
 
+import 'application/bloc/addresses/addresses_cubit.dart';
+import 'application/bloc/auth/auth_bloc.dart';
+import 'application/bloc/bloc_observer.dart';
+import 'application/bloc/cart/cart_cubit.dart';
+import 'application/bloc/config/config_bloc.dart';
+import 'application/bloc/favorites/favorites_cubit.dart';
+import 'application/bloc/home/home_cubit.dart';
+import 'application/bloc/profile/profile_cubit.dart';
 import 'domain/repositories/address_repository.dart';
 import 'domain/repositories/auth.dart';
 import 'domain/repositories/cart_repository_interface.dart';
 import 'domain/repositories/favorites_repository.dart';
-import 'domain/repositories/first_time_repository_interface.dart';
-import 'domain/repositories/locale_repository_interface.dart';
-import 'domain/repositories/meals_repository.dart';
-import 'domain/repositories/theme_repository_interface.dart';
 
-import 'presentation/bloc/auth/auth_bloc.dart';
-import 'presentation/bloc/bloc_observer.dart';
-import 'presentation/bloc/login/login_cubit.dart';
+import 'domain/repositories/meals_repository.dart';
 
 void main() async {
   Bloc.observer = AppBlocObserver();

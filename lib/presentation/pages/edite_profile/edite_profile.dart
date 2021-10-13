@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/edite_profile/edite_profile_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
+import 'package:food_delivery_app/application/bloc/edite_profile/edite_profile_cubit.dart';
+import 'package:food_delivery_app/application/bloc/profile/profile_cubit.dart';
+
 import 'package:food_delivery_app/presentation/pages/edite_profile/widgets/edite_profile_form.dart';
 import 'package:food_delivery_app/presentation/widgets/app_back_button.dart';
 

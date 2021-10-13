@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
 import 'package:food_delivery_app/domain/entities/address.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 part 'addresses_state.dart';
 

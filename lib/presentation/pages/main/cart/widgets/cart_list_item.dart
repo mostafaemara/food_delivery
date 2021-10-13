@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:food_delivery_app/application/bloc/cart/cart_cubit.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
-import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
+
 import "../../../../helpers/translators.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

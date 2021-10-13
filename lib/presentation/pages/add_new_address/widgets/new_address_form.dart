@@ -1,16 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/presentation/bloc/address_form/newaddressform_cubit.dart';
+import 'package:food_delivery_app/application/bloc/address_form/newaddressform_cubit.dart';
 
-import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/building_address_form.dart';
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/villa_address_form.dart';
-import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 import 'package:food_delivery_app/presentation/widgets/error_dialog.dart';
-import 'package:food_delivery_app/presentation/widgets/loading_dialog.dart';
 
 import 'address_selection_form_field.dart';
 

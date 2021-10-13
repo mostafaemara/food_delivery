@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/login/login_cubit.dart';
-import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
+import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
+import 'package:food_delivery_app/application/bloc/signup/cubit/signup_cubit.dart';
+
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 import 'widgets/signup_form.dart';

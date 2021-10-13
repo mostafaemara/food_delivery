@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
 
 import 'package:food_delivery_app/domain/entities/profile.dart';
 import 'package:food_delivery_app/domain/entities/user.dart';
 import 'package:food_delivery_app/domain/repositories/profile_repository_interface.dart';
 import 'package:food_delivery_app/injection.dart';
-import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_state.dart';

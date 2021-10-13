@@ -2,50 +2,44 @@ part of 'signup_cubit.dart';
 
 @immutable
 class SignupState {
-  final bool isSubmitting;
-  final bool isSuccess;
+  final FormzStatus formStatus;
   final Option<AuthFailure> failureOrNone;
-  final Either<EmailValidationFailure, String> emailOrFailure;
-  final Either<PasswordValidationFailure, String> passwordOrFailure;
-  final Either<UserNameValidationFailure, String> userNameOrFailure;
-  final Either<ConfirmPasswordValidationFailure, String>
-      confirmPasswordOrFailure;
+  final EmailInput email;
+  final PasswordInput password;
+  final UserNameInput userName;
+  final ConfirmPasswordInput confirmPassword;
 
   const SignupState._(
-      {required this.isSubmitting,
-      required this.isSuccess,
-      required this.userNameOrFailure,
-      required this.failureOrNone,
-      required this.emailOrFailure,
-      required this.passwordOrFailure,
-      required this.confirmPasswordOrFailure});
+      {required this.failureOrNone,
+      required this.formStatus,
+      required this.email,
+      required this.password,
+      required this.userName,
+      required this.confirmPassword});
 
   factory SignupState.initial() => SignupState._(
-      userNameOrFailure: right(""),
-      isSuccess: false,
-      isSubmitting: false,
-      failureOrNone: none(),
-      emailOrFailure: right(""),
-      passwordOrFailure: right(""),
-      confirmPasswordOrFailure: right(""));
+        failureOrNone: none(),
+        confirmPassword: const ConfirmPasswordInput.pure(),
+        email: const EmailInput.pure(),
+        formStatus: FormzStatus.pure,
+        password: const PasswordInput.pure(),
+        userName: const UserNameInput.pure(),
+      );
 
-  SignupState copyWith(
-      {Option<AuthFailure>? failureOrNone,
-      bool? isSubmitting,
-      bool? isSuccess,
-      Either<EmailValidationFailure, String>? emailOrFailure,
-      Either<PasswordValidationFailure, String>? passwordOrFailure,
-      Either<UserNameValidationFailure, String>? userNameOrFailure,
-      Either<ConfirmPasswordValidationFailure, String>?
-          confirmPasswordOrFailure}) {
+  SignupState copyWith({
+    FormzStatus? formStatus,
+    Option<AuthFailure>? failureOrNone,
+    EmailInput? email,
+    PasswordInput? password,
+    UserNameInput? userName,
+    ConfirmPasswordInput? confirmPassword,
+  }) {
     return SignupState._(
-        isSubmitting: isSubmitting ?? this.isSubmitting,
-        isSuccess: isSuccess ?? this.isSuccess,
-        userNameOrFailure: userNameOrFailure ?? this.userNameOrFailure,
+        confirmPassword: confirmPassword ?? this.confirmPassword,
+        email: email ?? this.email,
         failureOrNone: failureOrNone ?? this.failureOrNone,
-        emailOrFailure: emailOrFailure ?? this.emailOrFailure,
-        passwordOrFailure: passwordOrFailure ?? this.passwordOrFailure,
-        confirmPasswordOrFailure:
-            confirmPasswordOrFailure ?? this.confirmPasswordOrFailure);
+        formStatus: formStatus ?? this.formStatus,
+        password: password ?? this.password,
+        userName: userName ?? this.userName);
   }
 }

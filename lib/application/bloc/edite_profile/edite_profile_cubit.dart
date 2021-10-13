@@ -2,13 +2,14 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:food_delivery_app/application/bloc/profile/profile_cubit.dart';
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
 import 'package:food_delivery_app/domain/entities/profile.dart';
 import 'package:food_delivery_app/domain/entities/user.dart';
 import 'package:food_delivery_app/domain/repositories/profile_repository_interface.dart';
 import 'package:food_delivery_app/injection.dart';
-import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
+
 import 'package:meta/meta.dart';
 import "../../../domain/validators.dart";
 part 'edite_profile_state.dart';
@@ -42,7 +43,7 @@ class EditeProfileCubit extends Cubit<EditeProfileState> {
 
   void userNameChanged(String userName) {
     emit(state.copyWith(
-      usernameOrfailure: validateUserName(userName),
+      //   usernameOrfailure: validateUserName(userName),
       failure: none(),
     ));
   }

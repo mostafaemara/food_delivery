@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:food_delivery_app/application/bloc/addresses/addresses_cubit.dart';
 import 'package:food_delivery_app/domain/entities/address.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
 import 'package:food_delivery_app/domain/validators.dart';
@@ -6,7 +7,7 @@ import 'package:food_delivery_app/domain/validators.dart';
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/core/failure.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
-import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.dart';
+
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/address_selection_form_field.dart';
 part 'newaddressform_state.dart';
 

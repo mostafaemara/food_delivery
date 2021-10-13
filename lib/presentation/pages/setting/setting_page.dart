@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
+import 'package:food_delivery_app/application/bloc/config/config_bloc.dart';
+
 import 'package:food_delivery_app/presentation/pages/setting/widgets/select_language_dialog.dart';
 import 'package:food_delivery_app/presentation/pages/setting/widgets/theme_selection_dialog.dart';
 import 'package:food_delivery_app/presentation/widgets/app_back_button.dart';

@@ -2,12 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/application/bloc/signup/cubit/signup_cubit.dart';
 
-import 'package:food_delivery_app/presentation/bloc/signup/cubit/signup_cubit.dart';
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 import 'package:food_delivery_app/presentation/widgets/error_dialog.dart';
 import 'package:food_delivery_app/presentation/widgets/loading_dialog.dart';
+import 'package:formz/formz.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -65,16 +66,13 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.userNameChanged,
               decoration: InputDecoration(
-                  errorText: state.userNameOrFailure.fold(
-                      (error) => error.when(
-                            tooShort: () => AppLocalizations.of(context)!
-                                .userNameIsTooShort,
-                            invalid: () =>
-                                AppLocalizations.of(context)!.invalidUserName,
-                            empty: () =>
-                                AppLocalizations.of(context)!.enterUserName,
-                          ),
-                      (r) => null),
+                  errorText: state.userName.error!.when(
+                    tooShort: () =>
+                        AppLocalizations.of(context)!.userNameIsTooShort,
+                    invalid: () =>
+                        AppLocalizations.of(context)!.invalidUserName,
+                    empty: () => AppLocalizations.of(context)!.enterUserName,
+                  ),
                   hintText: AppLocalizations.of(context)!.enterUserName),
             ),
             const SizedBox(
@@ -90,13 +88,11 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.emailChanged,
               decoration: InputDecoration(
-                  errorText: state.emailOrFailure.fold((error) {
-                    return error.when(
-                      invalid: () =>
-                          AppLocalizations.of(context)!.enterValidEmail,
-                      empty: () => AppLocalizations.of(context)!.enterEmail,
-                    );
-                  }, (r) => null),
+                  errorText: state.email.error!.when(
+                    invalid: () =>
+                        AppLocalizations.of(context)!.enterValidEmail,
+                    empty: () => AppLocalizations.of(context)!.enterEmail,
+                  ),
                   hintText: AppLocalizations.of(context)!.enterEmail),
             ),
             const SizedBox(
@@ -113,13 +109,11 @@ class SignUpForm extends StatelessWidget {
               obscureText: true,
               onChanged: signupCubit.passwordChanged,
               decoration: InputDecoration(
-                  errorText: state.passwordOrFailure.fold((error) {
-                    return error.when(
-                      shortPassword: () =>
-                          AppLocalizations.of(context)!.passwordTooShort,
-                      empty: () => AppLocalizations.of(context)!.enterPassword,
-                    );
-                  }, (r) => null),
+                  errorText: state.password.error!.when(
+                    shortPassword: () =>
+                        AppLocalizations.of(context)!.passwordTooShort,
+                    empty: () => AppLocalizations.of(context)!.enterPassword,
+                  ),
                   hintText: AppLocalizations.of(context)!.enterPassword),
             ),
             const SizedBox(
@@ -134,16 +128,14 @@ class SignUpForm extends StatelessWidget {
             ),
             TextFormField(
               obscureText: true,
-              onChanged: signupCubit.confirmePasswordChanged,
+              onChanged: signupCubit.confirmPasswordChanged,
               decoration: InputDecoration(
-                  errorText: state.confirmPasswordOrFailure.fold((error) {
-                    return error.when(
-                      passwordNotMatch: () =>
-                          AppLocalizations.of(context)!.passwordNotMatch,
-                      empty: () =>
-                          AppLocalizations.of(context)!.enterConfirmPassword,
-                    );
-                  }, (r) => null),
+                  errorText: state.confirmPassword.error!.when(
+                    passwordNotMatch: () =>
+                        AppLocalizations.of(context)!.passwordNotMatch,
+                    empty: () =>
+                        AppLocalizations.of(context)!.enterConfirmPassword,
+                  ),
                   hintText: AppLocalizations.of(context)!.confirmPassword),
             ),
             const SizedBox(
@@ -200,14 +192,14 @@ class SignUpForm extends StatelessWidget {
         ),
       ),
       listener: (context, state) {
-        if (state.isSubmitting) {
+        if (state.formStatus.isSubmissionInProgress) {
           showDialog(
             barrierDismissible: false,
             context: context,
             builder: (context) => const LoadingDialog(),
           );
         }
-        if (state.isSuccess) {
+        if (state.formStatus.isSubmissionSuccess) {
           context.replaceRoute(const MainRoute());
         }
         state.failureOrNone.fold(() => null, (failure) {

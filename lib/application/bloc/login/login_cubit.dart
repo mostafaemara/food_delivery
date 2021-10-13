@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
-import 'package:food_delivery_app/application/form_inputs.dart';
+import 'package:food_delivery_app/application/form_inputs/auth_inputs.dart';
 import 'package:food_delivery_app/core/failure.dart';
 
 import 'package:food_delivery_app/domain/entities/user.dart';

@@ -2,15 +2,14 @@ import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/core/validation_failure.dart';
 import 'package:validators/validators.dart';
 
-Either<ConfirmPasswordValidationFailure, String> validateConfirmPassword(
+ConfirmPasswordValidationFailure? validateConfirmPassword(
     String password, String confirmPassword) {
   if (confirmPassword.isEmpty) {
-    return left(const ConfirmPasswordValidationFailure.empty());
+    return const ConfirmPasswordValidationFailure.empty();
   }
   if (confirmPassword != password) {
-    return left(const ConfirmPasswordValidationFailure.passwordNotMatch());
+    return const ConfirmPasswordValidationFailure.passwordNotMatch();
   }
-  return right(confirmPassword);
 }
 
 PasswordValidationFailure? validatePassword(String password) {
@@ -31,18 +30,17 @@ EmailValidationFailure? validateEmail(String email) {
   }
 }
 
-Either<UserNameValidationFailure, String> validateUserName(String userName) {
+UserNameValidationFailure? validateUserName(String userName) {
   if (userName.isEmpty) {
-    return left(const UserNameValidationFailure.empty());
+    return const UserNameValidationFailure.empty();
   }
   if (!isAlphanumeric(userName)) {
-    return left(const UserNameValidationFailure.invalid());
+    return const UserNameValidationFailure.invalid();
   }
 
   if (userName.length < 4) {
-    return left(const UserNameValidationFailure.tooShort());
+    return const UserNameValidationFailure.tooShort();
   }
-  return right(userName);
 }
 
 Either<PhoneNumberValidationFailure, String> validatephoneNumber(

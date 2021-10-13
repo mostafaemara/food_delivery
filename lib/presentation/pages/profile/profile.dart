@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/presentation/bloc/profile/profile_cubit.dart';
+import 'package:food_delivery_app/application/bloc/profile/profile_cubit.dart';
+
 import 'package:food_delivery_app/presentation/pages/profile/widgets/personal_details.dart';
 import 'package:food_delivery_app/presentation/pages/profile/widgets/profile_list_item.dart';
 import 'package:food_delivery_app/presentation/routes/routes.dart';
