@@ -1,69 +1,48 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
-import 'package:food_delivery_app/application/form_inputs/auth_inputs.dart';
+
 import 'package:food_delivery_app/core/failure.dart';
 
 import 'package:food_delivery_app/domain/entities/user.dart';
 import 'package:food_delivery_app/domain/repositories/auth.dart';
 
 import 'package:food_delivery_app/injection.dart';
-import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_state.dart';
+part "login_cubit.freezed.dart";
 
 class LoginCubit extends Cubit<LoginState> {
   final AuthBloc authBloc;
+
   final AuthRepositoryInterface _authRepo = locator<AuthRepositoryInterface>();
   LoginCubit({
     required this.authBloc,
-  }) : super(LoginState.intial());
-
-  void emailChanged(String email) {
-    emit(state.copyWith(
-      email: EmailInput.dirty(email),
-      failure: none(),
-    ));
-  }
-
-  void passwordChanged(String password) {
-    emit(state.copyWith(
-        failure: none(), password: PasswordInput.dirty(password)));
-  }
+  }) : super(const LoginState.idle());
 
   void _handleFailureOrUser(Either<AuthFailure, User> failureOrUser) {
-    failureOrUser.fold(
-        (failure) => emit(
-              state.copyWith(
-                  status: FormzStatus.submissionFailure,
-                  failure: some(failure)),
-            ), (user) {
-      emit(state.copyWith(
-          status: FormzStatus.submissionSuccess, failure: none()));
+    failureOrUser.fold((failure) => emit(LoginState.error(failure: failure)),
+        (user) {
+      emit(const LoginState.success());
       authBloc.add(AuthEvent.authChanged(user: some(user)));
     });
   }
 
-  void _validateFields() {
-    state.copyWith(status: Formz.validate([state.email, state.password]));
-  }
+  void loginWithEmailAndPassword(String email, String password) async {
+    emit(const LoginState.submitting());
 
-  void loginWithEmailAndPassword() async {
-    _validateFields();
-    if (state.status.isValid) {
-      emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    final failureOrUser =
+        await _authRepo.loginWithEmailAndPassword(email, password);
 
-      final failureOrUser = await _authRepo.loginWithEmailAndPassword(
-          state.email.value, state.password.value);
-
-      _handleFailureOrUser(failureOrUser);
-    }
+    _handleFailureOrUser(failureOrUser);
   }
 
   void signinWithGoogle() async {
-    emit(state.copyWith(status: FormzStatus.submissionInProgress));
-    final failureOrUser = await _authRepo.loginWithGoogle();
-    _handleFailureOrUser(failureOrUser);
+    // emit(state.copyWith(status: LoginStatus.submitting));
+    //  final failureOrUser = await _authRepo.loginWithGoogle();
+    //   _handleFailureOrUser(failureOrUser);
   }
 }

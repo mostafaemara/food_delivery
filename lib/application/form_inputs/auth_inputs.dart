@@ -3,42 +3,31 @@ import 'package:food_delivery_app/domain/validators.dart';
 import "package:formz/formz.dart";
 
 class EmailInput extends FormzInput<String, EmailValidationFailure> {
-  const EmailInput.pure() : super.pure("example@email.com");
+  const EmailInput.pure() : super.pure("");
 
-  EmailInput.dirty(String value) : super.dirty(value);
+  EmailInput.dirty(String? value) : super.dirty(value ?? "");
 
   @override
   EmailValidationFailure? validator(String value) {
-    return validateEmail(value);
+    return null;
   }
 }
 
 class PasswordInput extends FormzInput<String, PasswordValidationFailure> {
-  const PasswordInput.pure() : super.pure("password123");
+  const PasswordInput.pure() : super.pure("");
 
-  PasswordInput.dirty(String value) : super.dirty(value);
+  PasswordInput.dirty(String? value) : super.dirty(value ?? "");
 
   @override
   PasswordValidationFailure? validator(String value) {
-    return validatePassword(value);
+    return null;
   }
 }
 
-class LoginForm with FormzMixin {
-  final EmailInput emailInput;
-  final PasswordInput passwordInput;
-
-  LoginForm(
-      {this.emailInput = const EmailInput.pure(),
-      this.passwordInput = const PasswordInput.pure()});
-  @override
-  List<FormzInput> get inputs => [emailInput, passwordInput];
-}
-
 class UserNameInput extends FormzInput<String, UserNameValidationFailure> {
-  const UserNameInput.pure() : super.pure("userName");
+  const UserNameInput.pure() : super.pure("");
 
-  UserNameInput.dirty(String value) : super.dirty(value);
+  UserNameInput.dirty(String? value) : super.dirty(value ?? "");
 
   @override
   UserNameValidationFailure? validator(String value) {
@@ -50,12 +39,12 @@ class ConfirmPasswordInput
     extends FormzInput<String, ConfirmPasswordValidationFailure> {
   final String password;
 
-  const ConfirmPasswordInput.pure({this.password = "password"})
+  const ConfirmPasswordInput.pure({this.password = ""})
       : super.pure("password");
 
   ConfirmPasswordInput.dirty(
-      {required String confirmPassword, required this.password})
-      : super.dirty(confirmPassword);
+      {required String? confirmPassword, required this.password})
+      : super.dirty(confirmPassword ?? "");
 
   @override
   ConfirmPasswordValidationFailure? validator(String value) {

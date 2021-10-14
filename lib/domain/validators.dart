@@ -12,22 +12,24 @@ ConfirmPasswordValidationFailure? validateConfirmPassword(
   }
 }
 
-PasswordValidationFailure? validatePassword(String password) {
+Either<PasswordValidationFailure, Unit> validatePassword(String password) {
   if (password.isEmpty) {
-    return const PasswordValidationFailure.empty();
+    return left(const PasswordValidationFailure.empty());
   }
   if (password.length <= 6) {
-    return const PasswordValidationFailure.shortPassword();
+    return left(const PasswordValidationFailure.shortPassword());
   }
+  return right(unit);
 }
 
-EmailValidationFailure? validateEmail(String email) {
+Either<EmailValidationFailure, Unit> validateEmail(String email) {
   if (email.isEmpty) {
-    return const EmailValidationFailure.empty();
+    return left(const EmailValidationFailure.empty());
   }
   if (!isEmail(email)) {
-    return const EmailValidationFailure.invalid();
+    return left(const EmailValidationFailure.invalid());
   }
+  return right(unit);
 }
 
 UserNameValidationFailure? validateUserName(String userName) {

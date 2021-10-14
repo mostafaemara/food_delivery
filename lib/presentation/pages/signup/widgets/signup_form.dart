@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/application/bloc/signup/cubit/signup_cubit.dart';
+import 'package:food_delivery_app/presentation/helpers/form_helpers.dart';
 
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
@@ -66,13 +67,14 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.userNameChanged,
               decoration: InputDecoration(
-                  errorText: state.userName.error!.when(
-                    tooShort: () =>
-                        AppLocalizations.of(context)!.userNameIsTooShort,
-                    invalid: () =>
-                        AppLocalizations.of(context)!.invalidUserName,
-                    empty: () => AppLocalizations.of(context)!.enterUserName,
-                  ),
+                  errorText: state.userName.getErrorOrNull()?.when(
+                        tooShort: () =>
+                            AppLocalizations.of(context)!.userNameIsTooShort,
+                        invalid: () =>
+                            AppLocalizations.of(context)!.invalidUserName,
+                        empty: () =>
+                            AppLocalizations.of(context)!.enterUserName,
+                      ),
                   hintText: AppLocalizations.of(context)!.enterUserName),
             ),
             const SizedBox(
@@ -88,11 +90,11 @@ class SignUpForm extends StatelessWidget {
             TextFormField(
               onChanged: signupCubit.emailChanged,
               decoration: InputDecoration(
-                  errorText: state.email.error!.when(
-                    invalid: () =>
-                        AppLocalizations.of(context)!.enterValidEmail,
-                    empty: () => AppLocalizations.of(context)!.enterEmail,
-                  ),
+                  errorText: state.email.getErrorOrNull()?.when(
+                        invalid: () =>
+                            AppLocalizations.of(context)!.enterValidEmail,
+                        empty: () => AppLocalizations.of(context)!.enterEmail,
+                      ),
                   hintText: AppLocalizations.of(context)!.enterEmail),
             ),
             const SizedBox(
@@ -109,11 +111,12 @@ class SignUpForm extends StatelessWidget {
               obscureText: true,
               onChanged: signupCubit.passwordChanged,
               decoration: InputDecoration(
-                  errorText: state.password.error!.when(
-                    shortPassword: () =>
-                        AppLocalizations.of(context)!.passwordTooShort,
-                    empty: () => AppLocalizations.of(context)!.enterPassword,
-                  ),
+                  errorText: state.password.getErrorOrNull()?.when(
+                        shortPassword: () =>
+                            AppLocalizations.of(context)!.passwordTooShort,
+                        empty: () =>
+                            AppLocalizations.of(context)!.enterPassword,
+                      ),
                   hintText: AppLocalizations.of(context)!.enterPassword),
             ),
             const SizedBox(
@@ -130,12 +133,12 @@ class SignUpForm extends StatelessWidget {
               obscureText: true,
               onChanged: signupCubit.confirmPasswordChanged,
               decoration: InputDecoration(
-                  errorText: state.confirmPassword.error!.when(
-                    passwordNotMatch: () =>
-                        AppLocalizations.of(context)!.passwordNotMatch,
-                    empty: () =>
-                        AppLocalizations.of(context)!.enterConfirmPassword,
-                  ),
+                  errorText: state.confirmPassword.getErrorOrNull()?.when(
+                        passwordNotMatch: () =>
+                            AppLocalizations.of(context)!.passwordNotMatch,
+                        empty: () =>
+                            AppLocalizations.of(context)!.enterConfirmPassword,
+                      ),
                   hintText: AppLocalizations.of(context)!.confirmPassword),
             ),
             const SizedBox(
