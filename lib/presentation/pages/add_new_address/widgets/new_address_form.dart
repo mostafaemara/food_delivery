@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/application/bloc/address_form/newaddressform_cubit.dart';
+
+import 'package:food_delivery_app/presentation/bloc/address_form/newaddressform_cubit.dart';
 
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/building_address_form.dart';
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/villa_address_form.dart';
@@ -39,7 +40,7 @@ class _NewAddressFormState extends State<NewAddressForm> {
   @override
   Widget build(BuildContext context) {
     final newAdressCubit = BlocProvider.of<NewaddressformCubit>(context);
-    return BlocConsumer<NewaddressformCubit, NewaddressformState>(
+    return BlocConsumer<NewaddressformCubit, NewAddressFormState>(
       builder: (context, state) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(

@@ -4,22 +4,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/injection.dart';
 
-import 'package:food_delivery_app/presentation/core/app.dart';
-
-import 'application/bloc/addresses/addresses_cubit.dart';
-import 'application/bloc/auth/auth_bloc.dart';
-import 'application/bloc/bloc_observer.dart';
-import 'application/bloc/cart/cart_cubit.dart';
-import 'application/bloc/config/config_bloc.dart';
-import 'application/bloc/favorites/favorites_cubit.dart';
-import 'application/bloc/home/home_cubit.dart';
-import 'application/bloc/profile/profile_cubit.dart';
 import 'domain/repositories/address_repository.dart';
-import 'domain/repositories/auth.dart';
-import 'domain/repositories/cart_repository_interface.dart';
+import 'domain/repositories/auth_repository.dart';
+import 'domain/repositories/cart_repository.dart';
 import 'domain/repositories/favorites_repository.dart';
 
 import 'domain/repositories/meals_repository.dart';
+import 'presentation/app.dart';
+import 'presentation/bloc/addresses/addresses_cubit.dart';
+import 'presentation/bloc/auth/auth_bloc.dart';
+import 'presentation/bloc/bloc_observer.dart';
+import 'presentation/bloc/cart/cart_cubit.dart';
+import 'presentation/bloc/config/config_bloc.dart';
+import 'presentation/bloc/favorites/favorites_cubit.dart';
+import 'presentation/bloc/home/home_cubit.dart';
+import 'presentation/bloc/profile/profile_cubit.dart';
 
 void main() async {
   Bloc.observer = AppBlocObserver();
@@ -32,22 +31,21 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       lazy: false,
-      create: (context) => AuthBloc(locator<AuthRepositoryInterface>()),
+      create: (context) => AuthBloc(locator<AuthRepository>()),
     ),
     BlocProvider(create: (context) => ConfigCubit()),
     BlocProvider(
       lazy: false,
       create: (context) => FavoritesCubit(
-          locator<FavoritesRepositoryInterface>(),
-          BlocProvider.of<AuthBloc>(context)),
+          locator<FavoritesRepository>(), BlocProvider.of<AuthBloc>(context)),
     ),
     BlocProvider(
-      create: (context) => HomeCubit(locator<MealsRepositoryInterface>()),
+      create: (context) => HomeCubit(locator<MealsRepository>()),
     ),
     BlocProvider(
       lazy: false,
-      create: (context) => CartCubit(locator<CartRepositoryInterface>(),
-          BlocProvider.of<AuthBloc>(context)),
+      create: (context) => CartCubit(
+          locator<CartRepository>(), BlocProvider.of<AuthBloc>(context)),
     ),
     BlocProvider(
       lazy: false,

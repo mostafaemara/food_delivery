@@ -1,5 +1,5 @@
-import 'package:food_delivery_app/core/multilingual.dart';
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
+import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
 import 'multilingual.dart';
 

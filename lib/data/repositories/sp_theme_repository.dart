@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/data/models/theme.dart';
 import 'package:food_delivery_app/domain/entities/theme.dart';
-import 'package:food_delivery_app/domain/repositories/theme_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/theme_repository.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SPThemeRepository implements ThemeRepositoryInterface {
+class SPThemeRepository implements ThemeRepository {
   final _themeKey = "theme";
 
   final _prefs = SharedPreferences.getInstance();

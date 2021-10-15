@@ -1,6 +1,6 @@
-import 'package:food_delivery_app/core/multilingual.dart';
 import 'package:food_delivery_app/data/models/multilingual.dart';
 import 'package:food_delivery_app/domain/entities/meal_category.dart';
+import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
 class MealCategoryModel extends MealCategory {
   const MealCategoryModel(

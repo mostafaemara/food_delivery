@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/core/failure.dart';
+import "../failures/failure.dart";
 import 'package:food_delivery_app/domain/entities/address.dart';
 
 abstract class AddressRepository {

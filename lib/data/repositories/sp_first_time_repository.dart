@@ -1,7 +1,7 @@
-import 'package:food_delivery_app/domain/repositories/first_time_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/first_time_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SPFirstTimeRepository implements FirstTimeRepositoryInterface {
+class SPFirstTimeRepository implements FirstTimeRepository {
   final _isFirstTimeKey = "isFirstTime";
 
   final _prefs = SharedPreferences.getInstance();

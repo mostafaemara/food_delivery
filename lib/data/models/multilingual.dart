@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/core/multilingual.dart';
+import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
 class MultilingualModel extends Multilingual {
   const MultilingualModel({required String english, required String arabic})

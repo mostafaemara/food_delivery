@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/application/bloc/category/category_cubit.dart';
+
 import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
+import 'package:food_delivery_app/presentation/bloc/category/category_cubit.dart';
 
 import 'package:food_delivery_app/presentation/widgets/meal_list_item.dart';
 
@@ -16,7 +17,7 @@ class CategoryPage extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: BlocProvider(
-        create: (context) => CategoryCubit(locator<MealsRepositoryInterface>()),
+        create: (context) => CategoryCubit(locator<MealsRepository>()),
         child: Builder(builder: (context) {
           return BlocConsumer<CategoryCubit, CategoryState>(
             builder: (context, state) {

@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/core/multilingual.dart';
+import 'multilingual.dart';
 
 class MealCategory {
   final String id;

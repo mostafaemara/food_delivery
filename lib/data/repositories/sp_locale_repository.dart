@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/data/models/locale.dart';
 import 'package:food_delivery_app/domain/entities/locale.dart';
-import 'package:food_delivery_app/domain/repositories/locale_repository_interface.dart';
+import 'package:food_delivery_app/domain/repositories/locale_repository.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SPLocaleRepository implements LocaleRepositoryInterface {
+class SPLocaleRepository implements LocaleRepository {
   final _localeKey = "locale";
 
   final _prefs = SharedPreferences.getInstance();

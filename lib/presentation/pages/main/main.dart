@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
+
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 import 'package:food_delivery_app/presentation/pages/main/widgets/guest_drawer_menu.dart';
 

@@ -4,7 +4,8 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:food_delivery_app/application/bloc/auth/auth_bloc.dart';
+
+import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 

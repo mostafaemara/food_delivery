@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_app/data/firestore_collections.dart';
 import 'package:food_delivery_app/domain/entities/address.dart';
-import 'package:food_delivery_app/core/failure.dart';
+
 import 'package:dartz/dartz.dart';
+import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
 import "../mappers/address_mapper.dart";
 

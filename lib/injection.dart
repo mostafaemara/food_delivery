@@ -11,28 +11,25 @@ import 'data/repositories/firestore_profile_repository.dart';
 import 'data/repositories/sp_first_time_repository.dart';
 import 'data/repositories/sp_locale_repository.dart';
 import 'data/repositories/sp_theme_repository.dart';
-import 'domain/repositories/auth.dart';
-import 'domain/repositories/cart_repository_interface.dart';
-import 'domain/repositories/first_time_repository_interface.dart';
-import 'domain/repositories/locale_repository_interface.dart';
+import 'domain/repositories/auth_repository.dart';
+import 'domain/repositories/cart_repository.dart';
+import 'domain/repositories/first_time_repository.dart';
+import 'domain/repositories/locale_repository.dart';
 import 'domain/repositories/meals_repository.dart';
-import 'domain/repositories/profile_repository_interface.dart';
-import 'domain/repositories/theme_repository_interface.dart';
+import 'domain/repositories/profile_repository.dart';
+import 'domain/repositories/theme_repository.dart';
 
 final locator = GetIt.instance;
 
 Future<void> initializeDependencies() async {
-  locator.registerSingleton<AuthRepositoryInterface>(FirebaseAuthRepository());
-  locator.registerSingleton<LocaleRepositoryInterface>(SPLocaleRepository());
-  locator.registerSingleton<ThemeRepositoryInterface>(SPThemeRepository());
+  locator.registerSingleton<AuthRepository>(FirebaseAuthRepository());
+  locator.registerSingleton<LocaleRepository>(SPLocaleRepository());
+  locator.registerSingleton<ThemeRepository>(SPThemeRepository());
+  locator.registerSingleton<FirstTimeRepository>(SPFirstTimeRepository());
+  locator.registerSingleton<MealsRepository>(FirestoreMealsRepository());
   locator
-      .registerSingleton<FirstTimeRepositoryInterface>(SPFirstTimeRepository());
-  locator
-      .registerSingleton<MealsRepositoryInterface>(FirestoreMealsRepository());
-  locator.registerSingleton<FavoritesRepositoryInterface>(
-      FirestoreFavoritesRepository());
-  locator.registerSingleton<CartRepositoryInterface>(FirestoreCartRepository());
-  locator.registerSingleton<ProfileRepositoryInterface>(
-      FirestoreProfileRepository());
+      .registerSingleton<FavoritesRepository>(FirestoreFavoritesRepository());
+  locator.registerSingleton<CartRepository>(FirestoreCartRepository());
+  locator.registerSingleton<ProfileRepository>(FirestoreProfileRepository());
   locator.registerSingleton<AddressRepository>(FirestoreAdressRepository());
 }

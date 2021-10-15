@@ -1,6 +1,6 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/core/multilingual.dart';
+import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
 extension MultilingualTranslator on Multilingual {
   String translate(Locale locale) {

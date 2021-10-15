@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:food_delivery_app/core/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/data/models/favorite.dart';
 import 'package:food_delivery_app/domain/entities/favorite.dart';
+import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
 
-class FirestoreFavoritesRepository implements FavoritesRepositoryInterface {
+class FirestoreFavoritesRepository implements FavoritesRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Future<Either<AuthFailure, Unit>> addToFavorites(

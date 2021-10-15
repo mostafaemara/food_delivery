@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:food_delivery_app/core/multilingual.dart';
+import 'multilingual.dart';
 
 class CartItem extends Equatable {
   final String id;

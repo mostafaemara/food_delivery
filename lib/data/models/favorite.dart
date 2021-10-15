@@ -1,7 +1,6 @@
-import 'package:food_delivery_app/core/multilingual.dart';
-
 import 'package:food_delivery_app/data/models/multilingual.dart';
 import 'package:food_delivery_app/domain/entities/favorite.dart';
+import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
 class FavoriteModel extends Favorite {
   FavoriteModel({

@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/core/multilingual.dart';
+import 'multilingual.dart';
 import 'package:food_delivery_app/domain/entities/delivery_time.dart';
 
 class Meal {

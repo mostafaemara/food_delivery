@@ -1,47 +1,19 @@
 import 'package:flutter/widgets.dart';
-import 'package:food_delivery_app/application/form_inputs/auth_inputs.dart';
-
-import 'package:food_delivery_app/core/validation_failure.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/domain/failures/validation_failure.dart';
+import 'package:food_delivery_app/presentation/inputs/confirm_password_input.dart';
+import 'package:food_delivery_app/presentation/inputs/email_input.dart';
+import 'package:food_delivery_app/presentation/inputs/password_input.dart';
+import 'package:food_delivery_app/presentation/inputs/username_input.dart';
 
-extension EmailInputHelper on EmailInput {
-  EmailValidationFailure? getErrorOrNull() {
-    if (invalid) {
-      return error;
-    } else {
-      return null;
-    }
-  }
-}
-
-extension PasswordInputHelper on PasswordInput {
-  PasswordValidationFailure? getErrorOrNull() {
-    if (invalid) {
-      return error;
-    } else {
-      return null;
-    }
-  }
-}
-
-extension ConfirmPasswordInputHelper on ConfirmPasswordInput {
-  ConfirmPasswordValidationFailure? getErrorOrNull() {
-    if (invalid) {
-      return error;
-    } else {
-      return null;
-    }
-  }
-}
-
-extension UserNameInputHelper on UserNameInput {
-  UserNameValidationFailure? getErrorOrNull() {
-    if (invalid) {
-      return error;
-    } else {
-      return null;
-    }
+extension UserNameValidationFailureHelper on UserNameValidationFailure {
+  String convertErrorToLocaleString(BuildContext context) {
+    return when(
+      tooShort: () => AppLocalizations.of(context)!.userNameIsTooShort,
+      invalid: () => AppLocalizations.of(context)!.invalidUserName,
+      empty: () => AppLocalizations.of(context)!.enterUserName,
+    );
   }
 }
 
@@ -59,6 +31,16 @@ extension PasswordValidationFailureHelper on PasswordValidationFailure {
     return when(
       shortPassword: () => AppLocalizations.of(context)!.passwordTooShort,
       empty: () => AppLocalizations.of(context)!.enterPassword,
+    );
+  }
+}
+
+extension ConfirmPasswordValidationFailureHelper
+    on ConfirmPasswordValidationFailure {
+  String convertErrorToLocaleString(BuildContext context) {
+    return when(
+      passwordNotMatch: () => AppLocalizations.of(context)!.passwordNotMatch,
+      empty: () => AppLocalizations.of(context)!.enterConfirmPassword,
     );
   }
 }

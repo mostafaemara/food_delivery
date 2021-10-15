@@ -3,12 +3,13 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_app/data/models/profile_model.dart';
 import 'package:food_delivery_app/domain/entities/profile.dart';
-import 'package:food_delivery_app/core/failure.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/domain/repositories/profile_repository_interface.dart';
+import 'package:food_delivery_app/domain/failures/failure.dart';
+import 'package:food_delivery_app/domain/repositories/profile_repository.dart';
 import "../mappers/profile_mapper.dart";
 
-class FirestoreProfileRepository implements ProfileRepositoryInterface {
+class FirestoreProfileRepository implements ProfileRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override

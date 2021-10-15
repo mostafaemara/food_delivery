@@ -1,8 +1,8 @@
-import 'package:food_delivery_app/core/multilingual.dart';
 import 'package:food_delivery_app/data/models/delivery_time.dart';
 import 'package:food_delivery_app/data/models/multilingual.dart';
 import 'package:food_delivery_app/domain/entities/delivery_time.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
+import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
 class MealModel extends Meal {
   MealModel(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery_app/application/bloc/favorites/favorites_cubit.dart';
+
 import 'package:food_delivery_app/domain/entities/favorite.dart';
+import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 
 import 'favorite_list_item.dart';
 

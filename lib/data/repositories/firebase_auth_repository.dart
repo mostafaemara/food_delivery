@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:food_delivery_app/data/mappers/firebase_user_mapper.dart';
 import 'package:food_delivery_app/domain/entities/user.dart';
-import 'package:food_delivery_app/domain/repositories/auth.dart';
+import 'package:food_delivery_app/domain/failures/failure.dart';
+import 'package:food_delivery_app/domain/repositories/auth_repository.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:food_delivery_app/core/failure.dart';
 import 'package:dartz/dartz.dart';
 
-class FirebaseAuthRepository implements AuthRepositoryInterface {
+class FirebaseAuthRepository implements AuthRepository {
   final _auth = firebase_auth.FirebaseAuth.instance;
 
   @override
