@@ -4,8 +4,8 @@ import 'package:food_delivery_app/domain/entities/address.dart';
 enum AddressType { villa, building }
 
 extension DocmentToDomainMapper on QueryDocumentSnapshot<Map<String, dynamic>> {
-  BuildingAddress docToBuildingAddress() {
-    return BuildingAddress(
+  Address docToBuildingAddress() {
+    return Address.buildingAddress(
         city: data()["city"],
         zone: data()["zone"],
         street: data()["street"],
@@ -47,8 +47,8 @@ extension DocmentToDomainMapper on QueryDocumentSnapshot<Map<String, dynamic>> {
 
 extension AddressToMap on Address {
   Map<String, dynamic> toMap() => when(
-        buildingAddress: (apartment, building, floor, city, zone, street, _,
-            mobilePhoneNumber) {
+        buildingAddress: (city, zone, street, building, floor, apartment,
+            mobilePhoneNumber, _) {
           return {
             "city": city,
             "zone": zone,
@@ -60,7 +60,7 @@ extension AddressToMap on Address {
             "addressType": "building"
           };
         },
-        villaAddress: (villa, city, zone, street, mobilePhoneNumber, _) {
+        villaAddress: (city, zone, street, villa, mobilePhoneNumber, _) {
           return {
             "city": city,
             "zone": zone,

@@ -1,32 +1,32 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 
 import 'package:food_delivery_app/domain/entities/address.dart';
+import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'addresses_state.dart';
+part "addresses_cubit.freezed.dart";
 
 class AddressesCubit extends Cubit<AddressesState> {
   AuthBloc authBloc;
   late StreamSubscription onAuthChange;
   AddressRepository addressRepo;
   AddressesCubit({required this.authBloc, required this.addressRepo})
-      : super(AddressesState([])) {
+      : super(AddressesState.initial()) {
     onAuthChange = authBloc.stream.listen((authState) {
       authState.when(
         authenticated: (user) async {
           final result = await addressRepo.getAddresses(user.id);
-          result.fold((failure) {
-            failure.when(
-              serverFailiure: () => throw Exception("Crash the app"),
-              addressesIsEmpty: () => emit(AddressesState([])),
-            );
-          }, (addresses) => emit(AddressesState(addresses)));
+          result.fold((failure) => emit(state.copyWith(failure: some(failure))),
+              (addresses) => emit(state.copyWith(addresses: addresses)));
         },
         unAuthenticated: () {
-          emit(AddressesState([]));
+          emit(AddressesState.initial());
         },
       );
     });
@@ -36,7 +36,7 @@ class AddressesCubit extends Cubit<AddressesState> {
     authBloc.state.when(
       authenticated: (user) {
         final addresses = [...state.addresses, address];
-        emit(AddressesState(addresses));
+        emit(state.copyWith(addresses: addresses));
       },
       unAuthenticated: () => null,
     );
@@ -47,7 +47,7 @@ class AddressesCubit extends Cubit<AddressesState> {
       authenticated: (user) {
         var addresses = [...state.addresses];
         addresses.removeWhere((address) => address.id == addressId);
-        emit(AddressesState(addresses));
+        emit(state.copyWith(addresses: addresses));
       },
       unAuthenticated: () => null,
     );

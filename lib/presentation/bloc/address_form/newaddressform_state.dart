@@ -16,14 +16,14 @@ class NewAddressFormState with _$NewAddressFormState {
       _NewAddressFormState;
 
   factory NewAddressFormState.initial() => const _NewAddressFormState(
-      city: AddressInput.pure(),
-      mobilePhoneNumber: MobilePhoneNumberInput.pure(),
-      zone: AddressInput.pure(),
-      street: AddressInput.pure(),
-      building: AddressInput.pure(),
-      floor: AddressInput.pure(),
-      apartment: AddressInput.pure(),
-      villa: AddressInput.pure(),
+      cityInput: AddressInput.pure(),
+      mobilePhoneNumberInput: MobilePhoneNumberInput.pure(),
+      zoneInput: AddressInput.pure(),
+      streetInput: AddressInput.pure(),
+      buildingInput: AddressInput.pure(),
+      floorInput: AddressInput.pure(),
+      apartmentInput: AddressInput.pure(),
+      villaInput: AddressInput.pure(),
       addressType: AddressType.building(),
       submissionState: SubmissionState.idle());
 }

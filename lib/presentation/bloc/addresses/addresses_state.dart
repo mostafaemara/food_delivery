@@ -1,7 +1,11 @@
 part of 'addresses_cubit.dart';
 
-class AddressesState {
-  final List<Address> addresses;
+@freezed
+class AddressesState with _$AddressesState {
+  const factory AddressesState(
+      {required List<Address> addresses,
+      required Option<AddressFailure> failure}) = _AddressesState;
 
-  AddressesState(this.addresses);
+  factory AddressesState.initial() =>
+      _AddressesState(addresses: [], failure: none());
 }

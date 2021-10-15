@@ -17,40 +17,40 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AddressTearOff {
   const _$AddressTearOff();
 
-  BuildingAddress buildingAddress(
-      {required String apartment,
-      required String id,
-      required String building,
-      required String floor,
-      required String city,
+  _BuildingAddress buildingAddress(
+      {required String city,
       required String zone,
       required String street,
-      required String mobilePhoneNumber}) {
-    return BuildingAddress(
-      apartment: apartment,
-      id: id,
-      building: building,
-      floor: floor,
+      required String building,
+      required String floor,
+      required String apartment,
+      required String mobilePhoneNumber,
+      required String id}) {
+    return _BuildingAddress(
       city: city,
       zone: zone,
       street: street,
+      building: building,
+      floor: floor,
+      apartment: apartment,
       mobilePhoneNumber: mobilePhoneNumber,
+      id: id,
     );
   }
 
-  VillaAddress villaAddress(
-      {required String villa,
-      required String city,
-      required String id,
+  _VillaAddress villaAddress(
+      {required String city,
       required String zone,
       required String street,
+      required String villa,
+      required String id,
       required String mobilePhoneNumber}) {
-    return VillaAddress(
-      villa: villa,
+    return _VillaAddress(
       city: city,
-      id: id,
       zone: zone,
       street: street,
+      villa: villa,
+      id: id,
       mobilePhoneNumber: mobilePhoneNumber,
     );
   }
@@ -61,66 +61,80 @@ const $Address = _$AddressTearOff();
 
 /// @nodoc
 mixin _$Address {
-  String get id => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get zone => throw _privateConstructorUsedError;
   String get street => throw _privateConstructorUsedError;
   String get mobilePhoneNumber => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String apartment,
-            String id,
-            String building,
-            String floor,
             String city,
             String zone,
             String street,
-            String mobilePhoneNumber)
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)
         buildingAddress,
-    required TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)
+    required TResult Function(String city, String zone, String street,
+            String villa, String id, String mobilePhoneNumber)
         villaAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apartment, String id, String building, String floor,
-            String city, String zone, String street, String mobilePhoneNumber)?
+    TResult Function(
+            String city,
+            String zone,
+            String street,
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)?
         buildingAddress,
-    TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)?
+    TResult Function(String city, String zone, String street, String villa,
+            String id, String mobilePhoneNumber)?
         villaAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String apartment, String id, String building, String floor,
-            String city, String zone, String street, String mobilePhoneNumber)?
+    TResult Function(
+            String city,
+            String zone,
+            String street,
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)?
         buildingAddress,
-    TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)?
+    TResult Function(String city, String zone, String street, String villa,
+            String id, String mobilePhoneNumber)?
         villaAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BuildingAddress value) buildingAddress,
-    required TResult Function(VillaAddress value) villaAddress,
+    required TResult Function(_BuildingAddress value) buildingAddress,
+    required TResult Function(_VillaAddress value) villaAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BuildingAddress value)? buildingAddress,
-    TResult Function(VillaAddress value)? villaAddress,
+    TResult Function(_BuildingAddress value)? buildingAddress,
+    TResult Function(_VillaAddress value)? villaAddress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BuildingAddress value)? buildingAddress,
-    TResult Function(VillaAddress value)? villaAddress,
+    TResult Function(_BuildingAddress value)? buildingAddress,
+    TResult Function(_VillaAddress value)? villaAddress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,11 +148,11 @@ abstract class $AddressCopyWith<$Res> {
   factory $AddressCopyWith(Address value, $Res Function(Address) then) =
       _$AddressCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String city,
+      {String city,
       String zone,
       String street,
-      String mobilePhoneNumber});
+      String mobilePhoneNumber,
+      String id});
 }
 
 /// @nodoc
@@ -151,17 +165,13 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
     Object? city = freezed,
     Object? zone = freezed,
     Object? street = freezed,
     Object? mobilePhoneNumber = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -178,57 +188,65 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
           ? _value.mobilePhoneNumber
           : mobilePhoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class $BuildingAddressCopyWith<$Res>
+abstract class _$BuildingAddressCopyWith<$Res>
     implements $AddressCopyWith<$Res> {
-  factory $BuildingAddressCopyWith(
-          BuildingAddress value, $Res Function(BuildingAddress) then) =
-      _$BuildingAddressCopyWithImpl<$Res>;
+  factory _$BuildingAddressCopyWith(
+          _BuildingAddress value, $Res Function(_BuildingAddress) then) =
+      __$BuildingAddressCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String apartment,
-      String id,
-      String building,
-      String floor,
-      String city,
+      {String city,
       String zone,
       String street,
-      String mobilePhoneNumber});
+      String building,
+      String floor,
+      String apartment,
+      String mobilePhoneNumber,
+      String id});
 }
 
 /// @nodoc
-class _$BuildingAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
-    implements $BuildingAddressCopyWith<$Res> {
-  _$BuildingAddressCopyWithImpl(
-      BuildingAddress _value, $Res Function(BuildingAddress) _then)
-      : super(_value, (v) => _then(v as BuildingAddress));
+class __$BuildingAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
+    implements _$BuildingAddressCopyWith<$Res> {
+  __$BuildingAddressCopyWithImpl(
+      _BuildingAddress _value, $Res Function(_BuildingAddress) _then)
+      : super(_value, (v) => _then(v as _BuildingAddress));
 
   @override
-  BuildingAddress get _value => super._value as BuildingAddress;
+  _BuildingAddress get _value => super._value as _BuildingAddress;
 
   @override
   $Res call({
-    Object? apartment = freezed,
-    Object? id = freezed,
-    Object? building = freezed,
-    Object? floor = freezed,
     Object? city = freezed,
     Object? zone = freezed,
     Object? street = freezed,
+    Object? building = freezed,
+    Object? floor = freezed,
+    Object? apartment = freezed,
     Object? mobilePhoneNumber = freezed,
+    Object? id = freezed,
   }) {
-    return _then(BuildingAddress(
-      apartment: apartment == freezed
-          ? _value.apartment
-          : apartment // ignore: cast_nullable_to_non_nullable
+    return _then(_BuildingAddress(
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      zone: zone == freezed
+          ? _value.zone
+          : zone // ignore: cast_nullable_to_non_nullable
+              as String,
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
               as String,
       building: building == freezed
           ? _value.building
@@ -238,21 +256,17 @@ class _$BuildingAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      zone: zone == freezed
-          ? _value.zone
-          : zone // ignore: cast_nullable_to_non_nullable
-              as String,
-      street: street == freezed
-          ? _value.street
-          : street // ignore: cast_nullable_to_non_nullable
+      apartment: apartment == freezed
+          ? _value.apartment
+          : apartment // ignore: cast_nullable_to_non_nullable
               as String,
       mobilePhoneNumber: mobilePhoneNumber == freezed
           ? _value.mobilePhoneNumber
           : mobilePhoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -260,25 +274,17 @@ class _$BuildingAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BuildingAddress implements BuildingAddress {
-  _$BuildingAddress(
-      {required this.apartment,
-      required this.id,
-      required this.building,
-      required this.floor,
-      required this.city,
+class _$_BuildingAddress implements _BuildingAddress {
+  const _$_BuildingAddress(
+      {required this.city,
       required this.zone,
       required this.street,
-      required this.mobilePhoneNumber});
+      required this.building,
+      required this.floor,
+      required this.apartment,
+      required this.mobilePhoneNumber,
+      required this.id});
 
-  @override
-  final String apartment;
-  @override
-  final String id;
-  @override
-  final String building;
-  @override
-  final String floor;
   @override
   final String city;
   @override
@@ -286,104 +292,126 @@ class _$BuildingAddress implements BuildingAddress {
   @override
   final String street;
   @override
+  final String building;
+  @override
+  final String floor;
+  @override
+  final String apartment;
+  @override
   final String mobilePhoneNumber;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'Address.buildingAddress(apartment: $apartment, id: $id, building: $building, floor: $floor, city: $city, zone: $zone, street: $street, mobilePhoneNumber: $mobilePhoneNumber)';
+    return 'Address.buildingAddress(city: $city, zone: $zone, street: $street, building: $building, floor: $floor, apartment: $apartment, mobilePhoneNumber: $mobilePhoneNumber, id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is BuildingAddress &&
-            (identical(other.apartment, apartment) ||
-                const DeepCollectionEquality()
-                    .equals(other.apartment, apartment)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.building, building) ||
-                const DeepCollectionEquality()
-                    .equals(other.building, building)) &&
-            (identical(other.floor, floor) ||
-                const DeepCollectionEquality().equals(other.floor, floor)) &&
+        (other is _BuildingAddress &&
             (identical(other.city, city) ||
                 const DeepCollectionEquality().equals(other.city, city)) &&
             (identical(other.zone, zone) ||
                 const DeepCollectionEquality().equals(other.zone, zone)) &&
             (identical(other.street, street) ||
                 const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.building, building) ||
+                const DeepCollectionEquality()
+                    .equals(other.building, building)) &&
+            (identical(other.floor, floor) ||
+                const DeepCollectionEquality().equals(other.floor, floor)) &&
+            (identical(other.apartment, apartment) ||
+                const DeepCollectionEquality()
+                    .equals(other.apartment, apartment)) &&
             (identical(other.mobilePhoneNumber, mobilePhoneNumber) ||
                 const DeepCollectionEquality()
-                    .equals(other.mobilePhoneNumber, mobilePhoneNumber)));
+                    .equals(other.mobilePhoneNumber, mobilePhoneNumber)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(apartment) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(building) ^
-      const DeepCollectionEquality().hash(floor) ^
       const DeepCollectionEquality().hash(city) ^
       const DeepCollectionEquality().hash(zone) ^
       const DeepCollectionEquality().hash(street) ^
-      const DeepCollectionEquality().hash(mobilePhoneNumber);
+      const DeepCollectionEquality().hash(building) ^
+      const DeepCollectionEquality().hash(floor) ^
+      const DeepCollectionEquality().hash(apartment) ^
+      const DeepCollectionEquality().hash(mobilePhoneNumber) ^
+      const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
-  $BuildingAddressCopyWith<BuildingAddress> get copyWith =>
-      _$BuildingAddressCopyWithImpl<BuildingAddress>(this, _$identity);
+  _$BuildingAddressCopyWith<_BuildingAddress> get copyWith =>
+      __$BuildingAddressCopyWithImpl<_BuildingAddress>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String apartment,
-            String id,
-            String building,
-            String floor,
             String city,
             String zone,
             String street,
-            String mobilePhoneNumber)
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)
         buildingAddress,
-    required TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)
+    required TResult Function(String city, String zone, String street,
+            String villa, String id, String mobilePhoneNumber)
         villaAddress,
   }) {
     return buildingAddress(
-        apartment, id, building, floor, city, zone, street, mobilePhoneNumber);
+        city, zone, street, building, floor, apartment, mobilePhoneNumber, id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apartment, String id, String building, String floor,
-            String city, String zone, String street, String mobilePhoneNumber)?
+    TResult Function(
+            String city,
+            String zone,
+            String street,
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)?
         buildingAddress,
-    TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)?
+    TResult Function(String city, String zone, String street, String villa,
+            String id, String mobilePhoneNumber)?
         villaAddress,
   }) {
     return buildingAddress?.call(
-        apartment, id, building, floor, city, zone, street, mobilePhoneNumber);
+        city, zone, street, building, floor, apartment, mobilePhoneNumber, id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String apartment, String id, String building, String floor,
-            String city, String zone, String street, String mobilePhoneNumber)?
+    TResult Function(
+            String city,
+            String zone,
+            String street,
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)?
         buildingAddress,
-    TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)?
+    TResult Function(String city, String zone, String street, String villa,
+            String id, String mobilePhoneNumber)?
         villaAddress,
     required TResult orElse(),
   }) {
     if (buildingAddress != null) {
-      return buildingAddress(apartment, id, building, floor, city, zone, street,
-          mobilePhoneNumber);
+      return buildingAddress(city, zone, street, building, floor, apartment,
+          mobilePhoneNumber, id);
     }
     return orElse();
   }
@@ -391,8 +419,8 @@ class _$BuildingAddress implements BuildingAddress {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BuildingAddress value) buildingAddress,
-    required TResult Function(VillaAddress value) villaAddress,
+    required TResult Function(_BuildingAddress value) buildingAddress,
+    required TResult Function(_VillaAddress value) villaAddress,
   }) {
     return buildingAddress(this);
   }
@@ -400,8 +428,8 @@ class _$BuildingAddress implements BuildingAddress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BuildingAddress value)? buildingAddress,
-    TResult Function(VillaAddress value)? villaAddress,
+    TResult Function(_BuildingAddress value)? buildingAddress,
+    TResult Function(_VillaAddress value)? villaAddress,
   }) {
     return buildingAddress?.call(this);
   }
@@ -409,8 +437,8 @@ class _$BuildingAddress implements BuildingAddress {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BuildingAddress value)? buildingAddress,
-    TResult Function(VillaAddress value)? villaAddress,
+    TResult Function(_BuildingAddress value)? buildingAddress,
+    TResult Function(_VillaAddress value)? villaAddress,
     required TResult orElse(),
   }) {
     if (buildingAddress != null) {
@@ -420,82 +448,74 @@ class _$BuildingAddress implements BuildingAddress {
   }
 }
 
-abstract class BuildingAddress implements Address {
-  factory BuildingAddress(
-      {required String apartment,
-      required String id,
-      required String building,
-      required String floor,
-      required String city,
+abstract class _BuildingAddress implements Address {
+  const factory _BuildingAddress(
+      {required String city,
       required String zone,
       required String street,
-      required String mobilePhoneNumber}) = _$BuildingAddress;
+      required String building,
+      required String floor,
+      required String apartment,
+      required String mobilePhoneNumber,
+      required String id}) = _$_BuildingAddress;
 
-  String get apartment => throw _privateConstructorUsedError;
-  @override
-  String get id => throw _privateConstructorUsedError;
-  String get building => throw _privateConstructorUsedError;
-  String get floor => throw _privateConstructorUsedError;
   @override
   String get city => throw _privateConstructorUsedError;
   @override
   String get zone => throw _privateConstructorUsedError;
   @override
   String get street => throw _privateConstructorUsedError;
+  String get building => throw _privateConstructorUsedError;
+  String get floor => throw _privateConstructorUsedError;
+  String get apartment => throw _privateConstructorUsedError;
   @override
   String get mobilePhoneNumber => throw _privateConstructorUsedError;
   @override
+  String get id => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  $BuildingAddressCopyWith<BuildingAddress> get copyWith =>
+  _$BuildingAddressCopyWith<_BuildingAddress> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VillaAddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
-  factory $VillaAddressCopyWith(
-          VillaAddress value, $Res Function(VillaAddress) then) =
-      _$VillaAddressCopyWithImpl<$Res>;
+abstract class _$VillaAddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
+  factory _$VillaAddressCopyWith(
+          _VillaAddress value, $Res Function(_VillaAddress) then) =
+      __$VillaAddressCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String villa,
-      String city,
-      String id,
+      {String city,
       String zone,
       String street,
+      String villa,
+      String id,
       String mobilePhoneNumber});
 }
 
 /// @nodoc
-class _$VillaAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
-    implements $VillaAddressCopyWith<$Res> {
-  _$VillaAddressCopyWithImpl(
-      VillaAddress _value, $Res Function(VillaAddress) _then)
-      : super(_value, (v) => _then(v as VillaAddress));
+class __$VillaAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
+    implements _$VillaAddressCopyWith<$Res> {
+  __$VillaAddressCopyWithImpl(
+      _VillaAddress _value, $Res Function(_VillaAddress) _then)
+      : super(_value, (v) => _then(v as _VillaAddress));
 
   @override
-  VillaAddress get _value => super._value as VillaAddress;
+  _VillaAddress get _value => super._value as _VillaAddress;
 
   @override
   $Res call({
-    Object? villa = freezed,
     Object? city = freezed,
-    Object? id = freezed,
     Object? zone = freezed,
     Object? street = freezed,
+    Object? villa = freezed,
+    Object? id = freezed,
     Object? mobilePhoneNumber = freezed,
   }) {
-    return _then(VillaAddress(
-      villa: villa == freezed
-          ? _value.villa
-          : villa // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_VillaAddress(
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
               as String,
       zone: zone == freezed
           ? _value.zone
@@ -504,6 +524,14 @@ class _$VillaAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
       street: street == freezed
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
+              as String,
+      villa: villa == freezed
+          ? _value.villa
+          : villa // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       mobilePhoneNumber: mobilePhoneNumber == freezed
           ? _value.mobilePhoneNumber
@@ -515,47 +543,47 @@ class _$VillaAddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VillaAddress implements VillaAddress {
-  _$VillaAddress(
-      {required this.villa,
-      required this.city,
-      required this.id,
+class _$_VillaAddress implements _VillaAddress {
+  const _$_VillaAddress(
+      {required this.city,
       required this.zone,
       required this.street,
+      required this.villa,
+      required this.id,
       required this.mobilePhoneNumber});
 
   @override
-  final String villa;
-  @override
   final String city;
-  @override
-  final String id;
   @override
   final String zone;
   @override
   final String street;
   @override
+  final String villa;
+  @override
+  final String id;
+  @override
   final String mobilePhoneNumber;
 
   @override
   String toString() {
-    return 'Address.villaAddress(villa: $villa, city: $city, id: $id, zone: $zone, street: $street, mobilePhoneNumber: $mobilePhoneNumber)';
+    return 'Address.villaAddress(city: $city, zone: $zone, street: $street, villa: $villa, id: $id, mobilePhoneNumber: $mobilePhoneNumber)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is VillaAddress &&
-            (identical(other.villa, villa) ||
-                const DeepCollectionEquality().equals(other.villa, villa)) &&
+        (other is _VillaAddress &&
             (identical(other.city, city) ||
                 const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.zone, zone) ||
                 const DeepCollectionEquality().equals(other.zone, zone)) &&
             (identical(other.street, street) ||
                 const DeepCollectionEquality().equals(other.street, street)) &&
+            (identical(other.villa, villa) ||
+                const DeepCollectionEquality().equals(other.villa, villa)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.mobilePhoneNumber, mobilePhoneNumber) ||
                 const DeepCollectionEquality()
                     .equals(other.mobilePhoneNumber, mobilePhoneNumber)));
@@ -564,64 +592,78 @@ class _$VillaAddress implements VillaAddress {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(villa) ^
       const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(zone) ^
       const DeepCollectionEquality().hash(street) ^
+      const DeepCollectionEquality().hash(villa) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(mobilePhoneNumber);
 
   @JsonKey(ignore: true)
   @override
-  $VillaAddressCopyWith<VillaAddress> get copyWith =>
-      _$VillaAddressCopyWithImpl<VillaAddress>(this, _$identity);
+  _$VillaAddressCopyWith<_VillaAddress> get copyWith =>
+      __$VillaAddressCopyWithImpl<_VillaAddress>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String apartment,
-            String id,
-            String building,
-            String floor,
             String city,
             String zone,
             String street,
-            String mobilePhoneNumber)
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)
         buildingAddress,
-    required TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)
+    required TResult Function(String city, String zone, String street,
+            String villa, String id, String mobilePhoneNumber)
         villaAddress,
   }) {
-    return villaAddress(villa, city, id, zone, street, mobilePhoneNumber);
+    return villaAddress(city, zone, street, villa, id, mobilePhoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apartment, String id, String building, String floor,
-            String city, String zone, String street, String mobilePhoneNumber)?
+    TResult Function(
+            String city,
+            String zone,
+            String street,
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)?
         buildingAddress,
-    TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)?
+    TResult Function(String city, String zone, String street, String villa,
+            String id, String mobilePhoneNumber)?
         villaAddress,
   }) {
-    return villaAddress?.call(villa, city, id, zone, street, mobilePhoneNumber);
+    return villaAddress?.call(city, zone, street, villa, id, mobilePhoneNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String apartment, String id, String building, String floor,
-            String city, String zone, String street, String mobilePhoneNumber)?
+    TResult Function(
+            String city,
+            String zone,
+            String street,
+            String building,
+            String floor,
+            String apartment,
+            String mobilePhoneNumber,
+            String id)?
         buildingAddress,
-    TResult Function(String villa, String city, String id, String zone,
-            String street, String mobilePhoneNumber)?
+    TResult Function(String city, String zone, String street, String villa,
+            String id, String mobilePhoneNumber)?
         villaAddress,
     required TResult orElse(),
   }) {
     if (villaAddress != null) {
-      return villaAddress(villa, city, id, zone, street, mobilePhoneNumber);
+      return villaAddress(city, zone, street, villa, id, mobilePhoneNumber);
     }
     return orElse();
   }
@@ -629,8 +671,8 @@ class _$VillaAddress implements VillaAddress {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BuildingAddress value) buildingAddress,
-    required TResult Function(VillaAddress value) villaAddress,
+    required TResult Function(_BuildingAddress value) buildingAddress,
+    required TResult Function(_VillaAddress value) villaAddress,
   }) {
     return villaAddress(this);
   }
@@ -638,8 +680,8 @@ class _$VillaAddress implements VillaAddress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BuildingAddress value)? buildingAddress,
-    TResult Function(VillaAddress value)? villaAddress,
+    TResult Function(_BuildingAddress value)? buildingAddress,
+    TResult Function(_VillaAddress value)? villaAddress,
   }) {
     return villaAddress?.call(this);
   }
@@ -647,8 +689,8 @@ class _$VillaAddress implements VillaAddress {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BuildingAddress value)? buildingAddress,
-    TResult Function(VillaAddress value)? villaAddress,
+    TResult Function(_BuildingAddress value)? buildingAddress,
+    TResult Function(_VillaAddress value)? villaAddress,
     required TResult orElse(),
   }) {
     if (villaAddress != null) {
@@ -658,28 +700,28 @@ class _$VillaAddress implements VillaAddress {
   }
 }
 
-abstract class VillaAddress implements Address {
-  factory VillaAddress(
-      {required String villa,
-      required String city,
-      required String id,
+abstract class _VillaAddress implements Address {
+  const factory _VillaAddress(
+      {required String city,
       required String zone,
       required String street,
-      required String mobilePhoneNumber}) = _$VillaAddress;
+      required String villa,
+      required String id,
+      required String mobilePhoneNumber}) = _$_VillaAddress;
 
-  String get villa => throw _privateConstructorUsedError;
   @override
   String get city => throw _privateConstructorUsedError;
-  @override
-  String get id => throw _privateConstructorUsedError;
   @override
   String get zone => throw _privateConstructorUsedError;
   @override
   String get street => throw _privateConstructorUsedError;
+  String get villa => throw _privateConstructorUsedError;
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get mobilePhoneNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $VillaAddressCopyWith<VillaAddress> get copyWith =>
+  _$VillaAddressCopyWith<_VillaAddress> get copyWith =>
       throw _privateConstructorUsedError;
 }

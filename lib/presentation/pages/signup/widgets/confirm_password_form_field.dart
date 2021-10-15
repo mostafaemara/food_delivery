@@ -14,6 +14,7 @@ class ConfirmPasswordFormField extends StatelessWidget {
     final signupCubit = context.watch<SignupCubit>();
     final state = signupCubit.state;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.only(bottom: 8, start: 20),

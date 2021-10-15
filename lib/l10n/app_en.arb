@@ -71,6 +71,8 @@
     "mobileNumber":"Mobile Numer",
     "floor":"Floor",
     "apartment":"Apartment",
-     "addNewAddress":"Add new address"
+     "addNewAddress":"Add new address",
+     "fieldRequired":"Field required!",
+     "invalidMobilePhoneNumber":"Invalid mobile phone number"
 
 }

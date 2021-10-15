@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
+import 'package:food_delivery_app/presentation/widgets/loading_dialog.dart';
 
+import "../../../helpers/form_helpers.dart";
 import 'package:food_delivery_app/presentation/bloc/address_form/newaddressform_cubit.dart';
 
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/building_address_form.dart';
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/villa_address_form.dart';
 
 import 'package:food_delivery_app/presentation/widgets/error_dialog.dart';
-
+import 'package:auto_route/auto_route.dart';
+import 'add_address_buttom.dart';
 import 'address_selection_form_field.dart';
+import 'city_form_field.dart';
+import 'mobile_number_form_field.dart';
+import 'street_form_field.dart';
+import 'zone_form_field.dart';
 
 class NewAddressForm extends StatefulWidget {
   const NewAddressForm({Key? key}) : super(key: key);
@@ -19,13 +27,6 @@ class NewAddressForm extends StatefulWidget {
 }
 
 class _NewAddressFormState extends State<NewAddressForm> {
-  AddressType selectedAddressType = AddressType.building;
-  void onAddressTypeChanged(AddressType? addressType) {
-    setState(() {
-      selectedAddressType = addressType!;
-    });
-  }
-
   void showErrorDialog(BuildContext context, String failure) {
     Navigator.of(context).pop();
     showDialog(
@@ -37,9 +38,18 @@ class _NewAddressFormState extends State<NewAddressForm> {
     );
   }
 
+  void showLoadingDialog(
+    BuildContext context,
+  ) {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => const LoadingDialog(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final newAdressCubit = BlocProvider.of<NewaddressformCubit>(context);
     return BlocConsumer<NewaddressformCubit, NewAddressFormState>(
       builder: (context, state) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,83 +60,53 @@ class _NewAddressFormState extends State<NewAddressForm> {
             const SizedBox(
               height: 20,
             ),
-            TextFormField(
-              onChanged: newAdressCubit.cityChange,
-              decoration: InputDecoration(
-                  errorText: state.city.fold(
-                      (error) => error.when(empty: () => "Field required!"),
-                      (r) => null),
-                  hintText: AppLocalizations.of(context)!.city),
+            const CityFormField(),
+            const SizedBox(
+              height: 30,
+            ),
+            const ZoneFormField(),
+            const SizedBox(
+              height: 30,
+            ),
+            const StreetFormField(),
+            const SizedBox(
+              height: 30,
+            ),
+            const MobileNumberFormField(),
+            const SizedBox(
+              height: 30,
+            ),
+            const AddressSelectionFormField(),
+            const SizedBox(
+              height: 30,
+            ),
+            state.addressType.when(
+              building: () => const BuildingAddressForm(),
+              villa: () => const VillaAddressForm(),
             ),
             const SizedBox(
               height: 30,
             ),
-            TextFormField(
-              onChanged: newAdressCubit.zoneChanged,
-              decoration: InputDecoration(
-                  errorText: state.zone.fold(
-                      (error) => error.when(empty: () => "Field required!"),
-                      (r) => null),
-                  hintText: AppLocalizations.of(context)!.zone),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TextFormField(
-              onChanged: newAdressCubit.streetChanged,
-              decoration: InputDecoration(
-                  errorText: state.street.fold(
-                      (error) => error.when(empty: () => "Field required!"),
-                      (r) => null),
-                  hintText: AppLocalizations.of(context)!.street),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TextFormField(
-              onChanged: newAdressCubit.phoneChange,
-              decoration: InputDecoration(
-                  errorText: state.phoneNumber.fold(
-                      (error) => error.when(
-                          empty: () => "Field required!",
-                          invalid: () => "InValid mobile Number"),
-                      (r) => null),
-                  hintText: AppLocalizations.of(context)!.mobileNumber),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            AddressSelectionFormField(
-              selectedAddressType: selectedAddressType,
-              onChanged: newAdressCubit.addressTypeChanged,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            state.addressType == AddressType.building
-                ? const BuildingAddressForm()
-                : const VillaAddressForm(),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-              height: 60,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ElevatedButton(
-                onPressed: () {
-                  newAdressCubit.submit();
-                },
-                child: Text(AppLocalizations.of(context)!.addNewAddress),
-                style: Theme.of(context).elevatedButtonTheme.style!.copyWith(),
-              ),
-            ),
+            const AddAddressButton(),
             const SizedBox(
               height: 30,
             ),
           ],
         ),
       ),
-      listener: (context, state) {},
+      listener: (context, state) {
+        state.submissionState.maybeWhen(
+          orElse: () => null,
+          submitting: () => showLoadingDialog(context),
+          success: () => context.replaceRoute(const AddressesRoute()),
+          failed: (failure) => failure.maybeWhen(
+            orElse: () {
+              showErrorDialog(
+                  context, AppLocalizations.of(context)!.serverError);
+            },
+          ),
+        );
+      },
     );
   }
 }

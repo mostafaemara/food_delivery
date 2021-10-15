@@ -2,11 +2,9 @@ import 'package:bloc/bloc.dart';
 
 import 'package:food_delivery_app/domain/entities/address.dart';
 import 'package:food_delivery_app/domain/failures/failure.dart';
-import 'package:food_delivery_app/domain/failures/validation_failure.dart';
+
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
 
-import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/domain/validators/validators.dart';
 import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.dart';
 import 'package:food_delivery_app/presentation/bloc/submission_state.dart';
 import 'package:food_delivery_app/presentation/inputs/address_input.dart';
@@ -60,45 +58,46 @@ class NewaddressformCubit extends Cubit<NewAddressFormState> {
   }
 
   void addressTypeChanged(AddressType? addressType) {
-    emit(state.copyWith(addressType: addressType));
+    emit(state.copyWith(
+        addressType: addressType ?? const AddressType.building()));
   }
 
   bool _isBuildingAdressFieldValid() {
-    return (state.city.isRight() &&
-        state.zone.isRight() &&
-        state.street.isRight() &&
-        state.phoneNumber.isRight() &&
-        state.building.isRight() &&
-        state.floor.isRight() &&
-        state.apartment.isRight());
+    return (state.cityInput.valid &&
+        state.zoneInput.valid &&
+        state.streetInput.valid &&
+        state.mobilePhoneNumberInput.valid &&
+        state.buildingInput.valid &&
+        state.floorInput.valid &&
+        state.apartmentInput.valid);
   }
 
   bool _isVillaAdressFieldValid() {
-    return (state.city.isRight() &&
-        state.zone.isRight() &&
-        state.street.isRight() &&
-        state.phoneNumber.isRight() &&
-        state.villa.isRight());
+    return (state.cityInput.valid &&
+        state.zoneInput.valid &&
+        state.streetInput.valid &&
+        state.mobilePhoneNumberInput.valid &&
+        state.villaInput.valid);
   }
 
   void submit() async {
-    if (state.addressType == AddressType.building) {
-      _addBuildingAddress();
-    } else {
-      _addVillaAddress();
-    }
+    state.addressType.when(
+      building: () => _addBuildingAddress(),
+      villa: () => _addVillaAddress(),
+    );
   }
 
   _addBuildingAddress() async {
     if (_isBuildingAdressFieldValid()) {
       final address = _createBuildingAddress();
-      emit(state.copyWith(isSubmitting: true, failure: none()));
+      emit(state.copyWith(submissionState: const SubmissionState.submitting()));
       final result = await addressRepo.addAddress(uid: uid, address: address);
-      result.fold((failure) => emit(state.copyWith(failure: some(failure))),
+      result.fold(
+          (failure) => emit(state.copyWith(
+              submissionState: SubmissionState.failed(failure: failure))),
           (addressId) {
         addressesCubit.addAdress(address.copyWith(id: addressId));
-        emit(state.copyWith(
-            failure: none(), isSubmitting: false, isSuccess: true));
+        emit(state.copyWith(submissionState: const SubmissionState.success()));
       });
     }
   }
@@ -106,40 +105,27 @@ class NewaddressformCubit extends Cubit<NewAddressFormState> {
   _addVillaAddress() async {
     if (_isVillaAdressFieldValid()) {
       final address = _createVillaAddress();
-      emit(state.copyWith(isSubmitting: true, failure: none()));
+      emit(state.copyWith(submissionState: const SubmissionState.submitting()));
       final result = await addressRepo.addAddress(uid: uid, address: address);
-      result.fold((failure) => emit(state.copyWith(failure: some(failure))),
+      result.fold(
+          (failure) => emit(state.copyWith(
+              submissionState: SubmissionState.failed(failure: failure))),
           (addressId) {
         addressesCubit.addAdress(address.copyWith(id: addressId));
-        emit(state.copyWith(
-            failure: none(), isSubmitting: false, isSuccess: true));
+        emit(state.copyWith(submissionState: const SubmissionState.success()));
       });
     }
   }
 
   Address _createBuildingAddress() {
-    final city = state.city.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final zone = state.zone.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final street = state.street.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final building = state.building.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final floor = state.floor.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final apartment = state.apartment.getOrElse(() {
-      throw Exception("App should crash");
-    });
+    final city = state.cityInput.value;
+    final zone = state.zoneInput.value;
+    final street = state.streetInput.value;
+    final building = state.buildingInput.value;
+    final floor = state.floorInput.value;
+    final apartment = state.apartmentInput.value;
 
-    final phoneNumber = state.phoneNumber.getOrElse(() {
-      throw Exception("App should crash");
-    });
+    final phoneNumber = state.mobilePhoneNumberInput.value;
 
     return Address.buildingAddress(
         apartment: apartment,
@@ -153,22 +139,12 @@ class NewaddressformCubit extends Cubit<NewAddressFormState> {
   }
 
   Address _createVillaAddress() {
-    final city = state.city.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final zone = state.zone.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final street = state.street.getOrElse(() {
-      throw Exception("App should crash");
-    });
-    final villa = state.building.getOrElse(() {
-      throw Exception("App should crash");
-    });
+    final city = state.cityInput.value;
+    final zone = state.zoneInput.value;
+    final street = state.streetInput.value;
+    final villa = state.villaInput.value;
 
-    final phoneNumber = state.phoneNumber.getOrElse(() {
-      throw Exception("App should crash");
-    });
+    final phoneNumber = state.mobilePhoneNumberInput.value;
 
     return Address.villaAddress(
         villa: villa,

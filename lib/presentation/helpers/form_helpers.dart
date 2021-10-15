@@ -44,3 +44,21 @@ extension ConfirmPasswordValidationFailureHelper
     );
   }
 }
+
+extension AddressFieldValidationFailureHelper on AddressFieldValidationFailure {
+  String convertErrorToLocaleString(BuildContext context) {
+    return when(
+      empty: () => AppLocalizations.of(context)!.fieldRequired,
+    );
+  }
+}
+
+extension MobilePhoneNumberValidationFailureHelper
+    on MobilePhoneNumberValidationFailure {
+  String convertErrorToLocaleString(BuildContext context) {
+    return when(
+      empty: () => AppLocalizations.of(context)!.fieldRequired,
+      invalid: () => AppLocalizations.of(context)!.invalidMobilePhoneNumber,
+    );
+  }
+}

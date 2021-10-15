@@ -4,22 +4,23 @@ part "address.freezed.dart";
 
 @freezed
 class Address with _$Address {
-  factory Address.buildingAddress(
-      {required String apartment,
-      required String id,
-      required String building,
-      required String floor,
-      required String city,
+  const factory Address.buildingAddress({
+    required String city,
+    required String zone,
+    required String street,
+    required String building,
+    required String floor,
+    required String apartment,
+    required String mobilePhoneNumber,
+    required String id,
+  }) = _BuildingAddress;
+  const factory Address.villaAddress(
+      {required String city,
       required String zone,
       required String street,
-      required String mobilePhoneNumber}) = BuildingAddress;
-  factory Address.villaAddress(
-      {required String villa,
-      required String city,
+      required String villa,
       required String id,
-      required String zone,
-      required String street,
-      required String mobilePhoneNumber}) = VillaAddress;
+      required String mobilePhoneNumber}) = _VillaAddress;
 }
 
 // class Building {

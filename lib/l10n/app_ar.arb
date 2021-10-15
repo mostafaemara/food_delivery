@@ -71,5 +71,7 @@
     "mobileNumber":"رقم الهاتف المحمول",
     "floor":"طابق",
     "apartment":"شقة",
-    "addNewAddress":"أضف عنوان جديد"
+    "addNewAddress":"أضف عنوان جديد",
+     "fieldRequired":"اجباري",
+        "invalidMobilePhoneNumber":"رقم الهاتف المحمول غير صالح"
 }
