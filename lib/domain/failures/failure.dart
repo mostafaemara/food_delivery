@@ -20,3 +20,5 @@ abstract class AddressFailure with _$AddressFailure {
   const factory AddressFailure.serverFailiure() = AddressServerFailure;
   const factory AddressFailure.addressesIsEmpty() = AddressesIsEmpty;
 }
+
+class OrderFailure {}
