@@ -73,6 +73,8 @@
     "apartment":"Apartment",
      "addNewAddress":"Add new address",
      "fieldRequired":"Field required!",
-     "invalidMobilePhoneNumber":"Invalid mobile phone number"
+     "invalidMobilePhoneNumber":"Invalid mobile phone number",
+     "change":"Change",
+     "noSelectedAddress":"No selected address"
 
 }

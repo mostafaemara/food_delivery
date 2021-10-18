@@ -19,9 +19,11 @@ class _$AddressesStateTearOff {
 
   _AddressesState call(
       {required List<Address> addresses,
+      required Option<String> selectedAddress,
       required Option<AddressFailure> failure}) {
     return _AddressesState(
       addresses: addresses,
+      selectedAddress: selectedAddress,
       failure: failure,
     );
   }
@@ -33,6 +35,7 @@ const $AddressesState = _$AddressesStateTearOff();
 /// @nodoc
 mixin _$AddressesState {
   List<Address> get addresses => throw _privateConstructorUsedError;
+  Option<String> get selectedAddress => throw _privateConstructorUsedError;
   Option<AddressFailure> get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,7 +48,10 @@ abstract class $AddressesStateCopyWith<$Res> {
   factory $AddressesStateCopyWith(
           AddressesState value, $Res Function(AddressesState) then) =
       _$AddressesStateCopyWithImpl<$Res>;
-  $Res call({List<Address> addresses, Option<AddressFailure> failure});
+  $Res call(
+      {List<Address> addresses,
+      Option<String> selectedAddress,
+      Option<AddressFailure> failure});
 }
 
 /// @nodoc
@@ -60,6 +66,7 @@ class _$AddressesStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? addresses = freezed,
+    Object? selectedAddress = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
@@ -67,6 +74,10 @@ class _$AddressesStateCopyWithImpl<$Res>
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>,
+      selectedAddress: selectedAddress == freezed
+          ? _value.selectedAddress
+          : selectedAddress // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -82,7 +93,10 @@ abstract class _$AddressesStateCopyWith<$Res>
           _AddressesState value, $Res Function(_AddressesState) then) =
       __$AddressesStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Address> addresses, Option<AddressFailure> failure});
+  $Res call(
+      {List<Address> addresses,
+      Option<String> selectedAddress,
+      Option<AddressFailure> failure});
 }
 
 /// @nodoc
@@ -99,6 +113,7 @@ class __$AddressesStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? addresses = freezed,
+    Object? selectedAddress = freezed,
     Object? failure = freezed,
   }) {
     return _then(_AddressesState(
@@ -106,6 +121,10 @@ class __$AddressesStateCopyWithImpl<$Res>
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<Address>,
+      selectedAddress: selectedAddress == freezed
+          ? _value.selectedAddress
+          : selectedAddress // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -117,16 +136,21 @@ class __$AddressesStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AddressesState implements _AddressesState {
-  const _$_AddressesState({required this.addresses, required this.failure});
+  const _$_AddressesState(
+      {required this.addresses,
+      required this.selectedAddress,
+      required this.failure});
 
   @override
   final List<Address> addresses;
+  @override
+  final Option<String> selectedAddress;
   @override
   final Option<AddressFailure> failure;
 
   @override
   String toString() {
-    return 'AddressesState(addresses: $addresses, failure: $failure)';
+    return 'AddressesState(addresses: $addresses, selectedAddress: $selectedAddress, failure: $failure)';
   }
 
   @override
@@ -136,6 +160,9 @@ class _$_AddressesState implements _AddressesState {
             (identical(other.addresses, addresses) ||
                 const DeepCollectionEquality()
                     .equals(other.addresses, addresses)) &&
+            (identical(other.selectedAddress, selectedAddress) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectedAddress, selectedAddress)) &&
             (identical(other.failure, failure) ||
                 const DeepCollectionEquality().equals(other.failure, failure)));
   }
@@ -144,6 +171,7 @@ class _$_AddressesState implements _AddressesState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(addresses) ^
+      const DeepCollectionEquality().hash(selectedAddress) ^
       const DeepCollectionEquality().hash(failure);
 
   @JsonKey(ignore: true)
@@ -155,10 +183,13 @@ class _$_AddressesState implements _AddressesState {
 abstract class _AddressesState implements AddressesState {
   const factory _AddressesState(
       {required List<Address> addresses,
+      required Option<String> selectedAddress,
       required Option<AddressFailure> failure}) = _$_AddressesState;
 
   @override
   List<Address> get addresses => throw _privateConstructorUsedError;
+  @override
+  Option<String> get selectedAddress => throw _privateConstructorUsedError;
   @override
   Option<AddressFailure> get failure => throw _privateConstructorUsedError;
   @override

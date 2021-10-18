@@ -13,7 +13,7 @@ class FirestoreOrderRepository implements OrderRepository {
     try {
       final snapshot = await firestore
           .collection(FirestoreCollections.orders)
-          .add(order.toMap());
+          .add(OrderMapper.toMap(order));
 
       return right(snapshot.id);
     } catch (e) {
@@ -22,11 +22,24 @@ class FirestoreOrderRepository implements OrderRepository {
   }
 
   @override
-  Future<Either<OrderFailure, List<Order>>> getOrders(String uid) async {
-    final snapShot = await firestore
-        .collection(FirestoreCollections.orders)
-        .where("uid", isEqualTo: uid)
-        .get();
-        snapShot.docs
+  Future<Either<OrderFailure, List<domain.Order>>> getOrders(String uid) async {
+    try {
+      final snapShot = await firestore
+          .collection(FirestoreCollections.orders)
+          .where("uid", isEqualTo: uid)
+          .get();
+      return right(documentsToOrders(snapShot.docs));
+    } catch (e) {
+      return left(OrderFailure());
+    }
+  }
+
+  List<domain.Order> documentsToOrders(
+      List<QueryDocumentSnapshot<Map<String, dynamic>>> documents) {
+    List<domain.Order> orders = [];
+    for (final document in documents) {
+      orders.add(OrderMapper.firestoreDocToOrder(document));
+    }
+    return orders;
   }
 }

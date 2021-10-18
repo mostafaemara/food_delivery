@@ -73,5 +73,7 @@
     "apartment":"شقة",
     "addNewAddress":"أضف عنوان جديد",
      "fieldRequired":"اجباري",
-        "invalidMobilePhoneNumber":"رقم الهاتف المحمول غير صالح"
+        "invalidMobilePhoneNumber":"رقم الهاتف المحمول غير صالح",
+          "change":"تغير",
+     "noSelectedAddress":"لم يتم اختيار عنوان"
 }

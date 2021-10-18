@@ -22,14 +22,36 @@ class AddressesCubit extends Cubit<AddressesState> {
       authState.when(
         authenticated: (user) async {
           final result = await addressRepo.getAddresses(user.id);
+
           result.fold((failure) => emit(state.copyWith(failure: some(failure))),
               (addresses) => emit(state.copyWith(addresses: addresses)));
+          final selectedAddressResult =
+              await addressRepo.getSelectedAddress(user.id);
+
+          selectedAddressResult.fold(
+              (failure) => emit(state.copyWith(selectedAddress: none())),
+              (addressId) =>
+                  emit(state.copyWith(selectedAddress: some(addressId))));
         },
         unAuthenticated: () {
           emit(AddressesState.initial());
         },
       );
     });
+  }
+
+  void selectAddress(String addressId) {
+    authBloc.state.when(
+      authenticated: (user) async {
+        final result = await addressRepo.setSelectedAddress(
+            uid: user.id, addressId: addressId);
+        result.fold(
+            (failure) => null,
+            (success) =>
+                emit(state.copyWith(selectedAddress: some(addressId))));
+      },
+      unAuthenticated: () => null,
+    );
   }
 
   void addAdress(Address address) {

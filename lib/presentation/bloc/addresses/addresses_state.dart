@@ -4,8 +4,9 @@ part of 'addresses_cubit.dart';
 class AddressesState with _$AddressesState {
   const factory AddressesState(
       {required List<Address> addresses,
+      required Option<String> selectedAddress,
       required Option<AddressFailure> failure}) = _AddressesState;
 
   factory AddressesState.initial() =>
-      _AddressesState(addresses: [], failure: none());
+      _AddressesState(addresses: [], failure: none(), selectedAddress: none());
 }

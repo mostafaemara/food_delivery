@@ -4,5 +4,5 @@ import 'package:food_delivery_app/domain/failures/failure.dart';
 
 abstract class OrderRepository {
   Future<Either<OrderFailure, String>> addOrder(domain.Order order);
-  Future<Either<OrderFailure, List<Order>>> getOrders(String uid);
+  Future<Either<OrderFailure, List<domain.Order>>> getOrders(String uid);
 }

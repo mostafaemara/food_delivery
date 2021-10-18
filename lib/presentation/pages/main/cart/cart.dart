@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:food_delivery_app/presentation/helpers/cart_helper.dart';
 import 'package:food_delivery_app/presentation/pages/main/cart/widgets/cart_list.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 import "../../../helpers/translators.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -66,7 +67,9 @@ class Cart extends StatelessWidget {
             height: 50,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.navigateTo(const PaymentRoute());
+                },
                 child: Text(AppLocalizations.of(context)!.processToPayment)),
           )
         ],

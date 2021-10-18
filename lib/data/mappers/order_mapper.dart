@@ -22,23 +22,6 @@ class OrderItemMapper {
   }
 }
 
-extension OrderItemToMap on OrderItem {
-  Map<String, dynamic> toMap() {
-    return {"quantity": quantity, "id": id, "price": price, "title": title};
-  }
-}
-
-extension OrderToMap on Order {
-  Map<String, dynamic> toMap() {
-    return {
-      "items": items.map((e) => OrderItemMapper.toMap(e)).toList(),
-      "uid": uid,
-      "userName": userName,
-      "date": FieldValue.serverTimestamp()
-    };
-  }
-}
-
 class OrderMapper {
   static Map<String, dynamic> toMap(Order order) {
     return {
@@ -55,7 +38,7 @@ class OrderMapper {
         items: List<OrderItem>.from(document
             .data()["items"]
             .map((e) => OrderItemMapper.mapToOrderItem(e))),
-        date: document.data()["date"],
+        date: DateTime.parse(document.data()["date"]),
         uid: document.data()["uid"],
         userName: document.data()["userName"],
         orderId: document.id);

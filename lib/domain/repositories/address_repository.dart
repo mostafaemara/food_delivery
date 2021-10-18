@@ -8,4 +8,8 @@ abstract class AddressRepository {
       {required String uid, required Address address});
   Future<Either<AddressFailure, Unit>> deleteAddress(
       {required String uid, required String addressId});
+
+  Future<Either<AddressFailure, String>> getSelectedAddress(String uid);
+  Future<Either<AddressFailure, Unit>> setSelectedAddress(
+      {required String uid, required String addressId});
 }

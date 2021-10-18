@@ -52,7 +52,7 @@ class FirestoreAdressRepository implements AddressRepository {
           .get();
 
       if (snapshot.docs.isEmpty) {
-        return left(const AddressFailure.addressesIsEmpty());
+        return right([]);
       }
 
       return right(documentsToAdresses(snapshot.docs));
@@ -69,5 +69,32 @@ class FirestoreAdressRepository implements AddressRepository {
     }
 
     return addresses;
+  }
+
+  @override
+  Future<Either<AddressFailure, String>> getSelectedAddress(String uid) async {
+    try {
+      final snapshot =
+          await firestore.collection(FirestoreCollections.users).doc(uid).get();
+
+      return right(snapshot.data()?["selectedAddress"]);
+    } catch (e) {
+      return left(const AddressFailure.noAddressSelected());
+    }
+  }
+
+  @override
+  Future<Either<AddressFailure, Unit>> setSelectedAddress(
+      {required String uid, required String addressId}) async {
+    try {
+      await firestore
+          .collection(FirestoreCollections.users)
+          .doc(uid)
+          .set({"selectedAddress": addressId});
+
+      return right(unit);
+    } catch (e) {
+      return left(const AddressFailure.serverFailiure());
+    }
   }
 }

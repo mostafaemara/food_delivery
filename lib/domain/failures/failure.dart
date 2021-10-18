@@ -18,7 +18,7 @@ abstract class ProfileFailure with _$ProfileFailure {
 @freezed
 abstract class AddressFailure with _$AddressFailure {
   const factory AddressFailure.serverFailiure() = AddressServerFailure;
-  const factory AddressFailure.addressesIsEmpty() = AddressesIsEmpty;
+  const factory AddressFailure.noAddressSelected() = AddressesIsEmpty;
 }
 
 class OrderFailure {}

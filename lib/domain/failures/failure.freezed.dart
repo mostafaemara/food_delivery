@@ -861,7 +861,7 @@ class _$AddressFailureTearOff {
     return const AddressServerFailure();
   }
 
-  AddressesIsEmpty addressesIsEmpty() {
+  AddressesIsEmpty noAddressSelected() {
     return const AddressesIsEmpty();
   }
 }
@@ -874,38 +874,38 @@ mixin _$AddressFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() serverFailiure,
-    required TResult Function() addressesIsEmpty,
+    required TResult Function() noAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? serverFailiure,
-    TResult Function()? addressesIsEmpty,
+    TResult Function()? noAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? serverFailiure,
-    TResult Function()? addressesIsEmpty,
+    TResult Function()? noAddressSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AddressServerFailure value) serverFailiure,
-    required TResult Function(AddressesIsEmpty value) addressesIsEmpty,
+    required TResult Function(AddressesIsEmpty value) noAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AddressServerFailure value)? serverFailiure,
-    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    TResult Function(AddressesIsEmpty value)? noAddressSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddressServerFailure value)? serverFailiure,
-    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    TResult Function(AddressesIsEmpty value)? noAddressSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -969,7 +969,7 @@ class _$AddressServerFailure implements AddressServerFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() serverFailiure,
-    required TResult Function() addressesIsEmpty,
+    required TResult Function() noAddressSelected,
   }) {
     return serverFailiure();
   }
@@ -978,7 +978,7 @@ class _$AddressServerFailure implements AddressServerFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? serverFailiure,
-    TResult Function()? addressesIsEmpty,
+    TResult Function()? noAddressSelected,
   }) {
     return serverFailiure?.call();
   }
@@ -987,7 +987,7 @@ class _$AddressServerFailure implements AddressServerFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? serverFailiure,
-    TResult Function()? addressesIsEmpty,
+    TResult Function()? noAddressSelected,
     required TResult orElse(),
   }) {
     if (serverFailiure != null) {
@@ -1000,7 +1000,7 @@ class _$AddressServerFailure implements AddressServerFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AddressServerFailure value) serverFailiure,
-    required TResult Function(AddressesIsEmpty value) addressesIsEmpty,
+    required TResult Function(AddressesIsEmpty value) noAddressSelected,
   }) {
     return serverFailiure(this);
   }
@@ -1009,7 +1009,7 @@ class _$AddressServerFailure implements AddressServerFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AddressServerFailure value)? serverFailiure,
-    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    TResult Function(AddressesIsEmpty value)? noAddressSelected,
   }) {
     return serverFailiure?.call(this);
   }
@@ -1018,7 +1018,7 @@ class _$AddressServerFailure implements AddressServerFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddressServerFailure value)? serverFailiure,
-    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    TResult Function(AddressesIsEmpty value)? noAddressSelected,
     required TResult orElse(),
   }) {
     if (serverFailiure != null) {
@@ -1058,7 +1058,7 @@ class _$AddressesIsEmpty implements AddressesIsEmpty {
 
   @override
   String toString() {
-    return 'AddressFailure.addressesIsEmpty()';
+    return 'AddressFailure.noAddressSelected()';
   }
 
   @override
@@ -1073,29 +1073,29 @@ class _$AddressesIsEmpty implements AddressesIsEmpty {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() serverFailiure,
-    required TResult Function() addressesIsEmpty,
+    required TResult Function() noAddressSelected,
   }) {
-    return addressesIsEmpty();
+    return noAddressSelected();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? serverFailiure,
-    TResult Function()? addressesIsEmpty,
+    TResult Function()? noAddressSelected,
   }) {
-    return addressesIsEmpty?.call();
+    return noAddressSelected?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? serverFailiure,
-    TResult Function()? addressesIsEmpty,
+    TResult Function()? noAddressSelected,
     required TResult orElse(),
   }) {
-    if (addressesIsEmpty != null) {
-      return addressesIsEmpty();
+    if (noAddressSelected != null) {
+      return noAddressSelected();
     }
     return orElse();
   }
@@ -1104,29 +1104,29 @@ class _$AddressesIsEmpty implements AddressesIsEmpty {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(AddressServerFailure value) serverFailiure,
-    required TResult Function(AddressesIsEmpty value) addressesIsEmpty,
+    required TResult Function(AddressesIsEmpty value) noAddressSelected,
   }) {
-    return addressesIsEmpty(this);
+    return noAddressSelected(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AddressServerFailure value)? serverFailiure,
-    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    TResult Function(AddressesIsEmpty value)? noAddressSelected,
   }) {
-    return addressesIsEmpty?.call(this);
+    return noAddressSelected?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AddressServerFailure value)? serverFailiure,
-    TResult Function(AddressesIsEmpty value)? addressesIsEmpty,
+    TResult Function(AddressesIsEmpty value)? noAddressSelected,
     required TResult orElse(),
   }) {
-    if (addressesIsEmpty != null) {
-      return addressesIsEmpty(this);
+    if (noAddressSelected != null) {
+      return noAddressSelected(this);
     }
     return orElse();
   }
