@@ -21,4 +21,4 @@ abstract class AddressFailure with _$AddressFailure {
   const factory AddressFailure.noAddressSelected() = AddressesIsEmpty;
 }
 
-class OrderFailure {}
+class PaymentFailure {}

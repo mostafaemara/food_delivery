@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_app/data/mappers/multilingual_mapper.dart';
-import 'package:food_delivery_app/domain/entities/order.dart';
+import 'package:food_delivery_app/domain/entities/preorder.dart';
 import 'package:food_delivery_app/domain/entities/order_item.dart';
 
 class OrderItemMapper {
@@ -17,30 +17,29 @@ class OrderItemMapper {
     return OrderItem(
         quantity: map["quantity"],
         title: MultilingualMapper.toMultilingual(map["title"]),
-        price: map["price"],
-        id: map["id"]);
+        price: map["price"].toDouble(),
+        id: map["id"],
+        totalPrice: map["total"].toDouble());
   }
 }
 
 class OrderMapper {
-  static Map<String, dynamic> toMap(Order order) {
+  static Map<String, dynamic> toMap(Preorder order) {
     return {
       "items": order.items.map((e) => OrderItemMapper.toMap(e)).toList(),
       "uid": order.uid,
-      "userName": order.userName,
       "date": FieldValue.serverTimestamp()
     };
   }
 
-  static Order firestoreDocToOrder(
-      QueryDocumentSnapshot<Map<String, dynamic>> document) {
-    return Order(
-        items: List<OrderItem>.from(document
-            .data()["items"]
-            .map((e) => OrderItemMapper.mapToOrderItem(e))),
-        date: DateTime.parse(document.data()["date"]),
-        uid: document.data()["uid"],
-        userName: document.data()["userName"],
-        orderId: document.id);
+  static Preorder maptoPreorder(Map<String, dynamic> map) {
+    return Preorder(
+      items: List<OrderItem>.from(
+          map["items"].map((e) => OrderItemMapper.mapToOrderItem(e))),
+      uid: map["uid"],
+      totalPriceWithFees: map["totalPrice"].toDouble(),
+      deliveryFees: map["deliveryFees"].toDouble(),
+      totalPrice: map["totalPriceWithFees"].toDouble(),
+    );
   }
 }

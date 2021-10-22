@@ -14,9 +14,9 @@ class FirestoreAdressRepository implements AddressRepository {
       {required String uid, required Address address}) async {
     try {
       final documentReference = await firestore
-          .collection(FirestoreCollections.users)
+          .collection(FirestoreConfig.usersCollection)
           .doc(uid)
-          .collection(FirestoreCollections.addresses)
+          .collection(FirestoreConfig.addressesCollection)
           .add(address.toMap());
 
       return right(documentReference.id);
@@ -30,9 +30,9 @@ class FirestoreAdressRepository implements AddressRepository {
       {required String uid, required String addressId}) async {
     try {
       await firestore
-          .collection(FirestoreCollections.users)
+          .collection(FirestoreConfig.usersCollection)
           .doc(uid)
-          .collection(FirestoreCollections.addresses)
+          .collection(FirestoreConfig.addressesCollection)
           .doc(addressId)
           .delete();
 
@@ -46,9 +46,9 @@ class FirestoreAdressRepository implements AddressRepository {
   Future<Either<AddressFailure, List<Address>>> getAddresses(String uid) async {
     try {
       final snapshot = await firestore
-          .collection(FirestoreCollections.users)
+          .collection(FirestoreConfig.usersCollection)
           .doc(uid)
-          .collection(FirestoreCollections.addresses)
+          .collection(FirestoreConfig.addressesCollection)
           .get();
 
       if (snapshot.docs.isEmpty) {
@@ -74,8 +74,10 @@ class FirestoreAdressRepository implements AddressRepository {
   @override
   Future<Either<AddressFailure, String>> getSelectedAddress(String uid) async {
     try {
-      final snapshot =
-          await firestore.collection(FirestoreCollections.users).doc(uid).get();
+      final snapshot = await firestore
+          .collection(FirestoreConfig.usersCollection)
+          .doc(uid)
+          .get();
 
       return right(snapshot.data()?["selectedAddress"]);
     } catch (e) {
@@ -88,7 +90,7 @@ class FirestoreAdressRepository implements AddressRepository {
       {required String uid, required String addressId}) async {
     try {
       await firestore
-          .collection(FirestoreCollections.users)
+          .collection(FirestoreConfig.usersCollection)
           .doc(uid)
           .set({"selectedAddress": addressId});
 

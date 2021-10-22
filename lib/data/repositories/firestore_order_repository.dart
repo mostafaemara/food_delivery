@@ -1,45 +1,49 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_delivery_app/data/firestore_collections.dart';
+
 import 'package:food_delivery_app/domain/failures/failure.dart';
-import 'package:food_delivery_app/domain/entities/order.dart' as domain;
+import 'package:food_delivery_app/domain/entities/preorder.dart' as domain;
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/domain/repositories/order_repository.dart';
+import 'package:food_delivery_app/domain/repositories/payment_repository.dart';
 import "../mappers/order_mapper.dart";
+import 'package:cloud_functions/cloud_functions.dart';
 
-class FirestoreOrderRepository implements OrderRepository {
+class FirestoreOrderRepository implements PaymentRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  @override
-  Future<Either<OrderFailure, String>> addOrder(domain.Order order) async {
-    try {
-      final snapshot = await firestore
-          .collection(FirestoreCollections.orders)
-          .add(OrderMapper.toMap(order));
-
-      return right(snapshot.id);
-    } catch (e) {
-      return left(OrderFailure());
-    }
-  }
+  FirebaseFunctions functions = FirebaseFunctions.instance;
+  final configCollection = "config";
+  final feesDocumentId = "fees";
+  final deliveryFeesFieldKey = "deliveryFees";
+  final ordersCollection = "orders";
 
   @override
-  Future<Either<OrderFailure, List<domain.Order>>> getOrders(String uid) async {
+  Future<Either<PaymentFailure, List<domain.Preorder>>> getOrders(
+      String uid) async {
     try {
       final snapShot = await firestore
-          .collection(FirestoreCollections.orders)
+          .collection(ordersCollection)
           .where("uid", isEqualTo: uid)
           .get();
-      return right(documentsToOrders(snapShot.docs));
+      return right([]);
     } catch (e) {
-      return left(OrderFailure());
+      return left(PaymentFailure());
     }
   }
 
-  List<domain.Order> documentsToOrders(
-      List<QueryDocumentSnapshot<Map<String, dynamic>>> documents) {
-    List<domain.Order> orders = [];
-    for (final document in documents) {
-      orders.add(OrderMapper.firestoreDocToOrder(document));
+  @override
+  Future<Either<PaymentFailure, domain.Preorder>> prepareOrder(
+      String uid) async {
+    try {
+      final callable = functions.httpsCallable("prepareOrder");
+
+      final result = await callable.call(<String, dynamic>{"uid": uid});
+
+      final decodedJson = json.decode(result.data);
+
+      return right(OrderMapper.maptoPreorder(decodedJson));
+    } catch (e) {
+      return left(PaymentFailure());
     }
-    return orders;
   }
 }

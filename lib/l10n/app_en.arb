@@ -75,6 +75,13 @@
      "fieldRequired":"Field required!",
      "invalidMobilePhoneNumber":"Invalid mobile phone number",
      "change":"Change",
-     "noSelectedAddress":"No selected address"
+     "noSelectedAddress":"No selected address",
+     "deliveryAddress":"Delivery Address",
+     "payment":"Payment",
+     "paymentOnArrival":"Payment on arrival",
+     "payWithCash":"Pay with cash /Pos upon arrival",
+     "deliveryFee":"Delivery fee",
+     "subtotal":"Subtotal",
+     "total":"Total"
 
 }

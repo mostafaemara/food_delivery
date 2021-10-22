@@ -25,7 +25,7 @@ class PaymentPage extends StatelessWidget {
               height: 30,
             ),
             Text(
-              "Delivery address",
+              AppLocalizations.of(context)!.deliveryAddress,
               style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(
@@ -36,7 +36,7 @@ class PaymentPage extends StatelessWidget {
               height: 40,
             ),
             Text(
-              "Payment",
+              AppLocalizations.of(context)!.paymentMethod,
               style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(
@@ -47,8 +47,8 @@ class PaymentPage extends StatelessWidget {
               value: true,
               groupValue: true,
               onChanged: (_) {},
-              title: Text("Pay on arrival"),
-              subtitle: Text("Pay with cash/POS upon arrival "),
+              title: Text(AppLocalizations.of(context)!.paymentOnArrival),
+              subtitle: Text(AppLocalizations.of(context)!.payWithCash),
             ),
             const SizedBox(
               height: 40,
@@ -57,7 +57,7 @@ class PaymentPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Delivery Fee",
+                  AppLocalizations.of(context)!.deliveryFee,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Text(
@@ -73,7 +73,7 @@ class PaymentPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Subtotal",
+                  AppLocalizations.of(context)!.subtotal,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Text(
@@ -87,7 +87,7 @@ class PaymentPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Total",
+                  AppLocalizations.of(context)!.total,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Text(

@@ -1,6 +1,6 @@
-class FirestoreCollections {
-  static const addresses = "addresses";
-  static const orders = "orders";
-  static const favorites = "favorites";
-  static const users = "users";
+class FirestoreConfig {
+  static const addressesCollection = "addresses";
+
+  static const favoritesCollection = "favorites";
+  static const usersCollection = "users";
 }

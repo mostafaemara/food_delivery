@@ -75,5 +75,12 @@
      "fieldRequired":"اجباري",
         "invalidMobilePhoneNumber":"رقم الهاتف المحمول غير صالح",
           "change":"تغير",
-     "noSelectedAddress":"لم يتم اختيار عنوان"
+     "noSelectedAddress":"لم يتم اختيار عنوان",
+       "deliveryAddress":"عنوان التوصيل",
+     "payment":"طريقة الدفع",
+     "paymentOnArrival":"الدفع عند الاستلام",
+     "payWithCash":"الدفع نقدا عند الاستلام",
+     "deliveryFee":"رسوم التوصيل",
+     "subtotal":"السعر",
+     "total":"المجموع"
 }
