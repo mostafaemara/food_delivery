@@ -76,8 +76,12 @@ class AppRouter extends _i17.RootStackRouter {
           routeData: routeData, child: const _i10.NewAddressPage());
     },
     AddressesRoute.name: (routeData) {
+      final args = routeData.argsAs<AddressesRouteArgs>();
       return _i17.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.AddressesPage());
+          routeData: routeData,
+          child: _i11.AddressesPage(
+              key: args.key,
+              isSelectionModeActive: args.isSelectionModeActive));
     },
     PaymentRoute.name: (routeData) {
       return _i17.MaterialPageX<dynamic>(
@@ -221,10 +225,22 @@ class NewAddressRoute extends _i17.PageRouteInfo<void> {
 }
 
 /// generated route for [_i11.AddressesPage]
-class AddressesRoute extends _i17.PageRouteInfo<void> {
-  const AddressesRoute() : super(name, path: '/addresses-page');
+class AddressesRoute extends _i17.PageRouteInfo<AddressesRouteArgs> {
+  AddressesRoute({_i18.Key? key, required bool isSelectionModeActive})
+      : super(name,
+            path: '/addresses-page',
+            args: AddressesRouteArgs(
+                key: key, isSelectionModeActive: isSelectionModeActive));
 
   static const String name = 'AddressesRoute';
+}
+
+class AddressesRouteArgs {
+  const AddressesRouteArgs({this.key, required this.isSelectionModeActive});
+
+  final _i18.Key? key;
+
+  final bool isSelectionModeActive;
 }
 
 /// generated route for [_i12.PaymentPage]

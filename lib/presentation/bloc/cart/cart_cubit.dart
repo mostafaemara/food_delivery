@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:food_delivery_app/data/repositories/firestore_order_repository.dart';
+import 'package:food_delivery_app/data/repositories/payment_repository_impl.dart';
 
 import 'package:food_delivery_app/domain/entities/cart_item.dart';
 import 'package:food_delivery_app/domain/failures/failure.dart';
@@ -18,7 +18,7 @@ part "cart_cubit.freezed.dart";
 
 class CartCubit extends Cubit<CartState> {
   final CartRepository _cartRepo;
-  final FirestoreOrderRepository orderRepo = FirestoreOrderRepository();
+  final PaymentRepositoryImpl orderRepo = PaymentRepositoryImpl();
   final AuthBloc _authBloc;
   late StreamSubscription authChange;
   CartCubit(this._cartRepo, this._authBloc)

@@ -4,7 +4,8 @@ import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.da
 import 'package:food_delivery_app/presentation/helpers/address_helper.dart';
 import 'package:food_delivery_app/presentation/pages/payment/widgets/address.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import "package:auto_route/auto_route.dart";
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 import 'empty_address.dart';
 
 class SelectAddress extends StatelessWidget {
@@ -32,7 +33,9 @@ class SelectAddress extends StatelessWidget {
           ),
           TextButton(
             child: Text(AppLocalizations.of(context)!.change),
-            onPressed: () {},
+            onPressed: () {
+              context.navigateTo(AddressesRoute(isSelectionModeActive: true));
+            },
           )
         ],
       );

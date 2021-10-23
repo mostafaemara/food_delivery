@@ -23,7 +23,7 @@ class OrderItemMapper {
   }
 }
 
-class OrderMapper {
+class PreorderMapper {
   static Map<String, dynamic> toMap(Preorder order) {
     return {
       "items": order.items.map((e) => OrderItemMapper.toMap(e)).toList(),

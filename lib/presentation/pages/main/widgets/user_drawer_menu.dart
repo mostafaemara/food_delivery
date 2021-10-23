@@ -49,7 +49,8 @@ class UserDrawerMenu extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                context.router.push(const AddressesRoute());
+                context.router
+                    .push(AddressesRoute(isSelectionModeActive: false));
               },
               horizontalTitleGap: 0,
               contentPadding: EdgeInsets.zero,

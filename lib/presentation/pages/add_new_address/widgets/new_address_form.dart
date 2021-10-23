@@ -98,7 +98,8 @@ class _NewAddressFormState extends State<NewAddressForm> {
         state.submissionState.maybeWhen(
           orElse: () => null,
           submitting: () => showLoadingDialog(context),
-          success: () => context.replaceRoute(const AddressesRoute()),
+          success: () => context
+              .replaceRoute(AddressesRoute(isSelectionModeActive: false)),
           failed: (failure) => failure.maybeWhen(
             orElse: () {
               showErrorDialog(

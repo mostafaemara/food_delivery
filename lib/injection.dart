@@ -2,7 +2,7 @@ import 'package:food_delivery_app/data/repositories/firestore_address_repository
 import 'package:food_delivery_app/data/repositories/firestore_cart_repository.dart';
 import 'package:food_delivery_app/data/repositories/firestore_favorites_repository.dart';
 import 'package:food_delivery_app/data/repositories/firestore_meals_repository.dart';
-import 'package:food_delivery_app/data/repositories/firestore_order_repository.dart';
+import 'package:food_delivery_app/data/repositories/payment_repository_impl.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
 import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
 import 'package:food_delivery_app/domain/repositories/payment_repository.dart';
@@ -34,5 +34,5 @@ Future<void> initializeDependencies() async {
   locator.registerSingleton<CartRepository>(FirestoreCartRepository());
   locator.registerSingleton<ProfileRepository>(FirestoreProfileRepository());
   locator.registerSingleton<AddressRepository>(FirestoreAdressRepository());
-  locator.registerSingleton<PaymentRepository>(FirestoreOrderRepository());
+  locator.registerSingleton<PaymentRepository>(PaymentRepositoryImpl());
 }

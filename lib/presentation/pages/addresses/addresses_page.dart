@@ -7,8 +7,9 @@ import 'package:food_delivery_app/presentation/pages/addresses/widgets/addresses
 import 'widgets/addresses_app_bar.dart';
 
 class AddressesPage extends StatelessWidget {
-  const AddressesPage({Key? key}) : super(key: key);
-
+  const AddressesPage({Key? key, required this.isSelectionModeActive})
+      : super(key: key);
+  final bool isSelectionModeActive;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +23,11 @@ class AddressesPage extends StatelessWidget {
           BlocBuilder<AddressesCubit, AddressesState>(
             builder: (context, state) => Column(
                 children: List.generate(
-                        state.addresses.length,
-                        (index) =>
-                            AddressesListItem(address: state.addresses[index]))
-                    .toList()),
+                    state.addresses.length,
+                    (index) => AddressesListItem(
+                          address: state.addresses[index],
+                          isSelectionModeActive: isSelectionModeActive,
+                        )).toList()),
           )
         ]),
       ),
