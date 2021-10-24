@@ -15,6 +15,7 @@ class LanguageSelectionDailog extends StatelessWidget {
   Widget build(BuildContext context) {
     final configCubit = BlocProvider.of<ConfigCubit>(context);
     return Dialog(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(15),
@@ -23,11 +24,19 @@ class LanguageSelectionDailog extends StatelessWidget {
           children: [
             Text(
               AppLocalizations.of(context)!.chooseYourLanguage,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Theme.of(context).colorScheme.onSurface),
             ),
             const Divider(),
             RadioListTile<domain.Locales>(
-              title: Text(AppLocalizations.of(context)!.english),
+              activeColor: Theme.of(context).colorScheme.onSurface,
+              title: Text(
+                AppLocalizations.of(context)!.english,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
               value: domain.Locales.english,
               groupValue: selectedLocal,
               onChanged: (value) {
@@ -36,7 +45,12 @@ class LanguageSelectionDailog extends StatelessWidget {
               },
             ),
             RadioListTile<domain.Locales>(
-              title: Text(AppLocalizations.of(context)!.arabic),
+              activeColor: Theme.of(context).colorScheme.onSurface,
+              title: Text(
+                AppLocalizations.of(context)!.arabic,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
               value: domain.Locales.arabic,
               groupValue: selectedLocal,
               onChanged: (value) {

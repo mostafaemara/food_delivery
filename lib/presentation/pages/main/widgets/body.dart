@@ -16,6 +16,7 @@ class Body extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Card(
+          color: Theme.of(context).colorScheme.surface,
           elevation: 0,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -26,6 +27,7 @@ class Body extends StatelessWidget {
             icon: Image.asset(
               "assets/icons/drawer_icon.png",
               height: 24,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),

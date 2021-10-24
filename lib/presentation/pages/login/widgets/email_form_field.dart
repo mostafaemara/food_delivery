@@ -19,7 +19,10 @@ class EmailFormField extends StatelessWidget {
           padding: const EdgeInsetsDirectional.only(bottom: 8, start: 20),
           child: Text(
             AppLocalizations.of(context)!.emailAddress,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context)
+                .textTheme
+                .bodyText2!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
           ),
         ),
         TextFormField(

@@ -14,6 +14,9 @@ class SkipButton extends StatelessWidget {
         onPressed: () {
           context.navigateTo(const MainRoute());
         },
-        child: Text(AppLocalizations.of(context)!.skip));
+        child: Text(
+          AppLocalizations.of(context)!.skip,
+          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+        ));
   }
 }

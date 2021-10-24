@@ -13,7 +13,10 @@ class SignupButton extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: TextButton(
-        child: Text(AppLocalizations.of(context)!.createAccount),
+        child: Text(
+          AppLocalizations.of(context)!.createAccount,
+          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+        ),
         onPressed: () {
           context.navigateTo(const SignupRoute());
         },

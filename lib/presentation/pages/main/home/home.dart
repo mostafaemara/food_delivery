@@ -46,10 +46,9 @@ class _HomeState extends State<Home> {
               ),
               Text(
                 AppLocalizations.of(context)!.enjoyDeliciousFood,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headline5!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onBackground),
               ),
               const SizedBox(
                 height: 50,
@@ -63,28 +62,11 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.popular,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 60),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.viewAll,
-                          style: const TextStyle(
-                            decoration: TextDecoration.underline,
-                          ),
-                        )),
-                  ),
-                ],
+              Text(
+                AppLocalizations.of(context)!.popular,
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onBackground),
               ),
               const SizedBox(
                 height: 30,

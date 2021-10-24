@@ -13,21 +13,23 @@ import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../injection.dart';
+
 part 'cart_state.dart';
 part "cart_cubit.freezed.dart";
 
 class CartCubit extends Cubit<CartState> {
-  final CartRepository _cartRepo;
-  final PaymentRepositoryImpl orderRepo = PaymentRepositoryImpl();
+  final CartRepository _cartRepo = locator<CartRepository>();
+
   final AuthBloc _authBloc;
   late StreamSubscription authChange;
-  CartCubit(this._cartRepo, this._authBloc)
+  CartCubit(this._authBloc)
       : super(CartState(items: const [], failure: none(), totalPrice: 0)) {
     authChange = _authBloc.stream.listen((authState) {
       authState.maybeWhen(
         authenticated: (user) async {
           final result = await _cartRepo.getCartitems(user.id);
-          await orderRepo.prepareOrder(user.id);
+
           result.fold(
               (failure) => emit(state.copyWith(failure: some(failure))),
               (items) => emit(state.copyWith(

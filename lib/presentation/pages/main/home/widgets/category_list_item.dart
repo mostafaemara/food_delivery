@@ -31,6 +31,7 @@ class CategoryListItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
                     border: Border.all(color: color),
                     borderRadius: const BorderRadius.all(Radius.circular(81))),
                 child: Container(
@@ -52,6 +53,8 @@ class CategoryListItem extends StatelessWidget {
                           category.title.translate(locale),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface),
                         ),
                       ),
                     ],

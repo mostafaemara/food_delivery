@@ -1,74 +1,67 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_app/domain/entities/address.dart';
 
-enum AddressType { villa, building }
+class AddressMapper {
+  static Map<String, dynamic> addressToMap(Address address) {
+    return address.when(
+      buildingAddress: (city, zone, street, building, floor, apartment,
+          mobilePhoneNumber, _) {
+        return {
+          "city": city,
+          "zone": zone,
+          "street": street,
+          "mobilePhoneNumber": mobilePhoneNumber,
+          "apartment": apartment,
+          "building": building,
+          "floor": floor,
+          "addressType": "building"
+        };
+      },
+      villaAddress: (city, zone, street, villa, mobilePhoneNumber, _) {
+        return {
+          "city": city,
+          "zone": zone,
+          "street": street,
+          "mobilePhoneNumber": mobilePhoneNumber,
+          "villa": villa,
+          "addressType": "villa"
+        };
+      },
+    );
+  }
 
-extension DocmentToDomainMapper on QueryDocumentSnapshot<Map<String, dynamic>> {
-  Address docToBuildingAddress() {
+  static Address _documentToBuildingAddress(
+      QueryDocumentSnapshot<Map<String, dynamic>> document) {
     return Address.buildingAddress(
-        city: data()["city"],
-        zone: data()["zone"],
-        street: data()["street"],
-        mobilePhoneNumber: data()["mobilePhoneNumber"],
-        apartment: data()["apartment"],
-        building: data()["building"],
-        floor: data()["floor"],
-        id: id);
+        city: document.data()["city"],
+        zone: document.data()["zone"],
+        street: document.data()["street"],
+        mobilePhoneNumber: document.data()["mobilePhoneNumber"],
+        apartment: document.data()["apartment"],
+        building: document.data()["building"],
+        floor: document.data()["floor"],
+        id: document.id);
   }
 
-  Address docToVillaAddress() {
+  static Address _documentToVillaAddress(
+      QueryDocumentSnapshot<Map<String, dynamic>> document) {
     return Address.villaAddress(
-        city: this["city"],
-        zone: this["zone"],
-        street: this["street"],
-        mobilePhoneNumber: this["mobilePhoneNumber"],
-        villa: this["villa"],
-        id: id);
+        city: document.data()["city"],
+        zone: document.data()["zone"],
+        street: document.data()["street"],
+        mobilePhoneNumber: document.data()["mobilePhoneNumber"],
+        villa: document.data()["villa"],
+        id: document.id);
   }
 
-  Address docToAddressByType() {
-    switch (addressType()) {
-      case AddressType.villa:
-        return docToVillaAddress();
+  static Address documentToAddress(
+      QueryDocumentSnapshot<Map<String, dynamic>> document) {
+    final addressType = document.data()["addressType"];
 
-      case AddressType.building:
-        return docToBuildingAddress();
-    }
-  }
-
-  AddressType addressType() {
-    if (data()["addressType"] == "building") {
-      return AddressType.building;
+    if (addressType == "building") {
+      return _documentToBuildingAddress(document);
     } else {
-      return AddressType.villa;
+      return _documentToVillaAddress(document);
     }
   }
-}
-
-extension AddressToMap on Address {
-  Map<String, dynamic> toMap() => when(
-        buildingAddress: (city, zone, street, building, floor, apartment,
-            mobilePhoneNumber, _) {
-          return {
-            "city": city,
-            "zone": zone,
-            "street": street,
-            "mobilePhoneNumber": mobilePhoneNumber,
-            "apartment": apartment,
-            "building": building,
-            "floor": floor,
-            "addressType": "building"
-          };
-        },
-        villaAddress: (city, zone, street, villa, mobilePhoneNumber, _) {
-          return {
-            "city": city,
-            "zone": zone,
-            "street": street,
-            "mobilePhoneNumber": mobilePhoneNumber,
-            "villa": villa,
-            "addressType": "villa"
-          };
-        },
-      );
 }

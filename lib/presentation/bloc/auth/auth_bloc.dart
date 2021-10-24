@@ -6,14 +6,16 @@ import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/domain/entities/user.dart';
 import 'package:food_delivery_app/domain/repositories/auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../injection.dart';
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthRepository authRepo;
+  final AuthRepository authRepo = locator<AuthRepository>();
 
-  AuthBloc(this.authRepo) : super(const AuthState.unAuthenticated()) {
+  AuthBloc() : super(const AuthState.unAuthenticated()) {
     //authRepo.onAuthChanged.listen((user) {
     //  print(" Auth bloc Auth changed");
     //  add(AuthChanged(user));

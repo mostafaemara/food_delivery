@@ -10,13 +10,15 @@ import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
 import 'package:food_delivery_app/presentation/bloc/auth/auth_bloc.dart';
 
+import '../../../injection.dart';
+
 part 'favorites_state.dart';
 
 class FavoritesCubit extends Cubit<FavoritesState> {
-  final FavoritesRepository _favoritesRepo;
+  final FavoritesRepository _favoritesRepo = locator<FavoritesRepository>();
   final AuthBloc _authBloc;
   late StreamSubscription authChange;
-  FavoritesCubit(this._favoritesRepo, this._authBloc)
+  FavoritesCubit(this._authBloc)
       : super(FavoritesState(
           favorites: const [],
           failureOrNone: none(),

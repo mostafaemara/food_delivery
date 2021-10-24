@@ -7,11 +7,13 @@ import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
 import 'package:meta/meta.dart';
 
+import '../../../injection.dart';
+
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  final MealsRepository _mealsRepo;
-  HomeCubit(this._mealsRepo)
+  final MealsRepository _mealsRepo = locator<MealsRepository>();
+  HomeCubit()
       : super(HomeState(
             failure: none(),
             popularMeals: const [],

@@ -7,7 +7,7 @@ import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/cart_repository.dart';
 
-class FirestoreCartRepository implements CartRepository {
+class CartRepositoryImpl implements CartRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Future<Either<AuthFailure, Unit>> addCartItem(

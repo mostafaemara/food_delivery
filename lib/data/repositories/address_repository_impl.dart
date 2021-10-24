@@ -7,7 +7,7 @@ import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/address_repository.dart';
 import "../mappers/address_mapper.dart";
 
-class FirestoreAdressRepository implements AddressRepository {
+class AdressRepositoryImpl implements AddressRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Future<Either<AddressFailure, String>> addAddress(
@@ -17,7 +17,7 @@ class FirestoreAdressRepository implements AddressRepository {
           .collection(FirestoreConfig.usersCollection)
           .doc(uid)
           .collection(FirestoreConfig.addressesCollection)
-          .add(address.toMap());
+          .add(AddressMapper.addressToMap(address));
 
       return right(documentReference.id);
     } catch (e) {
@@ -65,7 +65,7 @@ class FirestoreAdressRepository implements AddressRepository {
       List<QueryDocumentSnapshot<Map<String, dynamic>>> documents) {
     List<Address> addresses = [];
     for (final document in documents) {
-      addresses.add(document.docToAddressByType());
+      addresses.add(AddressMapper.documentToAddress(document));
     }
 
     return addresses;

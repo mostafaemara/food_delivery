@@ -33,7 +33,13 @@ class _SettingPageState extends State<SettingPage> {
                         const Spacer(),
                         Text(
                           AppLocalizations.of(context)!.settings,
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6!
+                              .copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                         ),
                         const Spacer()
                       ],
@@ -49,13 +55,16 @@ class _SettingPageState extends State<SettingPage> {
                               selectedLocal: state.locale.locale),
                         );
                       },
-                      title: Text(AppLocalizations.of(context)!.language),
+                      title: Text(AppLocalizations.of(context)!.language,
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground)),
                       subtitle: Text(
                         state.locale.locale == domain.Locales.arabic
                             ? AppLocalizations.of(context)!.arabic
                             : AppLocalizations.of(context)!.english,
                         style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary),
+                            color: Theme.of(context).colorScheme.onBackground),
                       ),
                     ),
                     const Divider(),
@@ -67,15 +76,16 @@ class _SettingPageState extends State<SettingPage> {
                               selectedThemeMode: state.theme.themeMode),
                         );
                       },
-                      title: Text(
-                        AppLocalizations.of(context)!.theme,
-                      ),
+                      title: Text(AppLocalizations.of(context)!.theme,
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground)),
                       subtitle: Text(
                         state.theme.themeMode == domain.ThemeMode.dark
                             ? AppLocalizations.of(context)!.dark
                             : AppLocalizations.of(context)!.light,
                         style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary),
+                            color: Theme.of(context).colorScheme.onBackground),
                       ),
                     ),
                   ],

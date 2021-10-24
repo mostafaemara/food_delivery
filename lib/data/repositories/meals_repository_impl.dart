@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
 
-class FirestoreMealsRepository implements MealsRepository {
+class MealsRepositoryImpl implements MealsRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Future<Either<AuthFailure, List<MealCategory>>> getCategories() async {

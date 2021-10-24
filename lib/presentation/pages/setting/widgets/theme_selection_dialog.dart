@@ -15,6 +15,7 @@ class ThemeSelectionDailog extends StatelessWidget {
   Widget build(BuildContext context) {
     final configCubit = BlocProvider.of<ConfigCubit>(context);
     return Dialog(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(15),
@@ -23,11 +24,19 @@ class ThemeSelectionDailog extends StatelessWidget {
           children: [
             Text(
               AppLocalizations.of(context)!.theme,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: Theme.of(context).colorScheme.onSurface),
             ),
             const Divider(),
             RadioListTile<domain.ThemeMode>(
-              title: Text(AppLocalizations.of(context)!.light),
+              activeColor: Theme.of(context).colorScheme.onSurface,
+              title: Text(
+                AppLocalizations.of(context)!.light,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
               value: domain.ThemeMode.light,
               groupValue: selectedThemeMode,
               onChanged: (value) {
@@ -36,7 +45,12 @@ class ThemeSelectionDailog extends StatelessWidget {
               },
             ),
             RadioListTile<domain.ThemeMode>(
-              title: Text(AppLocalizations.of(context)!.dark),
+              activeColor: Theme.of(context).colorScheme.onSurface,
+              title: Text(
+                AppLocalizations.of(context)!.dark,
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
               value: domain.ThemeMode.dark,
               groupValue: selectedThemeMode,
               onChanged: (value) {

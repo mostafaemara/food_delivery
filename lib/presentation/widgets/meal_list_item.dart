@@ -19,6 +19,7 @@ class MealListItem extends StatelessWidget {
     return SizedBox(
       width: 200,
       child: Card(
+        color: Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -44,7 +45,10 @@ class MealListItem extends StatelessWidget {
               ),
               Text(
                 meal.title.translate(locale),
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(color: Theme.of(context).colorScheme.onSurface),
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(
@@ -52,7 +56,10 @@ class MealListItem extends StatelessWidget {
               ),
               Text(
                 meal.shortDescription.translate(locale),
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context)
+                    .textTheme
+                    .caption!
+                    .copyWith(color: Theme.of(context).colorScheme.onSurface),
                 overflow: TextOverflow.ellipsis,
               ),
               const Spacer(),

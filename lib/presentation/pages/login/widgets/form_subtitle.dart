@@ -12,7 +12,10 @@ class FormSubTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Text(
         AppLocalizations.of(context)!.goodToSeeYouAgain,
-        style: Theme.of(context).textTheme.bodyText2!,
+        style: Theme.of(context)
+            .textTheme
+            .bodyText2!
+            .copyWith(color: Theme.of(context).colorScheme.onBackground),
       ),
     );
   }

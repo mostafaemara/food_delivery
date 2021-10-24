@@ -10,7 +10,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:dartz/dartz.dart';
 
-class FirebaseAuthRepository implements AuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   final _auth = firebase_auth.FirebaseAuth.instance;
 
   @override

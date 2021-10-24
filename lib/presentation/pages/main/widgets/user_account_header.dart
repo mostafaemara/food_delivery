@@ -33,17 +33,19 @@ class UserAccountHeader extends StatelessWidget {
         ),
         Text(
           userName,
-          style: Theme.of(context)
-              .textTheme
-              .subtitle1!
-              .copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.subtitle1!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface),
         ),
         const SizedBox(
           height: 8,
         ),
         Text(
           email,
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context)
+              .textTheme
+              .caption!
+              .copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
       ],
     );
