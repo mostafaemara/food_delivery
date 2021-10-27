@@ -27,23 +27,15 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    log(
-      BlocProvider.of<ConfigCubit>(context).state.status.toString(),
-      name: "Splash",
-    );
+    log("sasasasasasasasasasasasasasasas---------------------------------------------------------------");
     return Scaffold(
         body: BlocListener<ConfigCubit, ConfigState>(
             child: Center(
               child: Image.asset(
                 "assets/images/logo.png",
-                width: 400,
               ),
             ),
             listener: (context, state) {
-              log(
-                state.toString(),
-                name: "Splash",
-              );
               if (state.status == ConfigStatus.init) {
                 if (state.isFirstTime) {
                   context.replaceRoute(const LanguageSelectionRoute());

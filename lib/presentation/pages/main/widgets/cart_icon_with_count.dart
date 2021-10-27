@@ -16,20 +16,27 @@ class CartIconWithCount extends StatelessWidget {
     return BlocBuilder<CartCubit, CartState>(
         builder: (context, state) => Stack(
               children: [
-                Image.asset(
-                  "assets/icons/cart.png",
-                  height: 24,
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 15, top: 10),
+                  child: Image.asset(
+                    "assets/icons/cart.png",
+                    height: 24,
+                  ),
                 ),
-                Container(
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: state.items.isEmpty
-                        ? const SizedBox()
-                        : Text(
+                state.items.isEmpty
+                    ? const SizedBox()
+                    : Container(
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: FittedBox(
+                          child: Text(
                             state.items.itemsCount().translate(locale),
-                            style: const TextStyle(fontSize: 10),
-                          )),
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                        )),
               ],
             ));
   }

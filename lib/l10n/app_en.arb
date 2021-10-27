@@ -82,6 +82,11 @@
      "payWithCash":"Pay with cash /Pos upon arrival",
      "deliveryFee":"Delivery fee",
      "subtotal":"Subtotal",
-     "total":"Total"
+     "total":"Total",
+     "yourCartIsEmpty":"Your cart is empty!",
+     "startOrdering":"Start ordering",
+     "yourOrderHasBeenPlaced":"Your order has been successfully placed",
+     "orders":"Orders"
+
 
 }

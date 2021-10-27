@@ -18,7 +18,7 @@ class OrdersDrawerMenuItem extends StatelessWidget {
         color: Theme.of(context).colorScheme.onBackground,
       ),
       title: Text(
-        AppLocalizations.of(context)!.paymentMethod,
+        AppLocalizations.of(context)!.orders,
         style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:food_delivery_app/presentation/styles/app_colors.dart';
 class AppTheme {
   static get lightTheme {
     return ThemeData(
+        fontFamily: "Cairo",
         scaffoldBackgroundColor: AppColors.lightColorScheme.background,
         inputDecorationTheme: InputDecorationTheme(
             hintStyle: const TextStyle(color: AppColors.lightGrey),
@@ -33,6 +34,7 @@ class AppTheme {
 
   static get darkTheme {
     return ThemeData(
+        fontFamily: "Cairo",
         unselectedWidgetColor: AppColors.darkColorScheme.onSurface,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: AppColors.darkColorScheme.surface),

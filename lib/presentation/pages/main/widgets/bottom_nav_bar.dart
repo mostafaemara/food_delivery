@@ -43,7 +43,7 @@ class BottomNavBar extends StatelessWidget {
         },
         items: [
           BottomNavigationBarItem(
-            label: "",
+            label: "Home",
             activeIcon: Image.asset(
               "assets/icons/home_active.png",
               height: 24,
@@ -54,7 +54,7 @@ class BottomNavBar extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-              label: "Home",
+              label: "Favorite",
               activeIcon: Image.asset(
                 "assets/icons/heart_active.png",
                 height: 24,
@@ -64,17 +64,7 @@ class BottomNavBar extends StatelessWidget {
                 height: 24,
               )),
           BottomNavigationBarItem(
-              label: "Home",
-              activeIcon: Image.asset(
-                "assets/icons/notification_active.png",
-                height: 24,
-              ),
-              icon: Image.asset(
-                "assets/icons/notification.png",
-                height: 24,
-              )),
-          BottomNavigationBarItem(
-            label: "Home",
+            label: "Cart",
             activeIcon: Image.asset(
               "assets/icons/cart_active.png",
               height: 24,

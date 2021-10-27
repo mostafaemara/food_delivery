@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
           ),
         ),
       ),
-      routes: const [Home(), Favorite(), Order(), Cart()],
+      routes: const [Home(), Favorite(), Cart()],
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavBar(
             currentIndex: tabsRouter.activeIndex,

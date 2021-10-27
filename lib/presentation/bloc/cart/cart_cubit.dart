@@ -24,7 +24,10 @@ class CartCubit extends Cubit<CartState> {
   final AuthBloc _authBloc;
   late StreamSubscription authChange;
   CartCubit(this._authBloc)
-      : super(CartState(items: const [], failure: none(), totalPrice: 0)) {
+      : super(CartState(
+          items: const [],
+          failure: none(),
+        )) {
     authChange = _authBloc.stream.listen((authState) {
       authState.maybeWhen(
         authenticated: (user) async {
@@ -38,7 +41,10 @@ class CartCubit extends Cubit<CartState> {
                   )));
         },
         orElse: () {
-          emit(state.copyWith(items: const [], failure: none(), totalPrice: 0));
+          emit(state.copyWith(
+            items: const [],
+            failure: none(),
+          ));
         },
       );
     });
@@ -117,5 +123,11 @@ class CartCubit extends Cubit<CartState> {
             (_) => emit(state.copyWith(items: items)));
       }
     });
+  }
+
+  void clearCart() {
+    emit(state.copyWith(
+      items: [],
+    ));
   }
 }

@@ -5,9 +5,6 @@ class PaymentLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-      child: Text("Loading..."),
-    ));
+    return const Center(child: CircularProgressIndicator());
   }
 }

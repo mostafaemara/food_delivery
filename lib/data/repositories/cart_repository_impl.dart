@@ -10,7 +10,7 @@ import 'package:food_delivery_app/domain/repositories/cart_repository.dart';
 class CartRepositoryImpl implements CartRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<AuthFailure, Unit>> addCartItem(
+  Future<Either<ServerFailure, Unit>> addCartItem(
       String id, int quantity, String uid) async {
     try {
       await firestore
@@ -21,12 +21,12 @@ class CartRepositoryImpl implements CartRepository {
           .set({"quantity": quantity});
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> deleteCartItem(
+  Future<Either<ServerFailure, Unit>> deleteCartItem(
       String id, String uid) async {
     try {
       await firestore
@@ -37,12 +37,12 @@ class CartRepositoryImpl implements CartRepository {
           .delete();
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<AuthFailure, List<CartItem>>> getCartitems(String uid) async {
+  Future<Either<ServerFailure, List<CartItem>>> getCartitems(String uid) async {
     try {
       final snapshot =
           await firestore.collection("users").doc(uid).collection("cart").get();
@@ -65,13 +65,13 @@ class CartRepositoryImpl implements CartRepository {
 
       //   return right(favorites);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
       //   return left(const Failure.serverFailure());
     }
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> updateCartItem(
+  Future<Either<ServerFailure, Unit>> updateCartItem(
       String id, int quantity, String uid) async {
     try {
       await firestore
@@ -82,7 +82,7 @@ class CartRepositoryImpl implements CartRepository {
           .update({"quantity": quantity});
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 }

@@ -11,18 +11,18 @@ import 'package:food_delivery_app/domain/repositories/meals_repository.dart';
 class MealsRepositoryImpl implements MealsRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<AuthFailure, List<MealCategory>>> getCategories() async {
+  Future<Either<ServerFailure, List<MealCategory>>> getCategories() async {
     try {
       final snapshot = await firestore.collection("categories").get();
 
       return right(snapshot.toMealCategories());
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<AuthFailure, List<Meal>>> getMealsByCategory(
+  Future<Either<ServerFailure, List<Meal>>> getMealsByCategory(
       String categoryId) async {
     try {
       final snapshot = await firestore
@@ -32,12 +32,12 @@ class MealsRepositoryImpl implements MealsRepository {
 
       return right(snapshot.toMeals());
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<AuthFailure, List<Meal>>> getPopularMeals() async {
+  Future<Either<ServerFailure, List<Meal>>> getPopularMeals() async {
     try {
       final snapshot = await firestore.collection("popularItems").get();
       if (snapshot.docs.isEmpty) {
@@ -47,7 +47,7 @@ class MealsRepositoryImpl implements MealsRepository {
           await fetchMealsByIds(snapshot.docs.map((e) => e.id).toList());
       return right(meals);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 

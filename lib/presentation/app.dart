@@ -29,20 +29,6 @@ class FoodDeliveryApp extends StatelessWidget {
             : AppTheme.darkTheme,
         routeInformationParser: _appRouter.defaultRouteParser(),
         routerDelegate: _appRouter.delegate(),
-        // home: const SplashPage(),
-        //   routes: {
-        //     Routes.categoryPage: (context) => const CategoryPage(),
-        //   Routes.authScreen: (context) => const AuthPage(),
-        //   Routes.forgotPasswordScreen: (context) => const ForgotPasswordPage(),
-        //   Routes.mainScreen: (context) => const MainPage(),
-        //   Routes.onboardScreen: (context) => const OnBoardPage(),
-        //   Routes.languageSelectionScreen: (context) =>
-        //       const LanguageSelectionPage(),
-        //   Routes.mealDetailsPage: (context) => const MealDetailsPage(),
-        //   Routes.profilePage: (context) => const ProfilePage(),
-        //   Routes.editeProfilePage: (context) => const EditeProfilePage(),
-        //   Routes.settingProfile: (context) => const SettingPage(),
-        // }, routeInformationParser: null, routerDelegate: null,
       ),
     );
   }

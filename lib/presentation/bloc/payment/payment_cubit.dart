@@ -4,6 +4,7 @@ import 'package:food_delivery_app/domain/entities/preorder.dart';
 import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/payment_repository.dart';
 import 'package:food_delivery_app/presentation/bloc/addresses/addresses_cubit.dart';
+import 'package:food_delivery_app/presentation/bloc/cart/cart_cubit.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -16,8 +17,12 @@ class PaymentCubit extends Cubit<PaymentState> {
   final paymentRepo = locator<PaymentRepository>();
   final String uid;
   final AddressesCubit addressesCubit;
-  PaymentCubit({required this.uid, required this.addressesCubit})
-      : super(const PaymentState.initial());
+  final CartCubit cartCubit;
+  PaymentCubit({
+    required this.uid,
+    required this.addressesCubit,
+    required this.cartCubit,
+  }) : super(const PaymentState.initial());
 
   void prepareOrder() async {
     emit(const PaymentState.loading());
@@ -36,7 +41,11 @@ class PaymentCubit extends Cubit<PaymentState> {
           addressId: addressId);
 
       result.fold((failure) => emit(PaymentState.failure(failure: failure)),
-          (orderId) => emit(const PaymentState.paymentSuccess()));
+          (orderId) {
+        emit(const PaymentState.paymentSuccess());
+
+        cartCubit.clearCart();
+      });
     });
   }
 }

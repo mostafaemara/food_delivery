@@ -82,5 +82,9 @@
      "payWithCash":"الدفع نقدا عند الاستلام",
      "deliveryFee":"رسوم التوصيل",
      "subtotal":"السعر",
-     "total":"المجموع"
+     "total":"المجموع",
+      "yourCartIsEmpty":"عربة التسوق فارغة!",
+     "startOrdering":"اطلب الان",
+     "yourOrderHasBeenPlaced":"تم طلبك بنجاح",
+      "orders":"الطلبات"
 }

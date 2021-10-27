@@ -18,13 +18,10 @@ class _$CartStateTearOff {
   const _$CartStateTearOff();
 
   _CartState call(
-      {required List<CartItem> items,
-      required Option<AuthFailure> failure,
-      required double totalPrice}) {
+      {required List<CartItem> items, required Option<ServerFailure> failure}) {
     return _CartState(
       items: items,
       failure: failure,
-      totalPrice: totalPrice,
     );
   }
 }
@@ -35,8 +32,7 @@ const $CartState = _$CartStateTearOff();
 /// @nodoc
 mixin _$CartState {
   List<CartItem> get items => throw _privateConstructorUsedError;
-  Option<AuthFailure> get failure => throw _privateConstructorUsedError;
-  double get totalPrice => throw _privateConstructorUsedError;
+  Option<ServerFailure> get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartStateCopyWith<CartState> get copyWith =>
@@ -47,8 +43,7 @@ mixin _$CartState {
 abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res>;
-  $Res call(
-      {List<CartItem> items, Option<AuthFailure> failure, double totalPrice});
+  $Res call({List<CartItem> items, Option<ServerFailure> failure});
 }
 
 /// @nodoc
@@ -63,7 +58,6 @@ class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
   $Res call({
     Object? items = freezed,
     Object? failure = freezed,
-    Object? totalPrice = freezed,
   }) {
     return _then(_value.copyWith(
       items: items == freezed
@@ -73,11 +67,7 @@ class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as Option<AuthFailure>,
-      totalPrice: totalPrice == freezed
-          ? _value.totalPrice
-          : totalPrice // ignore: cast_nullable_to_non_nullable
-              as double,
+              as Option<ServerFailure>,
     ));
   }
 }
@@ -88,8 +78,7 @@ abstract class _$CartStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
           _CartState value, $Res Function(_CartState) then) =
       __$CartStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {List<CartItem> items, Option<AuthFailure> failure, double totalPrice});
+  $Res call({List<CartItem> items, Option<ServerFailure> failure});
 }
 
 /// @nodoc
@@ -105,7 +94,6 @@ class __$CartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
   $Res call({
     Object? items = freezed,
     Object? failure = freezed,
-    Object? totalPrice = freezed,
   }) {
     return _then(_CartState(
       items: items == freezed
@@ -115,11 +103,7 @@ class __$CartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
       failure: failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as Option<AuthFailure>,
-      totalPrice: totalPrice == freezed
-          ? _value.totalPrice
-          : totalPrice // ignore: cast_nullable_to_non_nullable
-              as double,
+              as Option<ServerFailure>,
     ));
   }
 }
@@ -127,19 +111,16 @@ class __$CartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CartState with DiagnosticableTreeMixin implements _CartState {
-  const _$_CartState(
-      {required this.items, required this.failure, required this.totalPrice});
+  const _$_CartState({required this.items, required this.failure});
 
   @override
   final List<CartItem> items;
   @override
-  final Option<AuthFailure> failure;
-  @override
-  final double totalPrice;
+  final Option<ServerFailure> failure;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CartState(items: $items, failure: $failure, totalPrice: $totalPrice)';
+    return 'CartState(items: $items, failure: $failure)';
   }
 
   @override
@@ -148,8 +129,7 @@ class _$_CartState with DiagnosticableTreeMixin implements _CartState {
     properties
       ..add(DiagnosticsProperty('type', 'CartState'))
       ..add(DiagnosticsProperty('items', items))
-      ..add(DiagnosticsProperty('failure', failure))
-      ..add(DiagnosticsProperty('totalPrice', totalPrice));
+      ..add(DiagnosticsProperty('failure', failure));
   }
 
   @override
@@ -159,19 +139,14 @@ class _$_CartState with DiagnosticableTreeMixin implements _CartState {
             (identical(other.items, items) ||
                 const DeepCollectionEquality().equals(other.items, items)) &&
             (identical(other.failure, failure) ||
-                const DeepCollectionEquality()
-                    .equals(other.failure, failure)) &&
-            (identical(other.totalPrice, totalPrice) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalPrice, totalPrice)));
+                const DeepCollectionEquality().equals(other.failure, failure)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(items) ^
-      const DeepCollectionEquality().hash(failure) ^
-      const DeepCollectionEquality().hash(totalPrice);
+      const DeepCollectionEquality().hash(failure);
 
   @JsonKey(ignore: true)
   @override
@@ -182,15 +157,12 @@ class _$_CartState with DiagnosticableTreeMixin implements _CartState {
 abstract class _CartState implements CartState {
   const factory _CartState(
       {required List<CartItem> items,
-      required Option<AuthFailure> failure,
-      required double totalPrice}) = _$_CartState;
+      required Option<ServerFailure> failure}) = _$_CartState;
 
   @override
   List<CartItem> get items => throw _privateConstructorUsedError;
   @override
-  Option<AuthFailure> get failure => throw _privateConstructorUsedError;
-  @override
-  double get totalPrice => throw _privateConstructorUsedError;
+  Option<ServerFailure> get failure => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CartStateCopyWith<_CartState> get copyWith =>

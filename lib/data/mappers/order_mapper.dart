@@ -37,9 +37,9 @@ class PreorderMapper {
       items: List<OrderItem>.from(
           map["items"].map((e) => OrderItemMapper.mapToOrderItem(e))),
       uid: map["uid"],
-      totalPriceWithFees: map["totalPrice"].toDouble(),
+      totalPriceWithFees: map["totalPriceWithFees"].toDouble(),
       deliveryFees: map["deliveryFees"].toDouble(),
-      totalPrice: map["totalPriceWithFees"].toDouble(),
+      totalPrice: map["totalPrice"].toDouble(),
     );
   }
 }

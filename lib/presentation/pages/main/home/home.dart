@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/bloc/home/home_cubit.dart';
-
-import 'package:food_delivery_app/presentation/pages/main/home/widgets/popular_list.dart';
-
-import 'widgets/category_list.dart';
+import 'package:food_delivery_app/presentation/pages/main/home/widgets/home_failure.dart';
+import 'package:food_delivery_app/presentation/pages/main/home/widgets/home_loaded.dart';
+import 'package:food_delivery_app/presentation/pages/main/home/widgets/home_loading.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -24,64 +22,15 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeState>(
+    return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        if (state.status == HomeStatus.loading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (state.status == HomeStatus.error) {
-          return const Center(
-            child: Text("Somthing Went Wrong"),
-          );
-        }
-        return Padding(
-          padding: const EdgeInsetsDirectional.only(start: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                AppLocalizations.of(context)!.enjoyDeliciousFood,
-                style: Theme.of(context).textTheme.headline5!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onBackground),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              SizedBox(
-                height: 180,
-                child: CategoryList(
-                  categories: state.categories,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                AppLocalizations.of(context)!.popular,
-                style: Theme.of(context).textTheme.headline6!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onBackground),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 260,
-                child: PopularList(
-                  meals: state.popularMeals,
-                ),
-              )
-            ],
-          ),
+        return state.maybeWhen(
+          orElse: () => const HomeLoading(),
+          loaded: (popularMeals, categories) =>
+              HomeLoaded(categories: categories, popularMeals: popularMeals),
+          failure: (failure) => const HomeFailure(),
         );
       },
-      listener: (context, state) {},
     );
   }
 }
