@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:food_delivery_app/presentation/bloc/config/config_bloc.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 import 'package:introduction_screen/introduction_screen.dart';
@@ -31,7 +31,6 @@ class OnBoardPage extends StatelessWidget {
                     },
                     child: Text(AppLocalizations.of(context)!.skip))),
             Expanded(
-              flex: 4,
               child: IntroductionScreen(
                 controlsPadding: EdgeInsets.zero,
                 showNextButton: false,
@@ -39,41 +38,43 @@ class OnBoardPage extends StatelessWidget {
                 showDoneButton: false,
                 pages: [
                   PageViewModel(
-                    decoration: const PageDecoration(imageFlex: 2),
-                    reverse: true,
-                    useScrollView: false,
-                    image: Image.asset(
-                      "assets/images/meals.png",
-                    ),
-                    titleWidget: Text(
-                      AppLocalizations.of(context)!.choseFromWideRange,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    bodyWidget: Container(
-                      height: 0,
-                    ),
-                  ),
+                      decoration: const PageDecoration(
+                        titlePadding: EdgeInsets.all(0),
+                        imagePadding: EdgeInsets.all(0),
+                      ),
+                      reverse: true,
+                      useScrollView: false,
+                      image: Image.asset(
+                        "assets/images/meals.png",
+                      ),
+                      titleWidget: AutoSizeText(
+                        AppLocalizations.of(context)!.choseFromWideRange,
+                        maxLines: 2,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      body: ""),
                   PageViewModel(
-                    decoration: const PageDecoration(imageFlex: 2),
+                    decoration: const PageDecoration(
+                      titlePadding: EdgeInsets.all(0),
+                      imagePadding: EdgeInsets.all(0),
+                    ),
                     useScrollView: false,
                     image: Image.asset(
                       "assets/images/delivery.png",
                     ),
                     reverse: true,
-                    titleWidget: Text(
+                    titleWidget: AutoSizeText(
                       AppLocalizations.of(context)!.enjoyInstantDelivery,
+                      maxLines: 2,
                       style: Theme.of(context)
                           .textTheme
-                          .headline6!
+                          .headline4!
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    bodyWidget: Container(
-                      height: 0,
-                    ),
+                    body: "",
                   ),
                 ],
               ),
@@ -103,7 +104,9 @@ class OnBoardPage extends StatelessWidget {
                 },
               ),
             ),
-            const Spacer()
+            const SizedBox(
+              height: 50,
+            ),
           ],
         ),
       ),

@@ -55,7 +55,7 @@ dependencies:
   formz: ^0.4.0
   cloud_functions: ^3.0.4
   shimmer: ^2.0.0
-  
+  auto_size_text: ^3.0.0
  
 dev_dependencies:
   auto_route_generator: ^2.4.1

@@ -19,13 +19,6 @@ class CartListItem extends StatelessWidget {
       secondaryActions: [
         IconButton(
             padding: EdgeInsets.zero,
-            onPressed: () {},
-            icon: Image.asset(
-              "assets/icons/edite.png",
-              height: 40,
-            )),
-        IconButton(
-            padding: EdgeInsets.zero,
             onPressed: () {
               BlocProvider.of<CartCubit>(context).deleteCartItem(cartItem.id);
             },
