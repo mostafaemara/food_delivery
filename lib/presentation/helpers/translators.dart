@@ -2,8 +2,11 @@ import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/domain/entities/multilingual.dart';
 
+final arabicNumber = ArabicNumbers();
+
 extension MultilingualTranslator on Multilingual {
-  String translate(Locale locale) {
+  String translate(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     if (locale.languageCode == "ar") {
       return arabic;
     } else {
@@ -12,10 +15,9 @@ extension MultilingualTranslator on Multilingual {
   }
 }
 
-final arabicNumber = ArabicNumbers();
-
 extension DoubleTranslator on double {
-  String translate(Locale locale) {
+  String translate(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     if (locale.languageCode == "ar") {
       return arabicNumber.convert(toStringAsFixed(0));
     } else {
@@ -25,7 +27,8 @@ extension DoubleTranslator on double {
 }
 
 extension IntTranslator on int {
-  String translate(Locale locale) {
+  String translate(BuildContext context) {
+    final locale = Localizations.localeOf(context);
     if (locale.languageCode == "ar") {
       return arabicNumber.convert(toString());
     } else {

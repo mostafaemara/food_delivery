@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_delivery_app/data/firestore_collections.dart';
+import 'package:food_delivery_app/data/repositories/firestore_collections.dart';
 import 'package:food_delivery_app/domain/entities/address.dart';
 
 import 'package:dartz/dartz.dart';

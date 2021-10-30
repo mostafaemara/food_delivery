@@ -44,8 +44,6 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
           unAuthenticated: (value) => false,
         );
 
-    final locale = Localizations.localeOf(context);
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -100,7 +98,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                   iconSize: 21,
                                   onPressed: decreaseCount,
                                   icon: const Icon(Icons.remove)),
-                              Text(count.translate(locale),
+                              Text(count.translate(context),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!
@@ -123,7 +121,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                         height: 30,
                       ),
                       Text(
-                        widget.meal.title.translate(locale),
+                        widget.meal.title.translate(context),
                         style: Theme.of(context)
                             .textTheme
                             .headline5!
@@ -145,7 +143,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                             const SizedBox(
                               width: 3,
                             ),
-                            Text(widget.meal.calories.translate(locale),
+                            Text(widget.meal.calories.translate(context),
                                 style: Theme.of(context).textTheme.caption),
                             const Spacer(),
                             Image.asset(
@@ -157,7 +155,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                               width: 3,
                             ),
                             Text(
-                                "${widget.meal.deliveryTime.combineAndTranslate(locale)} ${AppLocalizations.of(context)!.min}",
+                                "${widget.meal.deliveryTime.combineAndTranslate(context)} ${AppLocalizations.of(context)!.min}",
                                 style: Theme.of(context).textTheme.caption),
                           ],
                         ),
@@ -172,7 +170,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                 child: SizedBox(
                   width: 319,
                   height: 84,
-                  child: Text(widget.meal.description.translate(locale)),
+                  child: Text(widget.meal.description.translate(context)),
                 ),
               ),
               const SizedBox(

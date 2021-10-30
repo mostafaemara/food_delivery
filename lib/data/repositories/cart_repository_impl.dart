@@ -49,6 +49,7 @@ class CartRepositoryImpl implements CartRepository {
       if (snapshot.docs.isEmpty) {
         return right([]);
       }
+
       final List<CartItem> items = [];
       for (var doc in snapshot.docs) {
         final mealSnapShot =
@@ -61,12 +62,8 @@ class CartRepositoryImpl implements CartRepository {
         items.add(CartItemModel.fromMap(map));
       }
       return right(items);
-      // final favorites = await fetchFavoritesByIds(favoriteIds);
-
-      //   return right(favorites);
     } catch (e) {
       return left(ServerFailure());
-      //   return left(const Failure.serverFailure());
     }
   }
 

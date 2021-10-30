@@ -15,7 +15,6 @@ class MealListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
     return SizedBox(
       width: 200,
       child: Card(
@@ -44,7 +43,7 @@ class MealListItem extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                meal.title.translate(locale),
+                meal.title.translate(context),
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1!
@@ -55,7 +54,7 @@ class MealListItem extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                meal.shortDescription.translate(locale),
+                meal.shortDescription.translate(context),
                 style: Theme.of(context)
                     .textTheme
                     .caption!

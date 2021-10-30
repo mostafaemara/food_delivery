@@ -14,7 +14,6 @@ class CartListItem extends StatelessWidget {
   final CartItem cartItem;
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
     return Slidable(
       secondaryActions: [
         IconButton(
@@ -54,13 +53,13 @@ class CartListItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            cartItem.title.translate(locale),
+                            cartItem.title.translate(context),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const Spacer(),
                           Text(
-                            "${cartItem.price.translate(locale)}${AppLocalizations.of(context)!.egp}",
+                            "${cartItem.price.translate(context)}${AppLocalizations.of(context)!.egp}",
                           ),
                         ],
                       ),
@@ -82,7 +81,7 @@ class CartListItem extends StatelessWidget {
                               )),
                           color: Colors.red,
                         ),
-                        Text(cartItem.quantity.translate(locale)),
+                        Text(cartItem.quantity.translate(context)),
                         IconButton(
                           onPressed: () {
                             BlocProvider.of<CartCubit>(context)

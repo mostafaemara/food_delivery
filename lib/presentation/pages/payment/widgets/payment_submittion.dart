@@ -19,7 +19,6 @@ class PaymentSubmittion extends StatelessWidget {
   final double totalPriceWithFee;
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
     return ListView(
       children: [
         Container(
@@ -65,7 +64,7 @@ class PaymentSubmittion extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText1,
             ),
             Text(
-              "${deliveryFee.translate(locale)} ${AppLocalizations.of(context)!.egp}",
+              "${deliveryFee.translate(context)} ${AppLocalizations.of(context)!.egp}",
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ],
@@ -81,7 +80,7 @@ class PaymentSubmittion extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText1,
             ),
             Text(
-              "${totalPriceWithoutFee.translate(locale)} ${AppLocalizations.of(context)!.egp}",
+              "${totalPriceWithoutFee.translate(context)} ${AppLocalizations.of(context)!.egp}",
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ],
@@ -95,7 +94,7 @@ class PaymentSubmittion extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText1,
             ),
             Text(
-              "${totalPriceWithFee.translate(locale)} ${AppLocalizations.of(context)!.egp}",
+              "${totalPriceWithFee.translate(context)} ${AppLocalizations.of(context)!.egp}",
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ],

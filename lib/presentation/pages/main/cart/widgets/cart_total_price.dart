@@ -12,7 +12,6 @@ class CartTotalPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
     final cartState = context.watch<CartCubit>().state;
     final totalPrice = cartState.items.totalPrice();
     return Padding(
@@ -25,7 +24,7 @@ class CartTotalPrice extends StatelessWidget {
             style: Theme.of(context).textTheme.caption,
           ),
           Text(
-            "${totalPrice.translate(locale)} ${AppLocalizations.of(context)!.egp}",
+            "${totalPrice.translate(context)} ${AppLocalizations.of(context)!.egp}",
             style: Theme.of(context)
                 .textTheme
                 .subtitle1!

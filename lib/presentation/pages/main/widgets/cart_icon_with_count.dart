@@ -12,7 +12,6 @@ class CartIconWithCount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
     return BlocBuilder<CartCubit, CartState>(
         builder: (context, state) => Stack(
               children: [
@@ -33,7 +32,7 @@ class CartIconWithCount extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         child: FittedBox(
                           child: Text(
-                            state.items.itemsCount().translate(locale),
+                            state.items.itemsCount().translate(context),
                             style: Theme.of(context).textTheme.caption,
                           ),
                         )),

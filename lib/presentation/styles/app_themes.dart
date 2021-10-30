@@ -34,6 +34,11 @@ class AppTheme {
 
   static get darkTheme {
     return ThemeData(
+        textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+                foregroundColor:
+                    MaterialStateProperty.all<Color>(Colors.white))),
+        brightness: Brightness.dark,
         fontFamily: "Cairo",
         unselectedWidgetColor: AppColors.darkColorScheme.onSurface,
         bottomNavigationBarTheme: BottomNavigationBarThemeData(

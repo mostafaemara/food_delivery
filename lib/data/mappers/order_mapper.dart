@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_delivery_app/data/mappers/multilingual_mapper.dart';
+
+import 'package:food_delivery_app/data/models/multilingual.dart';
 import 'package:food_delivery_app/domain/entities/preorder.dart';
 import 'package:food_delivery_app/domain/entities/order_item.dart';
 
@@ -16,7 +17,7 @@ class OrderItemMapper {
   static OrderItem mapToOrderItem(Map<String, dynamic> map) {
     return OrderItem(
         quantity: map["quantity"],
-        title: MultilingualMapper.toMultilingual(map["title"]),
+        title: MultilingualModel.fromMap(map["title"]),
         price: map["price"].toDouble(),
         id: map["id"],
         totalPrice: map["total"].toDouble());

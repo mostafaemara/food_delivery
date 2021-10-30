@@ -14,8 +14,6 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-
     final color =
         _randomColor.randomColor(colorBrightness: ColorBrightness.dark);
     return GestureDetector(
@@ -50,7 +48,7 @@ class CategoryListItem extends StatelessWidget {
                         alignment: Alignment.center,
                         width: double.infinity,
                         child: Text(
-                          category.title.translate(locale),
+                          category.title.translate(context),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
