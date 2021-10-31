@@ -47,7 +47,10 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 20, top: 20),
+          padding: const EdgeInsetsDirectional.only(
+            start: 20,
+            top: 20,
+          ),
           child: ListView(
             children: [
               Container(
@@ -58,8 +61,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                 height: 30,
               ),
               Container(
-                  alignment: AlignmentDirectional.centerStart,
-                  padding: const EdgeInsetsDirectional.only(start: 40),
+                  alignment: AlignmentDirectional.center,
                   width: 258,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,15 +100,17 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                                   iconSize: 21,
                                   onPressed: decreaseCount,
                                   icon: const Icon(Icons.remove)),
-                              Text(count.translate(context),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary,
-                                      )),
+                              FittedBox(
+                                child: Text(count.translate(context),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary,
+                                        )),
+                              ),
                               IconButton(
                                   color:
                                       Theme.of(context).colorScheme.onPrimary,
@@ -166,7 +170,7 @@ class _MealDetailsPageState extends State<MealDetailsPage> {
                 height: 30,
               ),
               Container(
-                alignment: AlignmentDirectional.centerStart,
+                alignment: AlignmentDirectional.center,
                 child: SizedBox(
                   width: 319,
                   height: 84,

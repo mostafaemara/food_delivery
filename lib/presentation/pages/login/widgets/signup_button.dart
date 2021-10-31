@@ -15,7 +15,6 @@ class SignupButton extends StatelessWidget {
       child: TextButton(
         child: Text(
           AppLocalizations.of(context)!.createAccount,
-          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
         ),
         onPressed: () {
           context.navigateTo(const SignupRoute());

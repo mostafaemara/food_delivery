@@ -16,7 +16,7 @@ import 'form_subtitle.dart';
 import 'form_title.dart';
 import 'login_button.dart';
 import 'password_form_field.dart';
-import 'signin_with_google.dart';
+
 import 'signup_form_button.dart';
 import 'username_form_field.dart';
 
@@ -65,10 +65,6 @@ class SignUpForm extends StatelessWidget {
             ConfirmPasswordFormField(),
             SizedBox(
               height: 30,
-            ),
-            SigninWithGoogleButton(),
-            SizedBox(
-              height: 20,
             ),
             SignUpFormButton(),
             SizedBox(

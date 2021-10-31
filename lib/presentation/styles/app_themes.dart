@@ -4,6 +4,10 @@ import 'package:food_delivery_app/presentation/styles/app_colors.dart';
 class AppTheme {
   static get lightTheme {
     return ThemeData(
+        textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    AppColors.lightColorScheme.primary))),
         fontFamily: "Cairo",
         scaffoldBackgroundColor: AppColors.lightColorScheme.background,
         inputDecorationTheme: InputDecorationTheme(

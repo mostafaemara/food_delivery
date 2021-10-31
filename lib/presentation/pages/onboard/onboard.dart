@@ -14,6 +14,11 @@ class OnBoardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _pageDecoration = PageDecoration(
+      titlePadding: const EdgeInsets.all(0),
+      imagePadding: const EdgeInsets.all(0),
+      titleTextStyle: Theme.of(context).textTheme.headline6!,
+    );
     return Scaffold(
         body: SafeArea(
       child: Center(
@@ -38,42 +43,22 @@ class OnBoardPage extends StatelessWidget {
                 showDoneButton: false,
                 pages: [
                   PageViewModel(
-                      decoration: const PageDecoration(
-                        titlePadding: EdgeInsets.all(0),
-                        imagePadding: EdgeInsets.all(0),
-                      ),
+                      decoration: _pageDecoration,
                       reverse: true,
                       useScrollView: false,
                       image: Image.asset(
                         "assets/images/meals.png",
                       ),
-                      titleWidget: AutoSizeText(
-                        AppLocalizations.of(context)!.choseFromWideRange,
-                        maxLines: 2,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
+                      title: AppLocalizations.of(context)!.choseFromWideRange,
                       body: ""),
                   PageViewModel(
-                    decoration: const PageDecoration(
-                      titlePadding: EdgeInsets.all(0),
-                      imagePadding: EdgeInsets.all(0),
-                    ),
+                    decoration: _pageDecoration,
                     useScrollView: false,
                     image: Image.asset(
                       "assets/images/delivery.png",
                     ),
                     reverse: true,
-                    titleWidget: AutoSizeText(
-                      AppLocalizations.of(context)!.enjoyInstantDelivery,
-                      maxLines: 2,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4!
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
+                    title: AppLocalizations.of(context)!.enjoyInstantDelivery,
                     body: "",
                   ),
                 ],

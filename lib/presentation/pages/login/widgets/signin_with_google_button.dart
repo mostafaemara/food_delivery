@@ -11,6 +11,7 @@ class SignInWithGoogleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginCubit = context.read<LoginCubit>();
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 100),
@@ -20,7 +21,7 @@ class SignInWithGoogleButton extends StatelessWidget {
               onPrimary: Theme.of(context).colorScheme.onSurface,
               primary: Theme.of(context).colorScheme.surface),
           onPressed: () {
-            //TODO:Google Sign in Button
+            loginCubit.signinWithGoogle();
           },
           icon: Image.asset(
             "assets/images/google_logo.png",

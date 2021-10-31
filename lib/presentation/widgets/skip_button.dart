@@ -16,7 +16,6 @@ class SkipButton extends StatelessWidget {
         },
         child: Text(
           AppLocalizations.of(context)!.skip,
-          style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
         ));
   }
 }

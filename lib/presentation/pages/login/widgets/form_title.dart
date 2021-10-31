@@ -8,8 +8,7 @@ class FormTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+    return SizedBox(
       child: Text(
         AppLocalizations.of(context)!.loginToMyAccount,
         style: Theme.of(context).textTheme.headline5!.copyWith(
