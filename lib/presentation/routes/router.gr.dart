@@ -1,3 +1,7 @@
+// **************************************************************************
+// AutoRouteGenerator
+// **************************************************************************
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -105,10 +109,14 @@ class AppRouter extends _i16.RootStackRouter {
         _i16.RouteConfig(SplashRoute.name, path: '/'),
         _i16.RouteConfig(MainRoute.name, path: '/', children: [
           _i16.RouteConfig('#redirect',
-              path: '', redirectTo: 'home', fullMatch: true),
-          _i16.RouteConfig(Home.name, path: 'home'),
-          _i16.RouteConfig(Favorite.name, path: 'favorites'),
-          _i16.RouteConfig(Cart.name, path: 'cart')
+              path: '',
+              parent: MainRoute.name,
+              redirectTo: 'home',
+              fullMatch: true),
+          _i16.RouteConfig(Home.name, path: 'home', parent: MainRoute.name),
+          _i16.RouteConfig(Favorite.name,
+              path: 'favorites', parent: MainRoute.name),
+          _i16.RouteConfig(Cart.name, path: 'cart', parent: MainRoute.name)
         ]),
         _i16.RouteConfig(LoginRoute.name, path: '/login-page'),
         _i16.RouteConfig(SignupRoute.name, path: '/signup-page'),

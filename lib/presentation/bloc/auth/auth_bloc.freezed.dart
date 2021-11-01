@@ -145,14 +145,13 @@ class _$AuthChanged implements AuthChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthChanged &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other.runtimeType == runtimeType &&
+            other is AuthChanged &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +230,7 @@ class _$AuthChanged implements AuthChanged {
 abstract class AuthChanged implements AuthEvent {
   const factory AuthChanged({required Option<User> user}) = _$AuthChanged;
 
-  Option<User> get user => throw _privateConstructorUsedError;
+  Option<User> get user;
   @JsonKey(ignore: true)
   $AuthChangedCopyWith<AuthChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -265,7 +264,8 @@ class _$CheckAuth implements CheckAuth {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CheckAuth);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CheckAuth);
   }
 
   @override
@@ -372,7 +372,8 @@ class _$SignOut implements SignOut {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SignOut);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SignOut);
   }
 
   @override
@@ -573,14 +574,13 @@ class _$Authenticated implements Authenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Authenticated &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+        (other.runtimeType == runtimeType &&
+            other is Authenticated &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -653,7 +653,7 @@ class _$Authenticated implements Authenticated {
 abstract class Authenticated implements AuthState {
   const factory Authenticated({required User user}) = _$Authenticated;
 
-  User get user => throw _privateConstructorUsedError;
+  User get user;
   @JsonKey(ignore: true)
   $AuthenticatedCopyWith<Authenticated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -689,7 +689,8 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UnAuthenticated);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UnAuthenticated);
   }
 
   @override

@@ -307,52 +307,43 @@ class _$_NewAddressFormState implements _NewAddressFormState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _NewAddressFormState &&
+        (other.runtimeType == runtimeType &&
+            other is _NewAddressFormState &&
             (identical(other.cityInput, cityInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.cityInput, cityInput)) &&
+                other.cityInput == cityInput) &&
             (identical(other.mobilePhoneNumberInput, mobilePhoneNumberInput) ||
-                const DeepCollectionEquality().equals(
-                    other.mobilePhoneNumberInput, mobilePhoneNumberInput)) &&
+                other.mobilePhoneNumberInput == mobilePhoneNumberInput) &&
             (identical(other.zoneInput, zoneInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.zoneInput, zoneInput)) &&
+                other.zoneInput == zoneInput) &&
             (identical(other.streetInput, streetInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.streetInput, streetInput)) &&
+                other.streetInput == streetInput) &&
             (identical(other.buildingInput, buildingInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.buildingInput, buildingInput)) &&
+                other.buildingInput == buildingInput) &&
             (identical(other.floorInput, floorInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.floorInput, floorInput)) &&
+                other.floorInput == floorInput) &&
             (identical(other.apartmentInput, apartmentInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.apartmentInput, apartmentInput)) &&
+                other.apartmentInput == apartmentInput) &&
             (identical(other.villaInput, villaInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.villaInput, villaInput)) &&
+                other.villaInput == villaInput) &&
             (identical(other.addressType, addressType) ||
-                const DeepCollectionEquality()
-                    .equals(other.addressType, addressType)) &&
+                other.addressType == addressType) &&
             (identical(other.submissionState, submissionState) ||
-                const DeepCollectionEquality()
-                    .equals(other.submissionState, submissionState)));
+                other.submissionState == submissionState));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(cityInput) ^
-      const DeepCollectionEquality().hash(mobilePhoneNumberInput) ^
-      const DeepCollectionEquality().hash(zoneInput) ^
-      const DeepCollectionEquality().hash(streetInput) ^
-      const DeepCollectionEquality().hash(buildingInput) ^
-      const DeepCollectionEquality().hash(floorInput) ^
-      const DeepCollectionEquality().hash(apartmentInput) ^
-      const DeepCollectionEquality().hash(villaInput) ^
-      const DeepCollectionEquality().hash(addressType) ^
-      const DeepCollectionEquality().hash(submissionState);
+  int get hashCode => Object.hash(
+      runtimeType,
+      cityInput,
+      mobilePhoneNumberInput,
+      zoneInput,
+      streetInput,
+      buildingInput,
+      floorInput,
+      apartmentInput,
+      villaInput,
+      addressType,
+      submissionState);
 
   @JsonKey(ignore: true)
   @override
@@ -376,27 +367,25 @@ abstract class _NewAddressFormState implements NewAddressFormState {
       _$_NewAddressFormState;
 
   @override
-  AddressInput get cityInput => throw _privateConstructorUsedError;
+  AddressInput get cityInput;
   @override
-  MobilePhoneNumberInput get mobilePhoneNumberInput =>
-      throw _privateConstructorUsedError;
+  MobilePhoneNumberInput get mobilePhoneNumberInput;
   @override
-  AddressInput get zoneInput => throw _privateConstructorUsedError;
+  AddressInput get zoneInput;
   @override
-  AddressInput get streetInput => throw _privateConstructorUsedError;
+  AddressInput get streetInput;
   @override
-  AddressInput get buildingInput => throw _privateConstructorUsedError;
+  AddressInput get buildingInput;
   @override
-  AddressInput get floorInput => throw _privateConstructorUsedError;
+  AddressInput get floorInput;
   @override
-  AddressInput get apartmentInput => throw _privateConstructorUsedError;
+  AddressInput get apartmentInput;
   @override
-  AddressInput get villaInput => throw _privateConstructorUsedError;
+  AddressInput get villaInput;
   @override
-  AddressType get addressType => throw _privateConstructorUsedError;
+  AddressType get addressType;
   @override
-  SubmissionState<AddressFailure> get submissionState =>
-      throw _privateConstructorUsedError;
+  SubmissionState<AddressFailure> get submissionState;
   @override
   @JsonKey(ignore: true)
   _$NewAddressFormStateCopyWith<_NewAddressFormState> get copyWith =>
@@ -508,7 +497,8 @@ class _$_BuildingAddress implements _BuildingAddress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _BuildingAddress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _BuildingAddress);
   }
 
   @override
@@ -611,7 +601,8 @@ class _$_VillaAddress implements _VillaAddress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _VillaAddress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _VillaAddress);
   }
 
   @override

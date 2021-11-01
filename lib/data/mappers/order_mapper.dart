@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:food_delivery_app/data/models/multilingual.dart';
+import 'package:food_delivery_app/domain/entities/order_status.dart';
 import 'package:food_delivery_app/domain/entities/preorder.dart';
 import 'package:food_delivery_app/domain/entities/order_item.dart';
 
@@ -42,5 +43,21 @@ class PreorderMapper {
       deliveryFees: map["deliveryFees"].toDouble(),
       totalPrice: map["totalPrice"].toDouble(),
     );
+  }
+}
+
+class OrderStatusMapper {
+  static OrderStatus mapToOrderStatus(String orderStatusString) {
+    switch (orderStatusString) {
+      case "submitted":
+        return const OrderStatus.submitted();
+
+      case "onTheWayToYou":
+        return const OrderStatus.onTheWayToYou();
+      case "received":
+        return const OrderStatus.recevied();
+      default:
+        throw Exception("invalid OrderStatus");
+    }
   }
 }

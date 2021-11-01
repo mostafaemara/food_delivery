@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/domain/entities/payment_method.dart';
 import 'package:food_delivery_app/domain/entities/preorder.dart' as domain;
+import 'package:food_delivery_app/domain/entities/order.dart' as domain;
 import 'package:food_delivery_app/domain/failures/failure.dart';
 
 abstract class PaymentRepository {
@@ -9,5 +10,5 @@ abstract class PaymentRepository {
       {required String uid,
       required PaymentMethod paymentMethod,
       required String addressId});
-  //Future<Either<PaymentFailure, List<domain.Preorder>>> getOrders(String uid);
+  Future<Either<ServerFailure, List<domain.Order>>> getOrgers(String uid);
 }

@@ -141,7 +141,8 @@ class _$Submitting<T> implements Submitting<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Submitting<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Submitting<T>);
   }
 
   @override
@@ -257,7 +258,8 @@ class _$SubmissionSuccess<T> implements SubmissionSuccess<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SubmissionSuccess<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SubmissionSuccess<T>);
   }
 
   @override
@@ -373,7 +375,8 @@ class _$SubmissionIdle<T> implements SubmissionIdle<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SubmissionIdle<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SubmissionIdle<T>);
   }
 
   @override
@@ -506,14 +509,14 @@ class _$SubmissionFailed<T> implements SubmissionFailed<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SubmissionFailed<T> &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is SubmissionFailed<T> &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -598,7 +601,7 @@ class _$SubmissionFailed<T> implements SubmissionFailed<T> {
 abstract class SubmissionFailed<T> implements SubmissionState<T> {
   const factory SubmissionFailed({required T failure}) = _$SubmissionFailed<T>;
 
-  T get failure => throw _privateConstructorUsedError;
+  T get failure;
   @JsonKey(ignore: true)
   $SubmissionFailedCopyWith<T, SubmissionFailed<T>> get copyWith =>
       throw _privateConstructorUsedError;

@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'home_cubit.dart';
+part of 'orders_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$HomeStateTearOff {
-  const _$HomeStateTearOff();
+class _$OrdersStateTearOff {
+  const _$OrdersStateTearOff();
 
   _Initial initial() {
     return const _Initial();
@@ -25,12 +25,9 @@ class _$HomeStateTearOff {
     return const _Loading();
   }
 
-  _Loaded loaded(
-      {required List<Meal> popularMeals,
-      required List<MealCategory> categories}) {
+  _Loaded loaded({required List<Order> orders}) {
     return _Loaded(
-      popularMeals: popularMeals,
-      categories: categories,
+      orders: orders,
     );
   }
 
@@ -42,17 +39,15 @@ class _$HomeStateTearOff {
 }
 
 /// @nodoc
-const $HomeState = _$HomeStateTearOff();
+const $OrdersState = _$OrdersStateTearOff();
 
 /// @nodoc
-mixin _$HomeState {
+mixin _$OrdersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<Meal> popularMeals, List<MealCategory> categories)
-        loaded,
+    required TResult Function(List<Order> orders) loaded,
     required TResult Function(ServerFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,8 +55,7 @@ mixin _$HomeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -69,8 +63,7 @@ mixin _$HomeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
     required TResult orElse(),
   }) =>
@@ -103,18 +96,19 @@ mixin _$HomeState {
 }
 
 /// @nodoc
-abstract class $HomeStateCopyWith<$Res> {
-  factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
-      _$HomeStateCopyWithImpl<$Res>;
+abstract class $OrdersStateCopyWith<$Res> {
+  factory $OrdersStateCopyWith(
+          OrdersState value, $Res Function(OrdersState) then) =
+      _$OrdersStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
-  _$HomeStateCopyWithImpl(this._value, this._then);
+class _$OrdersStateCopyWithImpl<$Res> implements $OrdersStateCopyWith<$Res> {
+  _$OrdersStateCopyWithImpl(this._value, this._then);
 
-  final HomeState _value;
+  final OrdersState _value;
   // ignore: unused_field
-  final $Res Function(HomeState) _then;
+  final $Res Function(OrdersState) _then;
 }
 
 /// @nodoc
@@ -124,7 +118,7 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res> extends _$OrdersStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -140,7 +134,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'HomeState.initial()';
+    return 'OrdersState.initial()';
   }
 
   @override
@@ -157,9 +151,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<Meal> popularMeals, List<MealCategory> categories)
-        loaded,
+    required TResult Function(List<Order> orders) loaded,
     required TResult Function(ServerFailure failure) failure,
   }) {
     return initial();
@@ -170,8 +162,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
   }) {
     return initial?.call();
@@ -182,8 +173,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -231,7 +221,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements HomeState {
+abstract class _Initial implements OrdersState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -242,7 +232,7 @@ abstract class _$LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+class __$LoadingCopyWithImpl<$Res> extends _$OrdersStateCopyWithImpl<$Res>
     implements _$LoadingCopyWith<$Res> {
   __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
       : super(_value, (v) => _then(v as _Loading));
@@ -258,7 +248,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'HomeState.loading()';
+    return 'OrdersState.loading()';
   }
 
   @override
@@ -275,9 +265,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<Meal> popularMeals, List<MealCategory> categories)
-        loaded,
+    required TResult Function(List<Order> orders) loaded,
     required TResult Function(ServerFailure failure) failure,
   }) {
     return loading();
@@ -288,8 +276,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
   }) {
     return loading?.call();
@@ -300,8 +287,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -349,7 +335,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements HomeState {
+abstract class _Loading implements OrdersState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -357,11 +343,11 @@ abstract class _Loading implements HomeState {
 abstract class _$LoadedCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
       __$LoadedCopyWithImpl<$Res>;
-  $Res call({List<Meal> popularMeals, List<MealCategory> categories});
+  $Res call({List<Order> orders});
 }
 
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+class __$LoadedCopyWithImpl<$Res> extends _$OrdersStateCopyWithImpl<$Res>
     implements _$LoadedCopyWith<$Res> {
   __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
       : super(_value, (v) => _then(v as _Loaded));
@@ -371,18 +357,13 @@ class __$LoadedCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? popularMeals = freezed,
-    Object? categories = freezed,
+    Object? orders = freezed,
   }) {
     return _then(_Loaded(
-      popularMeals: popularMeals == freezed
-          ? _value.popularMeals
-          : popularMeals // ignore: cast_nullable_to_non_nullable
-              as List<Meal>,
-      categories: categories == freezed
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<MealCategory>,
+      orders: orders == freezed
+          ? _value.orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<Order>,
     ));
   }
 }
@@ -390,16 +371,14 @@ class __$LoadedCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded({required this.popularMeals, required this.categories});
+  const _$_Loaded({required this.orders});
 
   @override
-  final List<Meal> popularMeals;
-  @override
-  final List<MealCategory> categories;
+  final List<Order> orders;
 
   @override
   String toString() {
-    return 'HomeState.loaded(popularMeals: $popularMeals, categories: $categories)';
+    return 'OrdersState.loaded(orders: $orders)';
   }
 
   @override
@@ -407,17 +386,12 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Loaded &&
-            const DeepCollectionEquality()
-                .equals(other.popularMeals, popularMeals) &&
-            const DeepCollectionEquality()
-                .equals(other.categories, categories));
+            const DeepCollectionEquality().equals(other.orders, orders));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(popularMeals),
-      const DeepCollectionEquality().hash(categories));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(orders));
 
   @JsonKey(ignore: true)
   @override
@@ -429,12 +403,10 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<Meal> popularMeals, List<MealCategory> categories)
-        loaded,
+    required TResult Function(List<Order> orders) loaded,
     required TResult Function(ServerFailure failure) failure,
   }) {
-    return loaded(popularMeals, categories);
+    return loaded(orders);
   }
 
   @override
@@ -442,11 +414,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
   }) {
-    return loaded?.call(popularMeals, categories);
+    return loaded?.call(orders);
   }
 
   @override
@@ -454,13 +425,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(popularMeals, categories);
+      return loaded(orders);
     }
     return orElse();
   }
@@ -503,13 +473,10 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements HomeState {
-  const factory _Loaded(
-      {required List<Meal> popularMeals,
-      required List<MealCategory> categories}) = _$_Loaded;
+abstract class _Loaded implements OrdersState {
+  const factory _Loaded({required List<Order> orders}) = _$_Loaded;
 
-  List<Meal> get popularMeals;
-  List<MealCategory> get categories;
+  List<Order> get orders;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith => throw _privateConstructorUsedError;
 }
@@ -522,7 +489,7 @@ abstract class _$FailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+class __$FailureCopyWithImpl<$Res> extends _$OrdersStateCopyWithImpl<$Res>
     implements _$FailureCopyWith<$Res> {
   __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
       : super(_value, (v) => _then(v as _Failure));
@@ -553,7 +520,7 @@ class _$_Failure implements _Failure {
 
   @override
   String toString() {
-    return 'HomeState.failure(failure: $failure)';
+    return 'OrdersState.failure(failure: $failure)';
   }
 
   @override
@@ -577,9 +544,7 @@ class _$_Failure implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            List<Meal> popularMeals, List<MealCategory> categories)
-        loaded,
+    required TResult Function(List<Order> orders) loaded,
     required TResult Function(ServerFailure failure) failure,
   }) {
     return failure(this.failure);
@@ -590,8 +555,7 @@ class _$_Failure implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
   }) {
     return failure?.call(this.failure);
@@ -602,8 +566,7 @@ class _$_Failure implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Meal> popularMeals, List<MealCategory> categories)?
-        loaded,
+    TResult Function(List<Order> orders)? loaded,
     TResult Function(ServerFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -651,7 +614,7 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements HomeState {
+abstract class _Failure implements OrdersState {
   const factory _Failure({required ServerFailure failure}) = _$_Failure;
 
   ServerFailure get failure;

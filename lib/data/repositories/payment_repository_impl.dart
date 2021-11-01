@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food_delivery_app/data/models/order.dart';
+
 import 'package:food_delivery_app/domain/entities/payment_method.dart';
 
 import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/entities/preorder.dart' as domain;
+import 'package:food_delivery_app/domain/entities/order.dart' as domain;
 import 'package:dartz/dartz.dart';
 import 'package:food_delivery_app/domain/repositories/payment_repository.dart';
 import "../mappers/order_mapper.dart";
@@ -55,4 +58,27 @@ class PaymentRepositoryImpl implements PaymentRepository {
       return left(PaymentFailure());
     }
   }
+
+  @override
+  Future<Either<ServerFailure, List<domain.Order>>> getOrgers(
+      String uid) async {
+    try {
+      final snapshot = await firestore
+          .collection("orders")
+          .where("uid", isEqualTo: uid)
+          .get();
+      return right(documentsToOrders(snapshot.docs));
+    } catch (e) {
+      return left(ServerFailure());
+    }
+  }
+}
+
+List<domain.Order> documentsToOrders(
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> documents) {
+  List<domain.Order> orders = [];
+  for (final document in documents) {
+    orders.add(OrderModel.fromDocument(document));
+  }
+  return orders;
 }

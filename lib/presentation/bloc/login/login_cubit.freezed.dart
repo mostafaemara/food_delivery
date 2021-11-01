@@ -167,24 +167,19 @@ class _$_LoginState implements _LoginState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LoginState &&
+        (other.runtimeType == runtimeType &&
+            other is _LoginState &&
             (identical(other.emailInput, emailInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailInput, emailInput)) &&
+                other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordInput, passwordInput)) &&
+                other.passwordInput == passwordInput) &&
             (identical(other.submissionState, submissionState) ||
-                const DeepCollectionEquality()
-                    .equals(other.submissionState, submissionState)));
+                other.submissionState == submissionState));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(emailInput) ^
-      const DeepCollectionEquality().hash(passwordInput) ^
-      const DeepCollectionEquality().hash(submissionState);
+      Object.hash(runtimeType, emailInput, passwordInput, submissionState);
 
   @JsonKey(ignore: true)
   @override
@@ -199,12 +194,11 @@ abstract class _LoginState implements LoginState {
       required SubmissionState<AuthFailure> submissionState}) = _$_LoginState;
 
   @override
-  EmailInput get emailInput => throw _privateConstructorUsedError;
+  EmailInput get emailInput;
   @override
-  PasswordInput get passwordInput => throw _privateConstructorUsedError;
+  PasswordInput get passwordInput;
   @override
-  SubmissionState<AuthFailure> get submissionState =>
-      throw _privateConstructorUsedError;
+  SubmissionState<AuthFailure> get submissionState;
   @override
   @JsonKey(ignore: true)
   _$LoginStateCopyWith<_LoginState> get copyWith =>

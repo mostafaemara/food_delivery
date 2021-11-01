@@ -151,7 +151,8 @@ class _$_PaymentInit implements _PaymentInit {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PaymentInit);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _PaymentInit);
   }
 
   @override
@@ -273,7 +274,8 @@ class _$_PaymentLoading implements _PaymentLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PaymentLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _PaymentLoading);
   }
 
   @override
@@ -412,15 +414,14 @@ class _$_PaymentPrepared implements _PaymentPrepared {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PaymentPrepared &&
+        (other.runtimeType == runtimeType &&
+            other is _PaymentPrepared &&
             (identical(other.preorder, preorder) ||
-                const DeepCollectionEquality()
-                    .equals(other.preorder, preorder)));
+                other.preorder == preorder));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(preorder);
+  int get hashCode => Object.hash(runtimeType, preorder);
 
   @JsonKey(ignore: true)
   @override
@@ -512,7 +513,7 @@ abstract class _PaymentPrepared implements PaymentState {
   const factory _PaymentPrepared({required Preorder preorder}) =
       _$_PaymentPrepared;
 
-  Preorder get preorder => throw _privateConstructorUsedError;
+  Preorder get preorder;
   @JsonKey(ignore: true)
   _$PaymentPreparedCopyWith<_PaymentPrepared> get copyWith =>
       throw _privateConstructorUsedError;
@@ -549,7 +550,8 @@ class _$_PaymentSuccess implements _PaymentSuccess {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PaymentSuccess);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _PaymentSuccess);
   }
 
   @override
@@ -688,14 +690,13 @@ class _$_PaymentFailure implements _PaymentFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PaymentFailure &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _PaymentFailure &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(runtimeType, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -787,7 +788,7 @@ abstract class _PaymentFailure implements PaymentState {
   const factory _PaymentFailure({required PaymentFailure failure}) =
       _$_PaymentFailure;
 
-  PaymentFailure get failure => throw _privateConstructorUsedError;
+  PaymentFailure get failure;
   @JsonKey(ignore: true)
   _$PaymentFailureCopyWith<_PaymentFailure> get copyWith =>
       throw _privateConstructorUsedError;

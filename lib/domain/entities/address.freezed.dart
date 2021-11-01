@@ -310,39 +310,24 @@ class _$_BuildingAddress implements _BuildingAddress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BuildingAddress &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.zone, zone) ||
-                const DeepCollectionEquality().equals(other.zone, zone)) &&
-            (identical(other.street, street) ||
-                const DeepCollectionEquality().equals(other.street, street)) &&
+        (other.runtimeType == runtimeType &&
+            other is _BuildingAddress &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.zone, zone) || other.zone == zone) &&
+            (identical(other.street, street) || other.street == street) &&
             (identical(other.building, building) ||
-                const DeepCollectionEquality()
-                    .equals(other.building, building)) &&
-            (identical(other.floor, floor) ||
-                const DeepCollectionEquality().equals(other.floor, floor)) &&
+                other.building == building) &&
+            (identical(other.floor, floor) || other.floor == floor) &&
             (identical(other.apartment, apartment) ||
-                const DeepCollectionEquality()
-                    .equals(other.apartment, apartment)) &&
+                other.apartment == apartment) &&
             (identical(other.mobilePhoneNumber, mobilePhoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.mobilePhoneNumber, mobilePhoneNumber)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                other.mobilePhoneNumber == mobilePhoneNumber) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(zone) ^
-      const DeepCollectionEquality().hash(street) ^
-      const DeepCollectionEquality().hash(building) ^
-      const DeepCollectionEquality().hash(floor) ^
-      const DeepCollectionEquality().hash(apartment) ^
-      const DeepCollectionEquality().hash(mobilePhoneNumber) ^
-      const DeepCollectionEquality().hash(id);
+  int get hashCode => Object.hash(runtimeType, city, zone, street, building,
+      floor, apartment, mobilePhoneNumber, id);
 
   @JsonKey(ignore: true)
   @override
@@ -460,18 +445,18 @@ abstract class _BuildingAddress implements Address {
       required String id}) = _$_BuildingAddress;
 
   @override
-  String get city => throw _privateConstructorUsedError;
+  String get city;
   @override
-  String get zone => throw _privateConstructorUsedError;
+  String get zone;
   @override
-  String get street => throw _privateConstructorUsedError;
-  String get building => throw _privateConstructorUsedError;
-  String get floor => throw _privateConstructorUsedError;
-  String get apartment => throw _privateConstructorUsedError;
+  String get street;
+  String get building;
+  String get floor;
+  String get apartment;
   @override
-  String get mobilePhoneNumber => throw _privateConstructorUsedError;
+  String get mobilePhoneNumber;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$BuildingAddressCopyWith<_BuildingAddress> get copyWith =>
@@ -573,31 +558,20 @@ class _$_VillaAddress implements _VillaAddress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _VillaAddress &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.zone, zone) ||
-                const DeepCollectionEquality().equals(other.zone, zone)) &&
-            (identical(other.street, street) ||
-                const DeepCollectionEquality().equals(other.street, street)) &&
-            (identical(other.villa, villa) ||
-                const DeepCollectionEquality().equals(other.villa, villa)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _VillaAddress &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.zone, zone) || other.zone == zone) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.villa, villa) || other.villa == villa) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.mobilePhoneNumber, mobilePhoneNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.mobilePhoneNumber, mobilePhoneNumber)));
+                other.mobilePhoneNumber == mobilePhoneNumber));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(zone) ^
-      const DeepCollectionEquality().hash(street) ^
-      const DeepCollectionEquality().hash(villa) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(mobilePhoneNumber);
+  int get hashCode => Object.hash(
+      runtimeType, city, zone, street, villa, id, mobilePhoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -710,16 +684,16 @@ abstract class _VillaAddress implements Address {
       required String mobilePhoneNumber}) = _$_VillaAddress;
 
   @override
-  String get city => throw _privateConstructorUsedError;
+  String get city;
   @override
-  String get zone => throw _privateConstructorUsedError;
+  String get zone;
   @override
-  String get street => throw _privateConstructorUsedError;
-  String get villa => throw _privateConstructorUsedError;
+  String get street;
+  String get villa;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get mobilePhoneNumber => throw _privateConstructorUsedError;
+  String get mobilePhoneNumber;
   @override
   @JsonKey(ignore: true)
   _$VillaAddressCopyWith<_VillaAddress> get copyWith =>

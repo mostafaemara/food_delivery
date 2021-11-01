@@ -119,7 +119,8 @@ class _$InvalidEmail implements InvalidEmail {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidEmail);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InvalidEmail);
   }
 
   @override
@@ -221,7 +222,8 @@ class _$Empty implements Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Empty);
   }
 
   @override
@@ -400,7 +402,8 @@ class _$ShortPassword implements ShortPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ShortPassword);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ShortPassword);
   }
 
   @override
@@ -504,7 +507,8 @@ class _$EmptyPassword implements EmptyPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmptyPassword);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmptyPassword);
   }
 
   @override
@@ -685,7 +689,8 @@ class _$PasswordNotMatch implements PasswordNotMatch {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PasswordNotMatch);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PasswordNotMatch);
   }
 
   @override
@@ -789,7 +794,8 @@ class _$EmptyConfirmPassword implements EmptyConfirmPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmptyConfirmPassword);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmptyConfirmPassword);
   }
 
   @override
@@ -979,7 +985,8 @@ class _$InvalidUserName implements InvalidUserName {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidUserName);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InvalidUserName);
   }
 
   @override
@@ -1089,7 +1096,8 @@ class _$EmptyUserName implements EmptyUserName {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmptyUserName);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmptyUserName);
   }
 
   @override
@@ -1199,7 +1207,8 @@ class _$TooShortUserName implements TooShortUserName {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is TooShortUserName);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TooShortUserName);
   }
 
   @override
@@ -1386,7 +1395,8 @@ class _$InvalidPhoneNumber implements InvalidPhoneNumber {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidPhoneNumber);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InvalidPhoneNumber);
   }
 
   @override
@@ -1491,7 +1501,8 @@ class _$EmptyPhoneNumber implements EmptyPhoneNumber {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmptyPhoneNumber);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmptyPhoneNumber);
   }
 
   @override
@@ -1661,7 +1672,8 @@ class _$EmptyAddressField implements EmptyAddressField {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmptyAddressField);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmptyAddressField);
   }
 
   @override

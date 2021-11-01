@@ -156,23 +156,17 @@ class _$_AddressesState implements _AddressesState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AddressesState &&
-            (identical(other.addresses, addresses) ||
-                const DeepCollectionEquality()
-                    .equals(other.addresses, addresses)) &&
+        (other.runtimeType == runtimeType &&
+            other is _AddressesState &&
+            const DeepCollectionEquality().equals(other.addresses, addresses) &&
             (identical(other.selectedAddress, selectedAddress) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedAddress, selectedAddress)) &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+                other.selectedAddress == selectedAddress) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(addresses) ^
-      const DeepCollectionEquality().hash(selectedAddress) ^
-      const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(addresses), selectedAddress, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -187,11 +181,11 @@ abstract class _AddressesState implements AddressesState {
       required Option<AddressFailure> failure}) = _$_AddressesState;
 
   @override
-  List<Address> get addresses => throw _privateConstructorUsedError;
+  List<Address> get addresses;
   @override
-  Option<String> get selectedAddress => throw _privateConstructorUsedError;
+  Option<String> get selectedAddress;
   @override
-  Option<AddressFailure> get failure => throw _privateConstructorUsedError;
+  Option<AddressFailure> get failure;
   @override
   @JsonKey(ignore: true)
   _$AddressesStateCopyWith<_AddressesState> get copyWith =>

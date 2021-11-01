@@ -109,7 +109,8 @@ class _$_CashOnDelivery implements _CashOnDelivery {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _CashOnDelivery);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _CashOnDelivery);
   }
 
   @override

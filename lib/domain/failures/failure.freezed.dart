@@ -138,7 +138,8 @@ class _$AuthServerFailure implements AuthServerFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthServerFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthServerFailure);
   }
 
   @override
@@ -254,7 +255,8 @@ class _$WorngEmailOrPassword implements WorngEmailOrPassword {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is WorngEmailOrPassword);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is WorngEmailOrPassword);
   }
 
   @override
@@ -369,7 +371,8 @@ class _$ProcessAborted implements ProcessAborted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ProcessAborted);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ProcessAborted);
   }
 
   @override
@@ -485,7 +488,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmailAlreadyInUse);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmailAlreadyInUse);
   }
 
   @override
@@ -676,7 +680,8 @@ class _$AddressServerFailure implements AddressServerFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AddressServerFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AddressServerFailure);
   }
 
   @override
@@ -780,7 +785,8 @@ class _$AddressesIsEmpty implements AddressesIsEmpty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AddressesIsEmpty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AddressesIsEmpty);
   }
 
   @override

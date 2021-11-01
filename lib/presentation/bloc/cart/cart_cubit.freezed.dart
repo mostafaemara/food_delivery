@@ -135,18 +135,15 @@ class _$_CartState with DiagnosticableTreeMixin implements _CartState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _CartState &&
-            (identical(other.items, items) ||
-                const DeepCollectionEquality().equals(other.items, items)) &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _CartState &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(items) ^
-      const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(items), failure);
 
   @JsonKey(ignore: true)
   @override
@@ -160,9 +157,9 @@ abstract class _CartState implements CartState {
       required Option<ServerFailure> failure}) = _$_CartState;
 
   @override
-  List<CartItem> get items => throw _privateConstructorUsedError;
+  List<CartItem> get items;
   @override
-  Option<ServerFailure> get failure => throw _privateConstructorUsedError;
+  Option<ServerFailure> get failure;
   @override
   @JsonKey(ignore: true)
   _$CartStateCopyWith<_CartState> get copyWith =>

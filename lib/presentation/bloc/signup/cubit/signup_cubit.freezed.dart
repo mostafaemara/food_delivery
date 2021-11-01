@@ -205,32 +205,23 @@ class _$_SignupState implements _SignupState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SignupState &&
+        (other.runtimeType == runtimeType &&
+            other is _SignupState &&
             (identical(other.emailInput, emailInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailInput, emailInput)) &&
+                other.emailInput == emailInput) &&
             (identical(other.passwordInput, passwordInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.passwordInput, passwordInput)) &&
+                other.passwordInput == passwordInput) &&
             (identical(other.confirmPasswordInput, confirmPasswordInput) ||
-                const DeepCollectionEquality().equals(
-                    other.confirmPasswordInput, confirmPasswordInput)) &&
+                other.confirmPasswordInput == confirmPasswordInput) &&
             (identical(other.userNameInput, userNameInput) ||
-                const DeepCollectionEquality()
-                    .equals(other.userNameInput, userNameInput)) &&
+                other.userNameInput == userNameInput) &&
             (identical(other.submissionState, submissionState) ||
-                const DeepCollectionEquality()
-                    .equals(other.submissionState, submissionState)));
+                other.submissionState == submissionState));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(emailInput) ^
-      const DeepCollectionEquality().hash(passwordInput) ^
-      const DeepCollectionEquality().hash(confirmPasswordInput) ^
-      const DeepCollectionEquality().hash(userNameInput) ^
-      const DeepCollectionEquality().hash(submissionState);
+  int get hashCode => Object.hash(runtimeType, emailInput, passwordInput,
+      confirmPasswordInput, userNameInput, submissionState);
 
   @JsonKey(ignore: true)
   @override
@@ -247,17 +238,15 @@ abstract class _SignupState implements SignupState {
       required SubmissionState<AuthFailure> submissionState}) = _$_SignupState;
 
   @override
-  EmailInput get emailInput => throw _privateConstructorUsedError;
+  EmailInput get emailInput;
   @override
-  PasswordInput get passwordInput => throw _privateConstructorUsedError;
+  PasswordInput get passwordInput;
   @override
-  ConfirmPasswordInput get confirmPasswordInput =>
-      throw _privateConstructorUsedError;
+  ConfirmPasswordInput get confirmPasswordInput;
   @override
-  UserNameInput get userNameInput => throw _privateConstructorUsedError;
+  UserNameInput get userNameInput;
   @override
-  SubmissionState<AuthFailure> get submissionState =>
-      throw _privateConstructorUsedError;
+  SubmissionState<AuthFailure> get submissionState;
   @override
   @JsonKey(ignore: true)
   _$SignupStateCopyWith<_SignupState> get copyWith =>
