@@ -86,7 +86,16 @@
      "yourCartIsEmpty":"Your cart is empty!",
      "startOrdering":"Start ordering",
      "yourOrderHasBeenPlaced":"Your order has been successfully placed",
-     "orders":"Orders"
+     "orders":"Orders",
+     "order":"Order",
+     "quantity":"Quantity",
+     "orderState":"Order state",
+     "submitted":"Submitted",
+     "onTheWayToYou":"On the way to you",
+     "recevied":"Recevied",
+     "totalPrice":"Total price",
+     "details":"Details"
+
 
 
 }

@@ -2,10 +2,6 @@ import 'package:flutter/widgets.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/domain/failures/validation_failure.dart';
-import 'package:food_delivery_app/presentation/inputs/confirm_password_input.dart';
-import 'package:food_delivery_app/presentation/inputs/email_input.dart';
-import 'package:food_delivery_app/presentation/inputs/password_input.dart';
-import 'package:food_delivery_app/presentation/inputs/username_input.dart';
 
 extension UserNameValidationFailureHelper on UserNameValidationFailure {
   String convertErrorToLocaleString(BuildContext context) {

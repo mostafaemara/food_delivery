@@ -13,6 +13,7 @@ import 'package:food_delivery_app/presentation/pages/main/main.dart';
 import 'package:food_delivery_app/presentation/pages/meal_details/meal_details.dart';
 
 import 'package:food_delivery_app/presentation/pages/onboard/onboard.dart';
+import 'package:food_delivery_app/presentation/pages/orders/orders_page.dart';
 import 'package:food_delivery_app/presentation/pages/payment/payment_page.dart';
 import 'package:food_delivery_app/presentation/pages/setting/setting_page.dart';
 import 'package:food_delivery_app/presentation/pages/signup/signup_page.dart';
@@ -51,6 +52,9 @@ import 'package:food_delivery_app/presentation/pages/splash/splash.dart';
   ),
   AutoRoute(
     page: PaymentPage,
+  ),
+  AutoRoute(
+    page: OrdersPage,
   ),
 ])
 class $AppRouter {}

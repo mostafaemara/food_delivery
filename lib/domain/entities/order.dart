@@ -11,10 +11,12 @@ class Order {
   final String uid;
   final Address address;
   final String id;
+  final DateTime date;
 
   Order(
       {required this.deliveryFees,
       required this.id,
+      required this.date,
       required this.items,
       required this.status,
       required this.totalPrice,

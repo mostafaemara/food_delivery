@@ -9,6 +9,7 @@ import 'package:food_delivery_app/domain/entities/order_status.dart';
 class OrderModel extends Order {
   OrderModel(
       {required String id,
+      required DateTime date,
       required double deliveryFees,
       required List<OrderItem> items,
       required OrderStatus status,
@@ -17,6 +18,7 @@ class OrderModel extends Order {
       required String uid,
       required Address address})
       : super(
+            date: date,
             id: id,
             address: address,
             deliveryFees: deliveryFees,
@@ -30,6 +32,7 @@ class OrderModel extends Order {
       QueryDocumentSnapshot<Map<String, dynamic>> document) {
     final map = document.data();
     return OrderModel(
+        date: DateTime.parse(map["date"].toDate().toString()),
         id: document.id,
         deliveryFees: map["deliveryFees"].toDouble(),
         items: List<OrderItem>.from(

@@ -86,5 +86,13 @@
       "yourCartIsEmpty":"عربة التسوق فارغة!",
      "startOrdering":"اطلب الان",
      "yourOrderHasBeenPlaced":"تم طلبك بنجاح",
-      "orders":"الطلبات"
+      "orders":"الطلبات",
+         "order":"الطلب",
+     "quantity":"الكمية",
+     "orderState":"حالة الطلب",
+     "submitted":"تم استقبال الطلب",
+     "onTheWayToYou":"في الطريق اليك",
+     "recevied":"تم الاستلام",
+     "totalPrice":"السعر الكلي",
+     "details":"التفاصيل"
 }
