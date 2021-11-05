@@ -1,28 +1,14 @@
 part of 'favorites_cubit.dart';
 
-enum FavoritesStatus { init, loading, loaded, notAuth, error }
+@freezed
+class FavoritesState with _$FavoritesState {
+  const factory FavoritesState.initial() = _Initial;
+  const factory FavoritesState.loading() = _Loading;
+  const factory FavoritesState.loaded({required List<Meal> favorites}) =
+      _Loaded;
 
-class FavoritesState {
-  final List<Favorite> favorites;
-  final Option<AuthFailure> failureOrNone;
-  final FavoritesStatus status;
-
-  const FavoritesState(
-      {required this.status,
-      required this.favorites,
-      required this.failureOrNone});
-
-  FavoritesState copyWith(
-      {Option<User>? user,
-      FavoritesStatus? status,
-      List<Favorite>? favorites,
-      Option<AuthFailure>? failureOrNone}) {
-    return FavoritesState(
-      status: status ?? this.status,
-      favorites: favorites ?? this.favorites,
-      failureOrNone: failureOrNone ?? this.failureOrNone,
-    );
-  }
+  const factory FavoritesState.failure({required ServerFailure failure}) =
+      _Failure;
 
   // @override
   //List<Object> get props => [favorites, status, user, failureOrNone];

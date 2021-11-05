@@ -20,4 +20,9 @@ class Meal {
       required this.description,
       required this.calories,
       required this.deliveryTime});
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is Meal && id == other.id;
+  @override
+  int get hashCode => id.hashCode;
 }

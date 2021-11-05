@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/domain/entities/favorite.dart' as domain;
+
 import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 import "../helpers/translators.dart";
@@ -29,9 +29,7 @@ class MealListItem extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () async {
-                  //Navigate to Meal Details page return True if User Add Item to Cart
-                  context.router.push<bool>(MealDetailsRoute(meal: meal));
-                  // If returned Value was True GoTo Cart Tab
+                  context.router.push(MealDetailsRoute(meal: meal));
                 },
                 child: Image.network(
                   meal.imageUrl,
@@ -67,10 +65,7 @@ class MealListItem extends StatelessWidget {
                 children: [
                   const Spacer(),
                   FavoriteButton(
-                    favorite: domain.Favorite(
-                        title: meal.title,
-                        mealId: meal.id,
-                        imageUrl: meal.imageUrl),
+                    favorite: meal,
                   )
                 ],
               )

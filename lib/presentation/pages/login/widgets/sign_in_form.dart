@@ -86,7 +86,10 @@ class SignInForm extends StatelessWidget {
         state.submissionState.maybeWhen(
           orElse: () => null,
           submitting: () => showLoadingDialog(context),
-          success: () => context.replaceRoute(const MainRoute()),
+          success: () {
+            context.router.pop();
+            context.replaceRoute(const MainRoute());
+          },
           failed: (failure) => failure.maybeWhen(
             worngEmailOrPassword: () {
               showErrorDialog(context,

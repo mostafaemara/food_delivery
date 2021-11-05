@@ -94,5 +94,8 @@
      "onTheWayToYou":"في الطريق اليك",
      "recevied":"تم الاستلام",
      "totalPrice":"السعر الكلي",
-     "details":"التفاصيل"
+     "details":"التفاصيل",
+      "date":"التاريخ",
+       "itemName":"اسم الوحدة",
+     "itemPrice":"سعر الوحدة"
 }

@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery_app/data/models/favorite.dart';
-import 'package:food_delivery_app/domain/entities/favorite.dart';
+
+import 'package:food_delivery_app/data/models/meal.dart';
+
+import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/domain/failures/failure.dart';
 import 'package:food_delivery_app/domain/repositories/favorites_repository.dart';
 
 class FavoritesRepositoryImpl implements FavoritesRepository {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
-  Future<Either<AuthFailure, Unit>> addToFavorites(
+  Future<Either<ServerFailure, Unit>> addToFavorites(
       String mealId, String uid) async {
     try {
       await firestore
@@ -20,23 +22,12 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
           .set({});
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
-  }
-
-  Future<List<Favorite>> fetchFavoritesByIds(List<String> ids) async {
-    List<Favorite> favorites = [];
-    for (final id in ids) {
-      final snapshot = await firestore.collection("meals").doc(id).get();
-      final Map<String, dynamic> map = {"id": snapshot.id}
-        ..addAll(snapshot.data()!);
-      favorites.add(FavoriteModel.fromMap(map));
-    }
-    return favorites;
   }
 
   @override
-  Future<Either<AuthFailure, List<Favorite>>> fetchFavorites(String uid) async {
+  Future<Either<ServerFailure, List<Meal>>> fetchFavorites(String uid) async {
     try {
       final snapshot = await firestore
           .collection("users")
@@ -51,16 +42,26 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
         favoriteIds.add(doc.id);
       }
 
-      final favorites = await fetchFavoritesByIds(favoriteIds);
+      final favorites = await fetchFavoritesMealsByIds(favoriteIds);
 
       return right(favorites);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 
+  Future<List<Meal>> fetchFavoritesMealsByIds(List<String> ids) async {
+    List<Meal> favorites = [];
+    for (final id in ids) {
+      final snapshot = await firestore.collection("meals").doc(id).get();
+
+      favorites.add(MealModel.fromDocument(snapshot));
+    }
+    return favorites;
+  }
+
   @override
-  Future<Either<AuthFailure, Unit>> removeFromFavorites(
+  Future<Either<ServerFailure, Unit>> removeFromFavorites(
       String mealId, String uid) async {
     try {
       await firestore
@@ -71,7 +72,7 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
           .delete();
       return right(unit);
     } catch (e) {
-      return left(const AuthFailure.serverFailure());
+      return left(ServerFailure());
     }
   }
 }

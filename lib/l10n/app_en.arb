@@ -94,7 +94,10 @@
      "onTheWayToYou":"On the way to you",
      "recevied":"Recevied",
      "totalPrice":"Total price",
-     "details":"Details"
+     "details":"Details",
+     "date":"Date",
+     "itemName":"Item name",
+     "itemPrice":"Item price"
 
 
 

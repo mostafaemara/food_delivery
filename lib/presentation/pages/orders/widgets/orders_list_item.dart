@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/domain/entities/order.dart';
-
+import "package:auto_route/auto_route.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:food_delivery_app/presentation/helpers/orders_helper.dart';
 import 'package:food_delivery_app/presentation/helpers/translators.dart';
+import 'package:food_delivery_app/presentation/routes/router.gr.dart';
 
 class OrdersListItem extends StatelessWidget {
   const OrdersListItem({Key? key, required this.order}) : super(key: key);
@@ -55,7 +56,9 @@ class OrdersListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.navigateTo(OrderDetailsRoute(order: order));
+                    },
                     child: Text(AppLocalizations.of(context)!.details)),
                 Text(
                   "${AppLocalizations.of(context)!.orderState}: ${order.status.translate(context)}",

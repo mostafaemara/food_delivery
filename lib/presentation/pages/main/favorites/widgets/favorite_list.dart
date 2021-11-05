@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:food_delivery_app/domain/entities/favorite.dart';
+import 'package:food_delivery_app/domain/entities/meal.dart';
 import 'package:food_delivery_app/presentation/bloc/favorites/favorites_cubit.dart';
 
 import 'favorite_list_item.dart';
@@ -11,7 +12,7 @@ class FavoriteList extends StatelessWidget {
     Key? key,
     required this.favorites,
   }) : super(key: key);
-  final List<Favorite> favorites;
+  final List<Meal> favorites;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FavoritesCubit, FavoritesState>(

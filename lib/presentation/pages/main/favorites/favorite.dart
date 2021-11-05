@@ -20,18 +20,16 @@ class _FavoriteState extends State<Favorite> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: BlocConsumer<FavoritesCubit, FavoritesState>(
               builder: (context, state) {
-                if (state.status == FavoritesStatus.loaded) {
-                  return FavoriteList(
-                    favorites: state.favorites,
-                  );
-                }
-                if (state.status == FavoritesStatus.notAuth) {
-                  return const Center(
-                    child: Text("Login to Show Favorites!"),
-                  );
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return state.maybeWhen(
+                  loaded: (favorites) => FavoriteList(
+                    favorites: favorites,
+                  ),
+                  failure: (failure) => const Center(
+                    child: Text("Somthing Went Wrong!"),
+                  ),
+                  orElse: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 );
               },
               listener: (context, state) {},
