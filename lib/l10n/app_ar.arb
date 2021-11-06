@@ -97,5 +97,7 @@
      "details":"التفاصيل",
       "date":"التاريخ",
        "itemName":"اسم الوحدة",
-     "itemPrice":"سعر الوحدة"
+     "itemPrice":"سعر الوحدة",
+     "noOrdersYet":"لا يوجد طلبات",
+     "noAddressAddedYet":"لم يتم اضافة عنوان بعد"
 }

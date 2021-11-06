@@ -97,7 +97,9 @@
      "details":"Details",
      "date":"Date",
      "itemName":"Item name",
-     "itemPrice":"Item price"
+     "itemPrice":"Item price",
+     "noOrdersYet":"No Orders Yet",
+     "noAddressAddedYet":"No addresses added yet"
 
 
 

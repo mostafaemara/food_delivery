@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/presentation/bloc/orders/orders_cubit.dart';
-import 'package:food_delivery_app/presentation/pages/orders/widgets/orders_error.dart';
+import 'package:food_delivery_app/presentation/pages/orders/widgets/empty_orders.dart';
+import 'package:food_delivery_app/presentation/widgets/server_error.dart';
 import 'package:food_delivery_app/presentation/pages/orders/widgets/orders_list.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
@@ -34,8 +35,10 @@ class _OrdersBodyState extends State<OrdersBody> {
         builder: (context, state) {
           return state.maybeWhen(
             orElse: () => const OrdersLoading(),
-            loaded: (orders) => OrdersList(orders: orders),
-            failure: (failure) => const OrdersError(),
+            loaded: (orders) => orders.isEmpty
+                ? const EmptyOrders()
+                : OrdersList(orders: orders),
+            failure: (failure) => const ServerError(),
           );
         },
       ),

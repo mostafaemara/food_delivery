@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:food_delivery_app/presentation/bloc/home/home_cubit.dart';
-import 'package:food_delivery_app/presentation/pages/main/home/widgets/home_failure.dart';
+
 import 'package:food_delivery_app/presentation/pages/main/home/widgets/home_loaded.dart';
 import 'package:food_delivery_app/presentation/pages/main/home/widgets/home_loading.dart';
+import 'package:food_delivery_app/presentation/widgets/server_error.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
           orElse: () => const HomeLoading(),
           loaded: (popularMeals, categories) =>
               HomeLoaded(categories: categories, popularMeals: popularMeals),
-          failure: (failure) => const HomeFailure(),
+          failure: (failure) => const ServerError(),
         );
       },
     );

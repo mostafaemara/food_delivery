@@ -6,15 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import "package:auto_route/auto_route.dart";
 
-class AddressesListItem extends StatelessWidget {
-  const AddressesListItem(
-      {Key? key, required this.address, required this.isSelectionModeActive})
-      : super(key: key);
+class AddressListItem extends StatelessWidget {
+  const AddressListItem({Key? key, required this.address}) : super(key: key);
   final Address address;
-  final bool isSelectionModeActive;
 
   @override
   Widget build(BuildContext context) {
+    final isSelectionModeActive = context.read<bool>();
     return InkWell(
       onTap: () {
         if (isSelectionModeActive) {
