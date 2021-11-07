@@ -43,7 +43,6 @@ class UserDrawerMenu extends StatelessWidget {
             const AddressDrawerMenuItem(),
             const OrdersDrawerMenuItem(),
             const SettingDrawerMenuItem(),
-            const PrivacyPolicyDrawerMenuItem(),
             const SizedBox(
               height: 80,
             ),

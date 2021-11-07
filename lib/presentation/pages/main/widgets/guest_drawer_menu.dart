@@ -33,7 +33,6 @@ class GuestDrawerMenu extends StatelessWidget {
               height: 20,
             ),
             const SettingDrawerMenuItem(),
-            const PrivacyPolicyDrawerMenuItem(),
             const SizedBox(
               height: 80,
             ),

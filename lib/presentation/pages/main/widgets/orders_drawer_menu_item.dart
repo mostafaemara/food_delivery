@@ -20,7 +20,7 @@ class OrdersDrawerMenuItem extends StatelessWidget {
       horizontalTitleGap: 0,
       contentPadding: EdgeInsets.zero,
       leading: Image.asset(
-        "assets/icons/work.png",
+        "assets/icons/paper.png",
         width: 24,
         height: 24,
         color: Theme.of(context).colorScheme.onBackground,

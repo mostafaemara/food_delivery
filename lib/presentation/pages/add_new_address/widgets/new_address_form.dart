@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:food_delivery_app/presentation/routes/router.gr.dart';
+
 import 'package:food_delivery_app/presentation/widgets/loading_dialog.dart';
 
-import "../../../helpers/form_helpers.dart";
 import 'package:food_delivery_app/presentation/bloc/address_form/newaddressform_cubit.dart';
 
 import 'package:food_delivery_app/presentation/pages/add_new_address/widgets/building_address_form.dart';
@@ -98,10 +97,13 @@ class _NewAddressFormState extends State<NewAddressForm> {
         state.submissionState.maybeWhen(
           orElse: () => null,
           submitting: () => showLoadingDialog(context),
-          success: () => context
-              .replaceRoute(AddressesRoute(isSelectionModeActive: false)),
+          success: () {
+            context.router.pop();
+            context.navigateBack();
+          },
           failed: (failure) => failure.maybeWhen(
             orElse: () {
+              context.router.pop();
               showErrorDialog(
                   context, AppLocalizations.of(context)!.serverError);
             },

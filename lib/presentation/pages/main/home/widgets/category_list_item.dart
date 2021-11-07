@@ -18,7 +18,7 @@ class CategoryListItem extends StatelessWidget {
         _randomColor.randomColor(colorBrightness: ColorBrightness.dark);
     return GestureDetector(
       onTap: () {
-        context.router.push(CategoryRoute(categoryId: category.id));
+        context.router.push(CategoryRoute(category: category));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),

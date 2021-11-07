@@ -1,30 +1,10 @@
 part of 'category_cubit.dart';
 
-@immutable
-abstract class CategoryState extends Equatable {}
-
-class CategoryInitial extends CategoryState {
-  @override
-  List<Object?> get props => [];
-}
-
-class CategoryLoading extends CategoryState {
-  @override
-  List<Object?> get props => [];
-}
-
-class CategoryLoaded extends CategoryState {
-  final List<Meal> meals;
-
-  CategoryLoaded(this.meals);
-  @override
-  List<Object?> get props => [meals];
-}
-
-class CategoryFailure extends CategoryState {
-  final ServerFailure failure;
-
-  CategoryFailure(this.failure);
-  @override
-  List<Object?> get props => [failure];
+@freezed
+class CategoryState with _$CategoryState {
+  const factory CategoryState.initial() = _Initial;
+  const factory CategoryState.loading() = _Loading;
+  const factory CategoryState.loaded({required List<Meal> meals}) = _Loaded;
+  const factory CategoryState.failure({required ServerFailure failure}) =
+      _Failure;
 }

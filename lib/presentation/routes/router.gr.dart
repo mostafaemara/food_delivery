@@ -12,7 +12,8 @@ import 'package:auto_route/auto_route.dart' as _i18;
 import 'package:flutter/material.dart' as _i19;
 
 import '../../domain/entities/meal.dart' as _i20;
-import '../../domain/entities/order.dart' as _i21;
+import '../../domain/entities/meal_category.dart' as _i21;
+import '../../domain/entities/order.dart' as _i22;
 import '../pages/add_new_address/new_address_page.dart' as _i10;
 import '../pages/addresses/addresses_page.dart' as _i11;
 import '../pages/category/category.dart' as _i9;
@@ -75,7 +76,7 @@ class AppRouter extends _i18.RootStackRouter {
       final args = routeData.argsAs<CategoryRouteArgs>();
       return _i18.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i9.CategoryPage(key: args.key, categoryId: args.categoryId));
+          child: _i9.CategoryPage(key: args.key, category: args.category));
     },
     NewAddressRoute.name: (routeData) {
       return _i18.MaterialPageX<dynamic>(
@@ -218,20 +219,20 @@ class LanguageSelectionRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for [_i9.CategoryPage]
 class CategoryRoute extends _i18.PageRouteInfo<CategoryRouteArgs> {
-  CategoryRoute({_i19.Key? key, required String categoryId})
+  CategoryRoute({_i19.Key? key, required _i21.MealCategory category})
       : super(name,
             path: '/category-page',
-            args: CategoryRouteArgs(key: key, categoryId: categoryId));
+            args: CategoryRouteArgs(key: key, category: category));
 
   static const String name = 'CategoryRoute';
 }
 
 class CategoryRouteArgs {
-  const CategoryRouteArgs({this.key, required this.categoryId});
+  const CategoryRouteArgs({this.key, required this.category});
 
   final _i19.Key? key;
 
-  final String categoryId;
+  final _i21.MealCategory category;
 }
 
 /// generated route for [_i10.NewAddressPage]
@@ -276,7 +277,7 @@ class OrdersRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for [_i14.OrderDetailsPage]
 class OrderDetailsRoute extends _i18.PageRouteInfo<OrderDetailsRouteArgs> {
-  OrderDetailsRoute({_i19.Key? key, required _i21.Order order})
+  OrderDetailsRoute({_i19.Key? key, required _i22.Order order})
       : super(name,
             path: '/order-details-page',
             args: OrderDetailsRouteArgs(key: key, order: order));
@@ -289,7 +290,7 @@ class OrderDetailsRouteArgs {
 
   final _i19.Key? key;
 
-  final _i21.Order order;
+  final _i22.Order order;
 }
 
 /// generated route for [_i15.Home]
