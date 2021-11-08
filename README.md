@@ -37,6 +37,7 @@ critical business logic  data structure such as meal,address,order,meal category
 ![alt text](https://github.com/mostafaemara/food_delivery/blob/main/domain%20layer.png)
 
 ### Data Layer
+Data Layer is Responsable to provide and save data from data sources
 Data Layer Consist of 3 main components
  - Repositories
 
@@ -55,3 +56,23 @@ Data Layer Consist of 3 main components
  
  
  ### Presentation Layer
+ 
+Presentation Layer Consist of 7 main components
+
+
+- Bloc: 
+the presenter and statemangment solution
+- Helpers: 
+extenstions to help the ui and remove complexity from ui for example translating numbers to arabic  
+- Inputs: 
+Form fields Input objects
+- Pages: 
+App Pages
+- Routes: 
+App Routes
+- Styles:
+ App Themes dark/light, App colors
+- Widgets: 
+Common widgets  
+
+
