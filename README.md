@@ -19,11 +19,11 @@ Food Delivery app is Mobile Application Built Using flutter sdk  To Provide  onl
 ##### Domain Layer
 Domain Layer is the core of the application it contains  business Logics and interfaces for data layer and presentation layer following the dependency rule.
 domain Layer has 4 main components
- - Entities
+ - Entities :- 
 critical business logic  data structure such as meal,address,order,meal category
- - Failures
- Types of failures 
- - Repositories
+ - Failures :- Types of failures 
+ - Repositories:- 
  interfaces of repositories
- - Validators
+ - Validators:- 
    Form fields validators functions returns valitation failure types so that the presentation layer decide the way to present it to user for example show the failure messege in arabic/english language
+ 
