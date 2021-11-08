@@ -26,4 +26,8 @@ critical business logic  data structure such as meal,address,order,meal category
  interfaces of repositories
  - Validators:- 
    Form fields validators functions returns valitation failure types so that the presentation layer decide the way to present it to user for example show the failure messege in arabic/english language
+   
+   
+   
+![alt text](https://github.com/mostafaemara/food_delivery/blob/main/domain%20layer.png)
  
