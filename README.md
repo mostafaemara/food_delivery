@@ -35,4 +35,16 @@ critical business logic  data structure such as meal,address,order,meal category
    
    
 ![alt text](https://github.com/mostafaemara/food_delivery/blob/main/domain%20layer.png)
+
+
+##### Data Layer
+Data Layer Consist of 3 main components
+ - Repositories
+ the implementation of the repositories interfaces
+ - Models
+ Data models extends entities with functions help mapping data coming from data sources to entities
+ - Mappers
+ another mapping solutaion to help map data to and from entities
+ 
+ ![alt text](https://github.com/mostafaemara/food_delivery/blob/main/domain%20layer.png)
  
