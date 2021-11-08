@@ -2,7 +2,7 @@
 Food Delivery app is Mobile Application Built Using flutter sdk  To Provide  online Food Ordering to Resturants also help users to order there favorites foods online
 
 
-#### Application Architecture
+### Application Architecture
 
 
 
@@ -14,9 +14,9 @@ Food Delivery app is Mobile Application Built Using flutter sdk  To Provide  onl
 
 ![alt text](https://github.com/mostafaemara/food_delivery/blob/main/food_delivery_app_arc.png?raw=true)
 
-#####   App Has three main layers
+##   App Has three main layers
 
-##### Domain Layer
+### Domain Layer
 Domain Layer is the core of the application it contains  business Logics and interfaces for data layer and presentation layer following the dependency rule.
 
 
@@ -36,7 +36,7 @@ critical business logic  data structure such as meal,address,order,meal category
    
 ![alt text](https://github.com/mostafaemara/food_delivery/blob/main/domain%20layer.png)
 
-##### Data Layer
+### Data Layer
 Data Layer Consist of 3 main components
  - Repositories
 
@@ -54,4 +54,4 @@ Data Layer Consist of 3 main components
  ![alt text](https://github.com/mostafaemara/food_delivery/blob/main/Data%20Layer.png)
  
  
- ##### Presentation Layer
+ ### Presentation Layer
